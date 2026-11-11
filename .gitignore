@@ -1,0 +1,13 @@
+
+# .NET build files
+**/bin/
+**/obj/
+
+# Frontend dependencies
+**/node_modules/
+**/dist/
+
+# Local environment
+.env
+.env.*
+!.env.example
