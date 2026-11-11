@@ -1,0 +1,2239 @@
+YÊU CẦU CHỨC NĂNG (FUNCTIONAL REQUIREMENTS)
+ 
+3.1. Use case “Đăng nhập”
+(Mô tả khái quát UC):
+Usecase này cung cấp chức năng dành cho Phụ huynh, Trợ lý, Quản lý, Giáo viên, Giám sát để đăng nhập vào hệ thống, từ đó khởi tạo phiên làm việc và điều hướng người dùng đến giao diện trang chủ tương ứng với đúng vai trò.
+3.1.1. Business rules
+ID
+Business rules
+BR-UC1-01
+Tài khoản và mật khẩu không được để trống khi đăng nhập
+BR-UC1-02
+Mọi người dùng phải xác thực bằng ID, Email công việc hoặc số điện thoại cùng mật khẩu
+BR-UC1-03
+Nhân viên (Quản lý, Trợ lý, Giáo viên, Giám sát) đăng nhập bằng ID hoặc Email công việc được cấp; phụ huynh đăng nhập bằng số điện thoại đã đăng ký học thử hoặc đăng ký học
+BR-UC1-04
+Tài khoản nhân viên do Bộ phận Admin cấp, phân vai trò và khóa; Quản lý cơ sở không có quyền tạo hoặc khóa tài khoản nhân viên
+BR-UC1-05
+Tài khoản Phụ huynh được hệ thống tự động khởi tạo theo Số điện thoại khi tiếp nhận đơn đăng ký học thử đầu tiên. Mật khẩu ban đầu được hệ thống phát sinh ngẫu nhiên/mặc định và bắt buộc Phụ huynh phải đổi mật khẩu ở lần đăng nhập đầu tiên.
+BR-UC1-06
+Học viên không có tài khoản riêng; phụ huynh theo dõi con thông qua tài khoản của mình
+BR-UC1-07
+Mỗi tài khoản thuộc đúng một trong năm vai trò: Quản lý, Trợ lý, Giáo viên, Giám sát, Phụ huynh
+BR-UC1-08
+Sau khi đăng nhập, người dùng chỉ truy cập được màn hình và chức năng của vai trò mình, không vào được màn hình của vai trò khác
+BR-UC1-09
+Tài khoản đã bị khóa không đăng nhập được
+BR-UC1-10
+Thông báo đăng nhập không thành công không cho biết tài khoản hay mật khẩu bên nào sai
+BR-UC1-11
+Tài khoản phụ huynh khi được tạo có mật khẩu tạm do hệ thống sinh tự động; phụ huynh phải đặt mật khẩu mới ở lần đăng nhập đầu tiên
+BR-UC1-12
+Hệ thống không tự khôi phục mật khẩu; người dùng quên mật khẩu liên hệ Trợ lý hoặc bộ phận Admin để được cấp lại mật khẩu tạm
+ 
+3.1.2.  Usecase 1. Đăng nhập
+ 
+Use case ID
+1
+Use case name
+Đăng nhập
+Description
+Là Phụ huynh/ Trợ lý/ Quản lý/ Giáo viên/ Giám sát, tôi muốn đăng nhập vào hệ thống
+Actors
+Phụ huynh/ Trợ lý/ Quản lý/ Giáo viên/ Giám sát
+Priority
+High
+Triggers
+Người dùng truy cập hệ thống khi chưa đăng nhập
+Pre-conditions
+Người dùng đã có tài khoản trong hệ thống
+Người dùng có thể truy cập đến trang web/ứng dụng
+Người dùng chưa đăng nhập
+Post-conditions
+Người dùng đăng nhập thành công vào hệ thống
+Hệ thống hiển thị màn hình Trang chủ tương ứng với vai trò của người dùng
+Main flow
+1. Người dùng truy cập hệ thống
+2. Hệ thống hiển thị màn hình đăng nhập
+3. Người dùng nhập tài khoản (ID, Email công việc hoặc số điện thoại) vào ô “Tài khoản” và nhập mật khẩu vào ô “Mật khẩu”
+4. Người dùng bấm nút “Đăng nhập”
+5. Hệ thống kiểm tra thông tin đăng nhập đã được nhập đủ
+6. Hệ thống xác thực tài khoản và mật khẩu, xác định vai trò của người dùng
+7. Hệ thống hiển thị trang chủ tương ứng với vai trò của người dùng
+Alternative flows
+1a. Nếu người dùng là Phụ huynh/ Giáo viên, hệ thống hiển thị màn hình chào mừng
+1a1. Phụ huynh/ Giáo viên chọn chức năng “Đăng nhập”
+UC tiếp tục ở bước 2
+4a. Người dùng muốn kiểm tra mật khẩu đã nhập, người dùng bấm vào biểu tượng ẩn/hiện mật khẩu (Icon con mắt) cạnh ô mật khẩu
+4a1. Hệ thống chuyển đổi hiển thị mật khẩu từ dạng ẩn ký tự (***) sang dạng văn bản thường
+UC tiếp tục ở bước 5
+Exception flows
+3a. Nếu Phụ huynh/ Giáo viên bấm nút “Huỷ”, hệ thống không xử lý đăng nhập, quay về màn hình chào mừng
+5a. Nếu để trống ô “Tài khoản” hoặc ô “Mật khẩu”, hệ thống hiển thị thông báo “Vui lòng điền đầy đủ thông tin!” ngay dưới trường bị thiếu và quay lại bước 3
+5b. Nếu Phụ huynh bấm vào nút “Quên mật khẩu?”, hệ thống hiển thị thông báo “Vui lòng liên hệ Trợ lý để được hỗ trợ cấp lại mật khẩu”
+5c. Nếu Trợ lý/ Quản lý/ Giáo viên**/ Giám sát** bấm vào nút “Quên mật khẩu?”, hệ thống hiển thị thông báo “Vui lòng liên hệ bộ phận Admin để được hỗ trợ cấp lại mật khẩu”
+6a. Nếu sai tài khoản hoặc sai mật khẩu, hệ thống hiển thị thông báo “Tên đăng nhập hoặc mật khẩu không chính xác. Vui lòng thử lại!” và quay lại bước 3
+6b. Nếu tài khoản đã bị khóa, hệ thống hiển thị thông báo “Tài khoản đã bị khóa. Vui lòng liên hệ bộ phận hỗ trợ” và kết thúc
+6c. Nếu không xác thực được do lỗi hệ thống, hệ thống hiển thị thông báo “Hiện tại đang có sự cố. Vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC1-01 đến BR-UC1-12
+Non-functional requirement
+Thời gian hệ thống phản hồi xác thực thông tin và chuyển hướng sau khi bấm đăng nhập không được vượt quá 2 giây trong điều kiện mạng tiêu chuẩn
+ 
+ 
+3.2. Use case “Học thử”
+(Mô tả khái quát UC):
+Nhóm Use Case này cung cấp các chức năng trên ứng dụng di động dành cho Phụ huynh, hỗ trợ đăng ký buổi học thử cho con, theo dõi lịch học thử và xem kết quả, lộ trình tư vấn sau buổi học thử.
+ (Hình phân rã UC):
+ 
+3.2.1. Business rules
+ID
+Business rules
+BR-UC2-01
+Họ và tên học viên chỉ gồm chữ cái (kể cả chữ có dấu) và khoảng trắng, độ dài từ 2 đến 50 ký tự
+BR-UC2-02
+Ngày sinh học viên phải hợp lệ, không sau ngày hiện tại và thuộc độ tuổi 5 đến 15 (Cơ bản 5 đến 6 tuổi, Nâng cao 7 đến 15 tuổi)
+BR-UC2-03
+Số điện thoại phụ huynh chỉ gồm chữ số, đúng 10 chữ số và bắt đầu bằng số 0
+BR-UC2-04
+Họ tên học viên, ngày sinh, số điện thoại phụ huynh và khung giờ mong muốn là thông tin bắt buộc khi đăng ký học thử
+BR-UC2-05
+Học thử chỉ có một buổi và không thu phí
+BR-UC2-06
+Mỗi học viên chỉ có một đơn học thử hiệu lực tại một thời điểm
+BR-UC2-07
+Đơn đăng ký mới có trạng thái ban đầu “Chờ tiếp nhận”, được ghi nhận thời điểm đăng ký và gửi thông báo cho Trợ lý
+BR-UC2-08
+Khung giờ mong muốn do phụ huynh nhập chỉ là nguyện vọng. Lịch học thử do Trợ lý đề xuất, phụ huynh xác nhận và chỉ được chốt sau khi Quản lý phê duyệt
+BR-UC2-09
+Phụ huynh chỉ xem được đơn đăng ký và kết quả học thử của chính con mình
+BR-UC2-10
+Trạng thái đơn học thử gồm: Chờ tiếp nhận, Đã tiếp nhận, Chờ phụ huynh xác nhận, Chờ duyệt ca học thử, Đã xếp ca, Đã hoàn thành, Đã tư vấn
+BR-UC2-11
+Hệ thống tạo tài khoản phụ huynh theo số điện thoại khi nhận đơn học thử đầu tiên; các đơn sau cùng số điện thoại dùng chung tài khoản
+BR-UC2-12
+Thông tin ca học (ngày, giờ, ca, giáo viên) hiển thị cho phụ huynh từ khi đơn ở trạng thái “Chờ phụ huynh xác nhận”; trước đó hiển thị nhãn “Chờ xếp ca”
+BR-UC2-13
+Chỉ hiển thị kết quả của các buổi học thử đã hoàn thành và đã được Trợ lý cập nhật kết quả tư vấn
+BR-UC2-14
+Kết quả học thử hiển thị cho phụ huynh gồm đánh giá năng lực, nhận xét và lộ trình đề xuất; ghi chú nội bộ của Trợ lý không được hiển thị
+ 
+3.2.2. Usecase 2.1. “Đăng ký học thử”
+ 
+Use case ID
+2.1
+Use case name
+ Đăng ký học thử 
+Description
+ Là phụ huynh, tôi muốn đăng ký cho con tham gia buổi học thử tại lớp vẽ
+Actors
+Phụ huynh
+Priority
+Medium
+Triggers
+Phụ huynh chọn chức năng “Đăng ký học thử” trên ứng dụng
+Pre-conditions
+Phụ huynh truy cập được biểu mẫu học thử
+Post-conditions
+Đơn đăng ký học thử được lưu với trạng thái “Chờ tiếp nhận”
+Tài khoản phụ huynh được tạo theo số điện thoại nếu chưa có, và đơn được liên kết với tài khoản này
+Trợ lý nhận được thông báo có đơn mới
+Main flow
+1. Phụ huynh chọn chức năng “Đăng ký học thử”
+2. Hệ thống hiển thị biểu mẫu đăng ký học thử
+3. Phụ huynh nhập thông tin học viên (họ tên, ngày sinh), số điện thoại của phụ huynh và khung giờ mong muốn
+4. Phụ huynh bấm nút “Đăng ký”
+5. Hệ thống kiểm tra thông tin đăng ký
+6. Hệ thống lưu thông tin đăng ký học thử ở trạng thái “Chờ tiếp nhận”, tạo tài khoản phụ huynh theo SĐT nếu chưa có và thông báo cho Trợ lý
+7. Hệ thống hiển thị thông báo “Đăng ký học thử thành công!”
+Alternative flows
+3a. Nếu phụ huynh đăng ký cho học viên thứ hai (anh/chị/em), phụ huynh bấm nút “Thêm bé thứ hai”
+3a1. Hệ thống hiển thị thêm cụm trường nhập thông tin học viên thứ hai
+3a2. Phụ huynh nhập thông tin học viên thứ hai
+UC tiếp tục ở bước 4
+Exception flows
+5a. Nếu thông tin không hợp lệ hoặc để trống trường bắt buộc, hệ thống hiển thị thông báo “Thông tin đăng ký không hợp lệ. Vui lòng kiểm tra lại!” và quay lại bước 3
+6a. Nếu không lưu được đơn đăng ký, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, ba mẹ đợi Ngôi Nhà Nhỏ một xíu nhé!” và kết thúc
+Business rules
+BR-UC2-01,BR-UC2-02,BR-UC2-03,BR-UC2-04,BR-UC2-05,
+BR-UC2-06,BR-UC2-07,BR-UC2-08,BR-UC2-11.
+Non-functional requirement
+N/A
+ 
+ 
+3.2.3. Usecase 2.2. “Xem lịch học thử”
+ 
+Use case ID
+2.2
+Use case name
+ Xem lịch học thử 
+Description
+ Là phụ huynh, tôi muốn xem lịch học thử của con và xác nhận ca học thử do Trợ lý đề xuất
+Actors
+Phụ huynh
+Priority
+Medium
+Triggers
+Phụ huynh chọn chức năng “Xem lịch học thử” trên ứng dụng
+Pre-conditions
+Phụ huynh đã xác thực thành công bằng số điện thoại đã đăng ký học thử
+Post-conditions
+Thông tin lịch học thử của con được hiển thị
+Nếu phụ huynh xác nhận lịch đề xuất, đơn học thử chuyển sang trạng thái “Chờ duyệt ca học thử”
+Main flow
+1. Phụ huynh chọn chức năng “Xem lịch học thử”
+2. Hệ thống hiển thị danh sách đơn học thử (học viên, ngày, giờ, ca, giáo viên, trạng thái)
+3. Phụ huynh chọn một đơn học thử cần xem trong danh sách
+4. Hệ thống hiển thị chi tiết lịch học thử
+Alternative flows
+4a. Nếu đơn chưa được xếp ca (trạng thái “Chờ tiếp nhận” hoặc “Đã tiếp nhận”), hệ thống hiển thị trạng thái của đơn và nhãn “Chờ xếp ca” thay cho thông tin ca học
+UC kết thúc
+4b. Nếu Trợ lý đã gửi đề xuất ca học thử (trạng thái “Chờ phụ huynh xác nhận”), hệ thống hiển thị ca học thử đề xuất
+4b1. Phụ huynh bấm nút “Xác nhận lịch”
+4b2. Hệ thống ghi nhận xác nhận, chuyển trạng thái đơn sang “Chờ duyệt ca học thử” và thông báo cho Trợ lý
+4b3. Hệ thống hiển thị thông báo “Xác nhận lịch học thử thành công!”
+Exception flows
+2a. Nếu phụ huynh chưa có đơn đăng ký học thử nào, hệ thống hiển thị thông báo “Bạn chưa có đơn đăng ký học thử nào” và kết thúc
+2b. Nếu không truy xuất được dữ liệu, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, ba mẹ đợi Ngôi Nhà Nhỏ một xíu nhé!” và kết thúc
+4c. Nếu ghi nhận xác nhận không thành công, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, ba mẹ đợi Ngôi Nhà Nhỏ một xíu nhé!” và kết thúc
+Business rules
+BR-UC2-08, BR-UC2-09, BR-UC2-10,BR-UC2-12
+Non-functional requirement
+N/A
+ 
+3.2.4. Usecase 2.3. “Xem kết quả học thử”
+ 
+Use case ID
+2.3
+Use case name
+Xem kết quả học thử 
+Description
+Là phụ huynh, tôi muốn xem kết quả sau buổi học thử của con (đánh giá trình độ, nhận xét, lộ trình đề xuất) để quyết định đăng ký học chính thức
+Actors
+Phụ huynh
+Priority
+Medium
+Triggers
+Phụ huynh chọn chức năng “Kết quả học thử” trên ứng dụng
+Pre-conditions
+Phụ huynh đã xác thực thành công bằng số điện thoại đã đăng ký học thử
+Post-conditions
+Đánh giá năng lực, nhận xét và lộ trình đề xuất của buổi học thử được hiển thị cho phụ huynh
+Main flow
+1. Phụ huynh chọn chức năng “Kết quả học thử”
+2. Hệ thống truy xuất các buổi học thử đã hoàn thành của học viên
+3. Phụ huynh chọn buổi học thử cần xem kết quả trong danh sách
+4. Hệ thống kiểm tra kết quả tư vấn đã được Trợ lý cập nhật
+5. Hệ thống hiển thị đánh giá trình độ, nhận xét và lộ trình đề xuất
+Alternative flows
+2a. Nếu học viên chỉ có một buổi học thử, hệ thống mở thẳng kết quả của buổi đó
+UC tiếp tục ở bước 4
+Exception flows
+2b. Nếu chưa có buổi học thử nào hoàn thành, hệ thống hiển thị thông báo “Chưa có kết quả học thử” và kết thúc
+4a. Nếu kết quả chưa được cập nhật, hệ thống hiển thị thông báo “Kết quả chưa được cập nhật. Vui lòng quay lại sau” và kết thúc
+Business rules
+BR-UC2-09, BR-UC2-13,BR-UC2-14
+Non-functional requirement
+N/A
+ 
+3.3. Use case “Xin nghỉ học”
+(Mô tả khái quát UC):
+Nhóm Use Case này cung cấp các chức năng trên ứng dụng di động dành cho Phụ huynh, hỗ trợ gửi yêu cầu xin nghỉ học cho con, chọn ca đăng ký học bù trong thời hạn quy định và thực hiện hủy ca học bù đã đăng ký khi có nhu cầu thay đổi lịch.  
+ (Hình phân rã UC):
+ 
+3.3.1. Business rules
+ID
+Business rules
+BR-UC3-01 
+Mọi buổi nghỉ của học viên đều được học bù, không áp dụng mốc báo trước bao nhiêu giờ
+BR-UC3-02 
+Phụ huynh chỉ gửi yêu cầu xin nghỉ, đăng ký học bù và hủy học bù cho học viên liên kết với tài khoản của mình
+BR-UC3-03 
+Phụ huynh chỉ gửi yêu cầu xin nghỉ cho ca học chưa diễn ra, tức là thời điểm bắt đầu ca học lớn hơn thời điểm hiện tại
+BR-UC3-04 
+Lý do nghỉ là thông tin không bắt buộc khi gửi yêu cầu xin nghỉ. Phụ huynh có thể nhập thông tin lý do hoặc để trống, hệ thống vẫn chấp nhận ghi nhận đơn xin nghỉ
+BR-UC3-05 
+Mỗi ca học của mỗi học viên chỉ có tối đa một yêu cầu xin nghỉ
+BR-UC3-06 
+Mỗi buổi nghỉ được ghi nhận làm giảm 1 buổi trong số buổi còn lại của tháng chứa ca học nghỉ. Khi số buổi còn lại của tháng đó bằng 0, hệ thống không cho gửi yêu cầu xin nghỉ
+BR-UC3-07
+Số buổi còn lại của học viên được tính theo từng tháng đã đóng học phí và không cộng dồn sang tháng khác. Quyền học bù của mỗi buổi vắng được duy trì độc lập trong 30 ngày kể từ ngày vắng, không bị gạch bỏ khi chuyển sang tháng tiếp theo
+BR-UC3-08
+Hạn học bù là 30 ngày kể từ ngày của ca học nghỉ, được xác lập khi tạo yêu cầu xin nghỉ. Ca học bù diễn ra đến hết ngày hết hạn vẫn được tính là hợp lệ
+BR-UC3-09
+Mỗi lần xin nghỉ tạo đúng một bản ghi yêu cầu xin nghỉ. Các bước đăng ký, duyệt, hủy học bù cập nhật bản ghi này, không tạo bản ghi mới
+BR-UC3-10
+Yêu cầu xin nghỉ có các trạng thái: “Chờ xếp lịch bù” (vừa ghi nhận hoặc được trả về), “Đã đăng ký học bù” (đã gắn ca học bù), “Chờ duyệt” (Trợ lý đã trình Quản lý), “Đã xếp lịch bù” (Quản lý đã duyệt) và “Hết hạn” (quá hạn học bù)
+BR-UC3-11
+Ca học bù khả dụng phải cùng trình độ với học viên (Cơ bản hoặc Nâng cao), không trùng lịch học của học viên, nằm trong hạn học bù và còn chỗ
+BR-UC3-12
+Ca học bù còn chỗ khi số học viên bù của ca (gồm học viên đã được duyệt và học viên đang được giữ chỗ) nhỏ hơn 2 và sĩ số sau khi ghép không vượt quá 8
+BR-UC3-13
+Mỗi yêu cầu xin nghỉ chỉ có một ca học bù đăng ký tại một thời điểm
+BR-UC3-14
+Ca học bù được giữ chỗ ngay khi phụ huynh đăng ký. Đăng ký chưa phải xác nhận chính thức, chỉ được chốt sau khi Quản lý phê duyệt
+BR-UC3-15
+Học bù và hủy học bù không làm thay đổi số buổi còn lại của học viên
+BR-UC3-16
+Hệ thống tự động chuyển yêu cầu sang “Hết hạn” khi quá hạn học bù mà yêu cầu đang ở trạng thái “Chờ xếp lịch bù”, “Đã đăng ký học bù” hoặc “Chờ duyệt”. Yêu cầu hết hạn mất quyền học bù, không được hoàn buổi và chỗ đã giữ được trả lại. Yêu cầu ở trạng thái “Đã xếp lịch bù” không bị chuyển
+BR-UC3-17
+Phụ huynh chỉ hủy học bù khi ca học bù chưa diễn ra và yêu cầu đang ở trạng thái “Đã đăng ký học bù”, “Chờ duyệt” hoặc “Đã xếp lịch bù”
+BR-UC3-18
+Sau khi hủy học bù, chỗ đã giữ được trả lại, yêu cầu quay về “Chờ xếp lịch bù” và hạn học bù giữ nguyên, không gia hạn. Nếu ca học bù đã được duyệt, học viên được gỡ khỏi danh sách học viên bù của ca; giáo viên phụ trách và Quản lý được thông báo
+BR-UC3-19
+Mọi thay đổi dữ liệu của một lần thao tác được thực hiện trọn vẹn, hoặc hoàn tác toàn bộ khi có lỗi
+ 
+3.3.2. Usecase 3.1. “Gửi yêu cầu xin nghỉ học”
+Use case ID
+3.1
+Use case name
+Gửi yêu cầu xin nghỉ học
+Description
+Là phụ huynh, tôi muốn gửi yêu cầu xin nghỉ học cho con để Lớp vẽ ghi nhận buổi nghỉ và sắp xếp học bù
+Actors
+Phụ huynh
+Priority
+High 
+Triggers
+Phụ huynh chọn chức năng “Xin nghỉ học” trên ứng dụng
+Pre-conditions
+Phụ huynh đã đăng nhập thành công vào ứng dụng
+Post-conditions
+Yêu cầu xin nghỉ được lưu với trạng thái “Chờ xếp lịch bù”
+Ca học tương ứng được đánh dấu “Đã xin nghỉ”
+Số buổi còn lại của học viên trong tháng của ca học đó bị trừ 01 buổi
+Yêu cầu xin nghỉ xuất hiện trong danh sách báo nghỉ của Trợ lý
+Main flow
+1. Phụ huynh chọn chức năng “Xin nghỉ học” trên ứng dụng
+2. Hệ thống hiển thị danh sách ca học chưa diễn ra của học viên
+3. Phụ huynh chọn ca học cần xin nghỉ trong danh sách
+4. Phụ huynh nhập lý do vào ô “Lý do nghỉ” (không bắt buộc)
+5. Phụ huynh bấm nút “Gửi”
+6. Hệ thống kiểm tra ca học và số buổi còn lại của học viên
+7. Hệ thống lưu yêu cầu xin nghỉ, đánh dấu ca học là “Đã xin nghỉ” và trừ 1 buổi
+8. Hệ thống hiển thị thông báo xác nhận “Gửi yêu cầu xin nghỉ thành công!” 
+Alternative flows
+2a. Nếu phụ huynh có từ 2 học viên, hệ thống hiển thị danh sách học viên
+2a1. Phụ huynh chọn học viên cần xin nghỉ
+2a2. Hệ thống hiển thị danh sách ca học chưa diễn ra của học viên đó
+UC tiếp tục ở bước 3
+Exception flows
+2b. Nếu tài khoản chưa liên kết với học viên nào, hệ thống hiển thị thông báo: “Tài khoản chưa được liên kết với hồ sơ học viên. Vui lòng liên hệ Trợ lý để hỗ trợ” và kết thúc
+2c. Nếu học viên không có ca học chưa diễn ra, hệ thống hiển thị thông báo: “Học viên hiện không có buổi học nào sắp tới để gửi đơn xin nghỉ” và kết thúc
+5a. Nếu phụ huynh bấm nút “Hủy”, hệ thống không lưu yêu cầu, quay về màn hình trước và kết thúc
+6a. Nếu ca học đã có yêu cầu xin nghỉ, hệ thống hiển thị thông báo: “Buổi học này đã được gửi đơn xin nghỉ trước đó” và kết thúc
+6b. Nếu số buổi học còn lại của học viên bằng 0, hệ thống hiển thị thông báo: “Học viên đã hết số buổi học còn lại. Ba mẹ vui lòng liên hệ Trợ lý để được hỗ trợ” và kết thúc
+7a. Nếu lưu không thành công, hệ thống hiển thị thông báo: “Hiện tại đang có sự cố, ba mẹ đợi Ngôi Nhà Nhỏ một xíu nhé!” và kết thúc
+Business rules
+BR-UC3-01 đến BR-UC3-10, BR-UC3-19 
+Non-functional requirement
+N/A
+ 
+3.3.3. Usecase 3.2. “Đăng ký ca học bù”
+Use case ID
+3.2
+Use case name
+Đăng ký ca học bù
+Description
+Là phụ huynh, tôi muốn chọn ca học bù phù hợp cho con trên ứng dụng để con được học bù cho buổi đã nghỉ trong hạn học bù
+Actors
+Phụ huynh
+Priority
+High
+Triggers
+Phụ huynh chọn chức năng “Đăng ký học bù” trên ứng dụng
+Pre-conditions
+Phụ huynh đã đăng nhập thành công vào ứng dụng
+Post-conditions
+Ca học bù đã chọn được gắn vào yêu cầu xin nghỉ của học viên
+Yêu cầu xin nghỉ chuyển sang trạng thái “Đã đăng ký học bù”
+Ca bù đã chọn được giữ chỗ cho học viên
+Đăng ký xuất hiện trong danh sách chờ lập đề xuất của Trợ lý
+Main flow
+1. Phụ huynh chọn chức năng “Đăng ký học bù” trên ứng dụng
+2. Hệ thống hiển thị danh sách ca học nghỉ đang chờ xếp lịch bù của học viên, còn trong hạn học bù
+3. Phụ huynh chọn ca học nghỉ cần học bù trong danh sách
+4. Hệ thống hiển thị danh sách ca học bù khả dụng trong hạn học bù
+5. Phụ huynh chọn ca học bù trong danh sách
+6. Phụ huynh bấm nút “Gửi đăng ký”
+7. Hệ thống kiểm tra yêu cầu chưa hết hạn, còn ở trạng thái “Chờ xếp lịch bù” và ca học bù còn chỗ
+8. Hệ thống gắn ca học bù vào yêu cầu xin nghỉ, chuyển trạng thái sang “Đã đăng ký học bù”, giữ chỗ trong ca học bù và đưa đăng ký vào danh sách chờ lập đề xuất của Trợ lý
+9. Hệ thống hiển thị thông báo “Đăng ký học bù thành công! Vui lòng chờ xác nhận.”
+Alternative flows
+2a. Nếu tài khoản liên kết từ 2 học viên trở lên, hệ thống hiển thị danh sách học viên liên kết với tài khoản
+2a1. Phụ huynh chọn học viên cần đăng ký học bù trong danh sách
+2a2. Hệ thống hiển thị các yêu cầu xin nghỉ đang “Chờ xếp lịch bù” của học viên đó, còn trong hạn học bù
+UC tiếp tục ở bước 3
+Exception flows
+2b. Nếu tài khoản chưa liên kết với học viên nào, hệ thống hiển thị thông báo “Tài khoản chưa được liên kết với hồ sơ học viên. Vui lòng liên hệ Trợ lý để hỗ trợ” và kết thúc
+2c. Nếu học viên không có buổi nghỉ nào đang chờ xếp lịch bù còn trong hạn, hệ thống hiển thị thông báo “Học viên hiện không có buổi nghỉ nào cần học bù” và kết thúc
+4a. Nếu không có ca học bù khả dụng, hệ thống hiển thị thông báo “Hiện chưa có ca học bù phù hợp. Trợ lý sẽ liên hệ ba mẹ để sắp xếp” và kết thúc. Yêu cầu vẫn ở trạng thái “Chờ xếp lịch bù”
+6a. Nếu phụ huynh bấm nút “Hủy”, hệ thống không lưu đăng ký, quay về màn hình trước và kết thúc
+7a. Nếu yêu cầu đã ở trạng thái “Hết hạn”, hệ thống hiển thị thông báo “Yêu cầu học bù này đã quá thời hạn học bù nên không thể đăng ký” và kết thúc
+7b. Nếu yêu cầu xin nghỉ không còn ở trạng thái “Chờ xếp lịch bù”, hệ thống hiển thị thông báo “Yêu cầu học bù này đã được đăng ký trước đó” và kết thúc
+7c. Nếu ca bù đã chọn vừa hết chỗ, hệ thống hiển thị thông báo “Ca học này vừa hết chỗ. Ba mẹ vui lòng chọn ca khác” và quay lại bước 4
+8a. Nếu lưu không thành công, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, ba mẹ đợi Ngôi Nhà Nhỏ một xíu nhé!” và kết thúc
+Business rules
+BR-UC3-02, BR-UC3-08 đến BR-UC3-16, BR-UC3-19 
+Non-functional requirement
+N/A
+ 
+3.3.4. Usecase 3.3. “Huỷ yêu cầu học bù”
+Use case ID
+3.3
+Use case name
+Huỷ yêu cầu học bù
+Description
+Là phụ huynh, tôi muốn hủy ca học bù đã đăng ký cho con trên ứng dụng di động để trả lại chỗ và đăng ký lại ca học bù khác trong hạn học bù
+Actors
+Phụ huynh
+Priority
+Medium
+Triggers
+Phụ huynh chọn chức năng “Hủy học bù” trên ứng dụng
+Pre-conditions
+Phụ huynh đã đăng nhập thành công vào ứng dụng
+Post-conditions
+Ca học bù được gỡ khỏi yêu cầu xin nghỉ
+Yêu cầu quay về trạng thái “Chờ xếp lịch bù”, hạn học bù giữ nguyên
+Chỗ đã giữ trong ca học bù được trả lại
+Trợ lý được thông báo về việc hủy
+Nếu ca học bù đã được duyệt, học viên được gỡ khỏi danh sách học viên bù của ca; giáo viên phụ trách và Quản lý được thông báo
+Main flow
+1. Phụ huynh chọn chức năng “Hủy học bù” trên ứng dụng
+2. Hệ thống hiển thị danh sách yêu cầu xin nghỉ của học viên có ca học bù chưa diễn ra (trạng thái “Đã đăng ký học bù”, “Chờ duyệt” hoặc “Đã xếp lịch bù”)
+3. Phụ huynh chọn yêu cầu cần hủy học bù trong danh sách
+4. Phụ huynh bấm nút “Xác nhận hủy”
+5. Hệ thống kiểm tra yêu cầu chưa hết hạn, còn ca học bù có thể hủy và ca học bù chưa diễn ra
+6. Hệ thống gỡ ca học bù khỏi yêu cầu xin nghỉ, chuyển trạng thái về “Chờ xếp lịch bù”, trả lại chỗ đã giữ, gỡ đăng ký khỏi danh sách chờ xử lý (nếu có) và thông báo cho Trợ lý
+7. Hệ thống hiển thị thông báo “Hủy học bù thành công! Ba mẹ có thể đăng ký ca học bù khác trong hạn học bù”
+Alternative flows
+2a. Nếu tài khoản liên kết từ 2 học viên trở lên, hệ thống hiển thị danh sách học viên liên kết với tài khoản
+2a1. Phụ huynh chọn học viên cần hủy học bù trong danh sách
+2a2. Hệ thống hiển thị danh sách yêu cầu xin nghỉ có ca học bù chưa diễn ra của học viên đó
+UC tiếp tục ở bước 3
+6a. Nếu yêu cầu đang ở trạng thái “Đã xếp lịch bù”, hệ thống gỡ học viên khỏi danh sách học viên bù của ca học bù
+6a1. Hệ thống thông báo cho giáo viên phụ trách ca học bù và Quản lý
+UC tiếp tục ở bước 7
+Exception flows
+2b. Nếu tài khoản chưa liên kết với học viên nào, hệ thống hiển thị thông báo “Tài khoản chưa được liên kết với hồ sơ học viên. Vui lòng liên hệ Trợ lý để hỗ trợ” và kết thúc
+2c. Nếu học viên không có ca học bù nào có thể hủy, hệ thống hiển thị thông báo “Học viên hiện không có ca học bù nào có thể hủy” và kết thúc
+5a. Nếu yêu cầu đã ở trạng thái “Hết hạn”, hệ thống hiển thị thông báo “Yêu cầu học bù này đã quá thời hạn học bù nên không thể hủy” và kết thúc
+5b. Nếu yêu cầu không có ca học bù nào ở trạng thái cho phép hủy (ví dụ đã được hủy trước đó), hệ thống hiển thị thông báo “Yêu cầu này hiện không có ca học bù để hủy” và kết thúc
+5c. Nếu ca học bù đã hoặc đang diễn ra, hệ thống hiển thị thông báo “Ca học bù này đã diễn ra nên không thể hủy” và kết thúc
+6a. Nếu phụ huynh bấm nút “Giữ lại”, hệ thống không lưu yêu cầu, quay về màn hình trước và kết thúc
+6b. Nếu lưu không thành công, hệ thống hoàn tác mọi thay đổi dữ liệu trong giao dịch, hiển thị thông báo “Hiện tại đang có sự cố, ba mẹ đợi Ngôi Nhà Nhỏ một xíu nhé!” và kết thúc
+Business rules
+BR-UC3-02, BR-UC3-08, BR-UC3-10, BR-UC3-14 đến BR-UC3-19 
+Non-functional requirement
+N/A
+ 
+3.4. Use case “Theo dõi quá trình học tập”
+(Mô tả khái quát UC):
+Nhóm Use Case này cung cấp các chức năng trên ứng dụng di động dành cho Phụ huynh nhằm theo dõi tình hình học tập của con, bao gồm tra cứu thời khóa biểu và lịch học bù đã duyệt, theo dõi số buổi học còn lại trong tháng, xem nhật ký học tập, đồng thời nhận các thông báo về lịch học, chuyên cần và tiến trình xử lý các đơn xin nghỉ, học thử.
+(Hình phân rã UC):
+ 
+ 
+3.4.1. Business rules
+ID
+Business rules
+BR-UC4-01
+Phụ huynh chỉ xem thời khóa biểu, nhật ký học tập và thông báo của học viên có hồ sơ liên kết với tài khoản của mình, không truy cập được dữ liệu học viên khác
+BR-UC4-02
+Phụ huynh chỉ có quyền xem, không được chỉnh sửa hoặc xóa lịch học, ảnh tác phẩm, nhận xét và thông báo
+BR-UC4-03
+Thời khóa biểu phản ánh đúng lịch học lưu trên hệ thống, gồm ngày học, giờ học và lớp học; ca học bù đã được duyệt xuất hiện trong thời khóa biểu
+BR-UC4-04
+Thời khóa biểu hiển thị kèm số buổi còn lại trong tháng và tình trạng buổi (đã xin nghỉ, cần bù)
+BR-UC4-05
+Nhật ký học tập hiển thị ảnh tác phẩm và nhận xét của giáo viên theo từng buổi học, sắp xếp từ mới đến cũ
+BR-UC4-06
+Ghi chú nội bộ của Trợ lý không hiển thị cho phụ huynh
+BR-UC4-07
+Thông báo phụ huynh nhận gồm: tiếp nhận đơn học thử, đề xuất và xác nhận lịch học thử, xác nhận gửi yêu cầu xin nghỉ, học viên vắng mặt, lịch học bù được phê duyệt
+BR-UC4-08
+Khi lịch học bù được phê duyệt, hệ thống tự động gửi thông báo xác nhận đến phụ huynh
+ 
+3.4.2. Usecase 4.1. “Tra cứu thời khoá biểu”
+Use case ID
+4.1
+Use case name
+Tra cứu thời khóa biểu
+Description
+Là phụ huynh, tôi muốn tra cứu thời khóa biểu của con để chủ động theo dõi lịch học và sắp xếp thời gian đưa đón
+Actors
+Phụ huynh
+Priority
+High
+Triggers
+Phụ huynh chọn chức năng “Tra cứu thời khóa biểu” trên ứng dụng
+Pre-conditions
+Phụ huynh đã đăng nhập thành công vào ứng dụng
+Post-conditions
+Thời khóa biểu của học viên được hiển thị
+Main flow
+1. Phụ huynh chọn chức năng “Tra cứu thời khóa biểu”
+2. Hệ thống xác định học viên liên kết với tài khoản và truy xuất thời khóa biểu của học viên
+3. Hệ thống hiển thị thời khóa biểu của tuần hiện tại, gồm ngày học, giờ học, lớp học và ca học bù đã duyệt, kèm số buổi còn lại trong tháng và tình trạng buổi (đã xin nghỉ, cần bù) 
+Alternative flows
+2a. Nếu tài khoản liên kết từ 2 học viên trở lên, hệ thống hiển thị danh sách học viên liên kết với tài khoản
+2a1. Phụ huynh chọn học viên cần xem trong danh sách
+2a2. Hệ thống truy xuất thời khóa biểu của học viên đó
+UC tiếp tục ở bước 3
+3a. Nếu phụ huynh muốn xem tuần khác, phụ huynh chọn tuần cần xem
+3a1. Hệ thống hiển thị thời khóa biểu của tuần đã chọn
+UC kết thúc 
+Exception flows
+2b. Nếu tài khoản chưa liên kết với học viên nào, hệ thống hiển thị thông báo “Tài khoản chưa được liên kết với hồ sơ học viên. Vui lòng liên hệ Trợ lý để hỗ trợ” và kết thúc
+2c. Nếu không truy xuất được dữ liệu, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, ba mẹ đợi Ngôi Nhà Nhỏ một xíu nhé!” và kết thúc
+3b. Nếu học viên chưa có lịch học, hệ thống hiển thị thông báo “Bé chưa có lịch học trong thời gian này” và kết thúc 
+Business rules
+BR-UC4-01 đến BR-UC4-04 
+Non-functional requirement
+N/A
+ 
+3.4.3. Usecase 4.2. “Xem nhật ký học tập”
+Use case ID
+4.2
+Use case name
+Xem nhật ký học tập 
+Description
+Là phụ huynh, tôi muốn xem nhật ký học tập của con để theo dõi ảnh tác phẩm, nhận xét của giáo viên và quá trình tiến bộ qua từng buổi học
+Actors
+Phụ huynh
+Priority
+High
+Triggers
+Phụ huynh chọn chức năng “Xem nhật ký học tập” trên ứng dụng
+Pre-conditions
+Phụ huynh đã đăng nhập thành công vào ứng dụng
+Post-conditions
+Nhật ký học tập của học viên được hiển thị
+Main flow
+1. Phụ huynh chọn chức năng “Xem nhật ký học tập”
+2. Hệ thống xác định học viên liên kết với tài khoản và truy xuất nhật ký học tập của học viên
+3. Hệ thống hiển thị nhật ký học tập theo từng buổi học, từ mới đến cũ, gồm ảnh thu nhỏ của tác phẩm và nhận xét của giáo viên
+4. Phụ huynh chọn một buổi học trong nhật ký
+5. Hệ thống hiển thị chi tiết buổi học gồm ảnh gốc và nhận xét đầy đủ
+Alternative flows
+2a. Nếu tài khoản liên kết từ 2 học viên trở lên, hệ thống hiển thị danh sách học viên liên kết với tài khoản
+2a1. Phụ huynh chọn học viên cần xem trong danh sách
+2a2. Hệ thống truy xuất nhật ký học tập của học viên đó
+UC tiếp tục ở bước 3
+Exception flows
+2b. Nếu tài khoản chưa liên kết với học viên nào, hệ thống hiển thị thông báo “Tài khoản chưa được liên kết với hồ sơ học viên. Vui lòng liên hệ Trợ lý để hỗ trợ” và kết thúc
+2c. Nếu không truy xuất được dữ liệu, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, ba mẹ đợi Ngôi Nhà Nhỏ một xíu nhé!” và kết thúc
+3a. Nếu học viên chưa có nội dung nhật ký, hệ thống hiển thị thông báo “Nhật ký học tập của bé chưa có nội dung” và kết thúc
+Business rules
+BR-UC4-01, BR-UC4-02, BR-UC4-05, BR-UC4-06, BR-UC12-01, BR-UC12-06 
+Non-functional requirement
+Ảnh thu nhỏ dưới 200KB, ảnh gốc độ phân giải cao trên kho lưu trữ đám mây
+ 
+3.4.4. Usecase 4.3. “Xem thông báo”
+Use case ID
+4.3
+Use case name
+Xem thông báo
+Description
+Là phụ huynh, tôi muốn xem các thông báo liên quan đến quá trình học tập của con để kịp thời nắm bắt thông tin từ Lớp vẽ
+Actors
+Phụ huynh
+Priority
+High
+Triggers
+Phụ huynh chọn chức năng “Xem thông báo” trên ứng dụng
+Pre-conditions
+Phụ huynh đã đăng nhập thành công vào ứng dụng
+Post-conditions
+Danh sách thông báo liên quan đến học viên được hiển thị 
+Main flow
+1. Phụ huynh chọn chức năng “Xem thông báo”
+2. Hệ thống xác định học viên liên kết với tài khoản và truy xuất danh sách thông báo liên quan
+3. Hệ thống hiển thị danh sách thông báo từ mới đến cũ, gồm tiêu đề và thời gian
+4. Phụ huynh chọn một thông báo trong danh sách
+5. Hệ thống hiển thị nội dung thông báo
+Alternative flows
+2a. Nếu tài khoản liên kết từ 2 học viên trở lên, hệ thống hiển thị thông báo của tất cả học viên liên kết, kèm tên học viên
+UC tiếp tục ở bước 4 
+Exception flows
+2b. Nếu tài khoản chưa liên kết với học viên nào, hệ thống hiển thị thông báo “Tài khoản chưa được liên kết với hồ sơ học viên. Vui lòng liên hệ Trợ lý để hỗ trợ” và kết thúc
+2c. Nếu không truy xuất được dữ liệu, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, ba mẹ đợi Ngôi Nhà Nhỏ một xíu nhé!” và kết thúc
+3a. Nếu chưa có thông báo nào, hệ thống hiển thị thông báo “Bạn chưa có thông báo nào” và kết thúc 
+Business rules
+BR-UC4-01, BR-UC4-02, BR-UC4-07, BR-UC4-08 
+Non-functional requirement
+N/A
+ 
+3.5. Usecase “Quản lý học thử”
+(Mô tả khái quát UC):
+Nhóm Use Case này cung cấp các chức năng dành cho Trợ lý nhằm tiếp nhận đơn đăng ký học thử, xếp học viên vào ca học thử phù hợp và cập nhật kết quả tư vấn sau buổi học thử.
+ 
+3.5.1. Business rules
+ID
+Business rules
+BR-UC5-01
+Trợ lý (hoặc Quản lý khi thay Trợ lý) đã đăng nhập mới được tiếp nhận đơn, xếp ca và cập nhật kết quả tư vấn
+BR-UC5-02
+Chương trình học gợi ý theo độ tuổi: Cơ bản 5 đến 6 tuổi, Nâng cao 7 đến 15 tuổi
+BR-UC5-03
+Chỉ đơn ở trạng thái “Chờ tiếp nhận” mới được tiếp nhận; chỉ đơn ở trạng thái “Đã tiếp nhận” mới được xếp ca
+BR-UC5-04
+Mọi thay đổi trạng thái đơn được lưu lịch sử gồm người xử lý, thời gian, trạng thái cũ và trạng thái mới
+BR-UC5-05
+Ca học thử đề xuất phải cùng chương trình học với học viên, chưa diễn ra và còn chỗ
+BR-UC5-06
+Sĩ số mỗi ca học thử tối đa 7 học viên; hệ thống kiểm tra lại sĩ số khi lưu đề xuất, nếu ca đã đầy thì phải chọn ca khác
+BR-UC5-07
+Lịch học thử chỉ được chốt sau khi Quản lý phê duyệt; khi Quản lý không duyệt, đơn quay về “Đã tiếp nhận” để Trợ lý chọn ca đề xuất khác
+BR-UC5-08
+Việc liên hệ phụ huynh (Zalo, điện thoại) để tư vấn, xác minh thông tin thực hiện ngoài hệ thống
+BR-UC5-09
+Chỉ được cập nhật kết quả tư vấn sau khi buổi học thử đã diễn ra và giáo viên đã nhập đánh giá năng lực
+BR-UC5-10
+Đánh giá năng lực và nhận xét do giáo viên nhập; Trợ lý nhập lộ trình đề xuất và quyết định của phụ huynh
+BR-UC5-11
+Quyết định của phụ huynh chỉ nhận một trong ba giá trị: Đăng ký chính thức, Chưa quyết định, Không đăng ký
+BR-UC5-12
+Sau khi lưu kết quả tư vấn, trạng thái đơn chuyển thành “Đã tư vấn” và kết quả được hiển thị cho phụ huynh
+BR-UC5-13
+Mỗi lần cập nhật kết quả tư vấn được lưu lịch sử gồm người cập nhật, thời gian và nội dung
+BR-UC5-14
+Chỉ khi quyết định của phụ huynh là “Đăng ký chính thức”, hệ thống mới gợi ý Trợ lý tạo hồ sơ học viên và tự điền thông tin từ đơn học thử
+ 
+3.5.2. Usecase 5.1. “Tiếp nhận đơn học thử”
+Use case ID
+5.1
+Use case name
+Tiếp nhận đơn học thử
+Description
+Là trợ lý, tôi muốn tiếp nhận và tư vấn chương trình học cho đơn đăng ký học thử để xử lý yêu cầu của phụ huynh
+Actors
+Trợ lý 
+Priority
+High
+Triggers
+Trợ lý chọn chức năng “Quản lý học thử” trên hệ thống
+Pre-conditions
+Trợ lý đã đăng nhập thành công vào hệ thống 
+Post-conditions
+Đơn học thử ở trạng thái “Đã tiếp nhận” kèm chương trình học đã chọn
+Lịch sử xử lý đơn (người xử lý, thời gian) được lưu
+Phụ huynh nhận được thông báo kết quả tiếp nhận
+Main flow
+1. Trợ lý chọn chức năng “Quản lý học thử”
+2. Hệ thống hiển thị danh sách đơn học thử đang ở trạng thái “Chờ tiếp nhận”
+3. Trợ lý chọn đơn cần xử lý trong danh sách
+4. Hệ thống hiển thị chi tiết đơn đăng ký kèm chương trình học gợi ý theo độ tuổi của học viên
+5. Trợ lý chọn chương trình học (“Cơ bản” hoặc “Nâng cao”) trong ô “Chương trình học”
+6. Trợ lý bấm nút “Tiếp nhận”
+7. Hệ thống cập nhật trạng thái đơn sang “Đã tiếp nhận” và lưu lịch sử xử lý
+8. Hệ thống gửi thông báo tiếp nhận cho phụ huynh
+Alternative flows
+N/A
+Exception flows
+2a. Nếu không có đơn nào đang chờ tiếp nhận, hệ thống hiển thị thông báo “Hiện không có đơn học thử nào cần tiếp nhận” và kết thúc
+6a. Nếu Trợ lý chưa chọn chương trình học, hệ thống hiển thị thông báo “Vui lòng chọn chương trình học!” ngay dưới ô “Chương trình học” và quay lại bước 5
+7a. Nếu lưu không thành công, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC5-01 đến BR-UC5-04, BR-UC5-08
+Non-functional requirement
+N/A
+ 
+3.5.3. Usecase 5.2. “Xếp ca học thử”
+ 
+Use case ID
+5.2
+Use case name
+Xếp ca học thử 
+Description
+Là trợ lý, tôi muốn chọn ca học thử phù hợp cho học viên đã được tiếp nhận và gửi đề xuất cho phụ huynh để phụ huynh xác nhận lịch học thử
+Actors
+Trợ lý 
+Priority
+High
+Triggers
+Trợ lý chọn chức năng “Xếp ca học thử” trên hệ thống
+Pre-conditions
+Trợ lý đã đăng nhập thành công vào hệ thống 
+Post-conditions
+Ca học thử đề xuất được gắn vào đơn học thử, đơn ở trạng thái “Chờ phụ huynh xác nhận”
+Phụ huynh nhận được đề xuất lịch học thử
+Main flow
+1. Trợ lý chọn chức năng “Xếp ca học thử”
+2. Hệ thống hiển thị danh sách đơn học thử có trạng thái “Đã tiếp nhận”
+3. Trợ lý chọn đơn cần xếp ca trong danh sách
+4. Hệ thống hiển thị danh sách ca học thử phù hợp chương trình học và còn chỗ (thời gian, sĩ số hiện tại, giáo viên)
+5. Trợ lý chọn ca học thử đề xuất trong danh sách
+6. Hệ thống kiểm tra lại sĩ số của ca
+7. Hệ thống gắn ca đề xuất vào đơn, chuyển trạng thái sang “Chờ phụ huynh xác nhận” và gửi đề xuất lịch học thử cho phụ huynh
+Alternative flows
+N/A
+Exception flows
+2a. Nếu không có đơn nào đang chờ xếp ca, hệ thống hiển thị thông báo “Hiện không có đơn học thử nào cần xếp ca” và kết thúc
+4a. Nếu không có ca học thử phù hợp, hệ thống hiển thị thông báo “Hiện chưa có ca học thử phù hợp” và kết thúc. Đơn vẫn ở trạng thái “Đã tiếp nhận”
+6a. Nếu ca học thử vừa đầy chỗ, hệ thống hiển thị thông báo “Ca học đã đầy, vui lòng chọn ca khác” và quay lại bước 4
+7a. Nếu lưu không thành công, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC5-01,BR-UC5-03 đến BR-UC5-06
+Non-functional requirement
+N/A
+ 
+3.5.4. Usecase 5.3. “Cập nhật kết quả tư vấn”
+Use case ID
+5.3
+Use case name
+Cập nhật kết quả tư vấn 
+Description
+Là trợ lý, tôi muốn cập nhật kết quả tư vấn lộ trình cho học viên sau buổi học thử để phụ huynh xem được và quyết định đăng ký chính thức
+Actors
+Trợ lý
+Priority
+Medium
+Triggers
+Trợ lý chọn chức năng “Cập nhật kết quả tư vấn” trên hệ thống
+Pre-conditions
+Trợ lý đã đăng nhập thành công vào hệ thống
+Post-conditions
+Kết quả tư vấn (lộ trình đề xuất, quyết định của phụ huynh) được lưu và hiển thị cho phụ huynh
+Đơn học thử ở trạng thái “Đã tư vấn”
+Lịch sử cập nhật (người cập nhật, thời gian) được lưu
+Main flow
+1. Trợ lý chọn chức năng “Cập nhật kết quả tư vấn”
+2. Hệ thống hiển thị danh sách học viên đã có lịch học thử chưa có kết quả tư vấn
+3. Trợ lý chọn học viên cần cập nhật trong danh sách
+4. Hệ thống kiểm tra buổi học thử đã diễn ra và giáo viên đã nhập đánh giá năng lực
+5. Hệ thống hiển thị biểu mẫu kết quả tư vấn kèm đánh giá năng lực và nhận xét của giáo viên
+6. Trợ lý nhập lộ trình đề xuất vào ô “Lộ trình đề xuất” và chọn quyết định của phụ huynh (“Đăng ký học chính thức”, “Chưa quyết định” hoặc “Không đăng ký”)
+7. Trợ lý nhập ghi chú vào ô “Ghi chú” (không bắt buộc)
+8. Trợ lý bấm nút “Lưu”
+9. Hệ thống kiểm tra tính hợp lệ của dữ liệu
+10. Hệ thống lưu kết quả tư vấn, lưu lịch sử cập nhật và chuyển trạng thái đơn sang “Đã tư vấn”
+11. Hệ thống hiển thị thông báo “Cập nhật kết quả tư vấn thành công!”
+Alternative flows
+10a. Nếu quyết định của phụ huynh là “Đăng ký học chính thức”, hệ thống gợi ý Trợ lý tạo hồ sơ học viên
+UC tiếp tục ở bước 11
+Exception flows
+2a. Nếu không có học viên nào cần cập nhật kết quả tư vấn, hệ thống hiển thị thông báo “Hiện không có học viên nào cần cập nhật kết quả tư vấn” và kết thúc
+4a. Nếu buổi học thử chưa diễn ra, hệ thống hiển thị thông báo “Buổi học thử chưa diễn ra” và kết thúc
+4b. Nếu giáo viên chưa nhập đánh giá năng lực, hệ thống hiển thị thông báo “Giáo viên chưa nhập đánh giá năng lực của học viên” và kết thúc
+9a. Nếu chưa nhập lộ trình đề xuất hoặc chưa chọn quyết định, hệ thống hiển thị thông báo “Vui lòng nhập đầy đủ thông tin!” ngay dưới ô còn thiếu và quay lại bước 6
+10b. Nếu lưu không thành công, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc  
+Business rules
+BR-UC5-01, BR-UC5-04, BR-UC5-08 đến BR-UC5-14 
+Non-functional requirement
+N/A
+ 
+3.6. Usecase “Quản lý hồ sơ học viên”
+(Mô tả khái quát UC):
+Nhóm Use Case này cung cấp các chức năng dành cho Trợ lý nhằm quản lý hồ sơ học viên: tạo mới, cập nhật, tra cứu, bảo lưu và khôi phục hồ sơ.
+ 
+3.6.1. Business rules
+ID
+Business rules
+BR-UC6-01
+Trợ lý và Quản lý (Quản lý kế thừa quyền của Trợ lý) đã đăng nhập mới được tạo mới, cập nhật, tra cứu, bảo lưu và khôi phục hồ sơ học viên; Giáo viên không có quyền chỉnh sửa hồ sơ học viên
+BR-UC6-02
+Hồ sơ học viên gồm sơ yếu lý lịch, chương trình đang học, tiến trình học, số buổi còn lại và lịch sử điểm danh
+BR-UC6-03
+Mã học viên là duy nhất, do hệ thống tự sinh, người dùng không nhập tay và không được thay đổi sau khi hồ sơ được tạo
+BR-UC6-04
+Trạng thái hồ sơ học viên gồm: “Chờ xếp lớp”, “Đang học”, “Đã bảo lưu”
+BR-UC6-05
+Không được xóa vĩnh viễn hồ sơ học viên khỏi cơ sở dữ liệu; sơ yếu lý lịch và tiến trình học được lưu trữ lâu dài
+BR-UC6-06
+Việc tạo mới và mọi thay đổi hồ sơ (kể cả đổi trạng thái) phải được lưu lịch sử gồm người thực hiện và thời gian; với thay đổi, lưu thêm trường thay đổi, giá trị cũ và giá trị mới
+BR-UC6-07
+Khi tạo hồ sơ phải nhập đầy đủ thông tin bắt buộc: họ tên, ngày sinh, giới tính của học viên; họ tên, số điện thoại của phụ huynh; chương trình học
+BR-UC6-08
+Họ tên, ngày sinh và số điện thoại phụ huynh phải đúng định dạng theo BR-UC2-01 đến BR-UC2-03
+BR-UC6-09
+Chương trình học là “Cơ bản” hoặc “Nâng cao” và phù hợp độ tuổi của học viên (Cơ bản 5 đến 6 tuổi, Nâng cao 7 đến 15 tuổi)
+BR-UC6-10
+Hồ sơ được coi là đã tồn tại khi trùng đồng thời họ tên, ngày sinh và số điện thoại phụ huynh; khi đó hệ thống không tạo mới mà hiển thị hồ sơ cũ
+BR-UC6-11
+Hồ sơ mới tạo có trạng thái ban đầu “Chờ xếp lớp” và chuyển sang “Đang học” khi học viên được xếp vào lớp
+BR-UC6-12
+Khi tạo hồ sơ từ đơn học thử có quyết định “Đăng ký chính thức”, hệ thống tự điền thông tin từ đơn, liên kết hồ sơ với đơn học thử gốc và cho phép Trợ lý kiểm tra, bổ sung trước khi lưu
+BR-UC6-13
+Hồ sơ được liên kết với tài khoản phụ huynh theo số điện thoại; một tài khoản phụ huynh liên kết và quản lý đồng thời nhiều hồ sơ học viên (anh/chị/em cùng học)
+BR-UC6-14
+Khi cập nhật, dữ liệu sau chỉnh sửa phải đúng định dạng và các trường bắt buộc không được để trống
+BR-UC6-15
+Việc cập nhật không được làm hồ sơ trùng với hồ sơ học viên khác (họ tên, ngày sinh, số điện thoại phụ huynh)
+BR-UC6-16
+Nếu không có thông tin nào thay đổi, hệ thống không lưu và không ghi lịch sử
+BR-UC6-17
+Cập nhật thông tin không làm thay đổi trạng thái hồ sơ, số buổi còn lại và học phí; các nội dung này do bảo lưu, khôi phục và ghi nhận học phí xử lý
+BR-UC6-18
+Trợ lý tra cứu hồ sơ theo số điện thoại phụ huynh, mã học viên hoặc họ tên và xem được danh sách học viên toàn cơ sở
+BR-UC6-19
+Màn hình tra cứu hiển thị hồ sơ ở mọi trạng thái kèm trạng thái hồ sơ. Khi bảo lưu chỉ hiển thị hồ sơ chưa “Đã bảo lưu”, khi khôi phục chỉ hiển thị hồ sơ “Đã bảo lưu”
+BR-UC6-20
+Trợ lý xác nhận lại với phụ huynh việc tạm ngừng học hoặc nghỉ học trước khi bảo lưu; việc xác nhận được thực hiện ngoài hệ thống
+BR-UC6-21
+Khi học viên tạm ngừng học hoặc nghỉ học không học nữa, hồ sơ chuyển sang “Đã bảo lưu” và giữ nguyên sơ yếu lý lịch, chương trình học và tiến trình học đã có
+BR-UC6-22
+Hồ sơ “Đã bảo lưu” không được đưa vào các danh sách học viên đang học (xếp lớp, điểm danh) và hệ thống không gửi thêm thông báo học tập cho phụ huynh
+BR-UC6-23
+Học viên “Đã bảo lưu” được thống kê riêng trong báo cáo và trang tổng quan
+BR-UC6-24
+Chỉ hồ sơ ở trạng thái “Đã bảo lưu” mới được khôi phục
+BR-UC6-25
+Khi khôi phục, hồ sơ chuyển về “Chờ xếp lớp” và hiển thị chương trình, tiến trình học trước khi bảo lưu để Trợ lý xếp lớp đúng lộ trình
+ 
+3.6.2. Usecase 6.1. “Tạo mới hồ sơ học viên”
+Use case ID
+6.1
+Use case name
+Tạo mới hồ sơ học viên
+Description
+Là trợ lý, tôi muốn tạo hồ sơ cho học viên mới để lưu trữ thông tin cá nhân, phụ huynh và chương trình học  
+Actors
+Trợ lý 
+Priority
+High
+Triggers
+Trợ lý chọn chức năng “Tạo hồ sơ học viên” trên hệ thống
+Pre-conditions
+Trợ lý đã đăng nhập thành công vào hệ thống
+Post-conditions
+Hồ sơ học viên mới được lưu với mã học viên duy nhất và trạng thái “Đang học”
+Hồ sơ được liên kết với tài khoản phụ huynh
+Học viên sẵn sàng để xếp lớp
+Main flow
+1. Trợ lý chọn chức năng “Tạo hồ sơ học viên”
+2. Hệ thống hiển thị biểu mẫu hồ sơ học viên
+3. Trợ lý nhập thông tin học viên (họ tên, ngày sinh, giới tính), thông tin phụ huynh (họ tên, số điện thoại) và chương trình học
+4. Trợ lý bấm nút “Lưu”
+5. Hệ thống kiểm tra tính hợp lệ và đầy đủ của thông tin
+6. Hệ thống kiểm tra hồ sơ đã tồn tại hay chưa
+7. Hệ thống tạo mã học viên, lưu hồ sơ và liên kết hồ sơ với tài khoản phụ huynh theo số điện thoại (tạo tài khoản nếu chưa có)
+8. Hệ thống hiển thị thông báo “Tạo hồ sơ học viên thành công!”
+Alternative flows
+3a. Nếu tạo từ đơn học thử đã có quyết định “Đăng ký học chính thức”, Trợ lý chọn đơn học thử trong danh sách
+3a1. Hệ thống tự điền thông tin từ đơn vào biểu mẫu
+3a2. Trợ lý kiểm tra và bổ sung thông tin còn thiếu
+UC tiếp tục ở bước 4
+Exception flows
+5a. Nếu thông tin thiếu hoặc không hợp lệ, hệ thống hiển thị thông báo “Vui lòng nhập đầy đủ và đúng thông tin!” và quay lại bước 3
+6a. Nếu hồ sơ đã tồn tại (trùng họ tên, ngày sinh và số điện thoại phụ huynh), hệ thống hiển thị thông báo “Hồ sơ học viên đã tồn tại”, hiển thị hồ sơ cũ và kết thúc
+7a. Nếu lưu không thành công, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC6-01, BR-UC6-03, BR-UC6-06 đến BR-UC6-13
+Non-functional requirement
+N/A
+ 
+3.6.3. Usecase 6.2. “Cập nhật thông tin học viên”
+Use case ID
+6.2
+Use case name
+Cập nhật thông tin học viên
+Description
+Là trợ lý, tôi muốn tìm và chỉnh sửa thông tin hồ sơ học viên khi có thay đổi để dữ liệu luôn chính xác
+Actors
+Trợ lý 
+Priority
+Medium
+Triggers
+Trợ lý chọn chức năng “Cập nhật hồ sơ học viên” trên hệ thống 
+Pre-conditions
+Trợ lý đã đăng nhập thành công vào hệ thống
+Post-conditions
+Thông tin hồ sơ học viên được cập nhật
+Lịch sử thay đổi (người sửa, thời gian, nội dung) được ghi nhận
+Main flow
+1. Trợ lý chọn chức năng “Cập nhật hồ sơ học viên”
+2. Trợ lý nhập từ khóa tìm kiếm (số điện thoại, mã học viên hoặc họ tên)
+3. Hệ thống tìm hồ sơ phù hợp
+4. Hệ thống hiển thị hồ sơ học viên
+5. Trợ lý chỉnh sửa thông tin cần cập nhật
+6. Trợ lý bấm nút “Lưu”
+7. Hệ thống kiểm tra tính hợp lệ của thông tin
+8. Hệ thống lưu thông tin và ghi lịch sử thay đổi
+9. Hệ thống hiển thị thông báo “Cập nhật hồ sơ thành công!”
+Alternative flows
+3a. Nếu có nhiều hồ sơ phù hợp, hệ thống hiển thị danh sách hồ sơ
+3a1. Trợ lý chọn đúng hồ sơ trong danh sách
+UC tiếp tục ở bước 4
+Exception flows
+3b. Nếu không tìm thấy hồ sơ, hệ thống hiển thị thông báo “Không tìm thấy hồ sơ học viên” và kết thúc
+7a. Nếu thông tin không hợp lệ, hệ thống hiển thị thông báo “Thông tin không hợp lệ. Vui lòng kiểm tra lại!” và quay lại bước 5
+8a. Nếu lưu không thành công, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC6-01, BR-UC6-03, BR-UC6-06, BR-UC6-08,BR-UC6-09, BR-UC6-10, BR-UC6-14 đến BR-UC6-19 
+Non-functional requirement
+N/A
+ 
+3.6.4. Usecase 6.3. “Tra cứu hồ sơ học viên”
+Use case ID
+6.3
+Use case name
+Tra cứu hồ sơ học viên
+Description
+Là Trợ lý, tôi muốn tra cứu hồ sơ học viên để xem thông tin cá nhân, thông tin phụ huynh, trạng thái hồ sơ, tiến trình học tập và số buổi học còn lại
+Actors
+Trợ lý
+Priority
+Medium
+Triggers
+Trợ lý chọn chức năng “Tra cứu hồ sơ học viên” trên hệ thống
+Pre-conditions
+Trợ lý đã đăng nhập thành công vào hệ thống
+Post-conditions
+Thông tin hồ sơ học viên phù hợp với điều kiện tra cứu được hiển thị
+Main flow
+1. Trợ lý chọn chức năng “Tra cứu hồ sơ học viên”
+2. Hệ thống hiển thị màn hình tra cứu hồ sơ học viên
+3. Trợ lý nhập số điện thoại phụ huynh, mã học viên hoặc họ tên vào ô “Tìm kiếm”
+4. Trợ lý bấm nút “Tìm kiếm”
+5. Hệ thống tìm các hồ sơ học viên phù hợp với điều kiện tra cứu
+6. Hệ thống hiển thị danh sách hồ sơ học viên phù hợp
+7. Trợ lý chọn hồ sơ học viên cần xem trong danh sách
+8. Hệ thống hiển thị chi tiết hồ sơ học viên gồm thông tin cá nhân, thông tin phụ huynh, trạng thái hồ sơ, tiến trình học và số buổi còn lại
+Alternative flows
+N/A
+Exception flows
+5a. Nếu không tìm thấy hồ sơ học viên phù hợp, hệ thống hiển thị thông báo “Không tìm thấy hồ sơ học viên phù hợp” và quay lại bước 3
+5b. Nếu không truy xuất được dữ liệu, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+8a. Nếu không tải được chi tiết hồ sơ, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC6-01, BR-UC6-02, BR-UC6-04, BR-UC6-18, BR-UC6-19 
+Non-functional requirement
+N/A
+ 
+3.6.5. Usecase 6.4. “Bảo lưu hồ sơ học viên”
+Use case ID
+6.4
+Use case name
+Bảo lưu hồ sơ học viên
+Description
+Là Trợ lý, tôi muốn bảo lưu hồ sơ học viên khi bé tạm ngừng học hoặc nghỉ hẳn để giữ lại thông tin và tiến trình học tập nếu bé quay lại học
+Actors
+Trợ lý
+Priority
+Medium
+Triggers
+Trợ lý chọn chức năng “Bảo lưu hồ sơ học viên” trên hệ thống
+Pre-conditions
+Trợ lý đã đăng nhập thành công vào hệ thống
+Post-conditions
+Hồ sơ học viên chuyển sang trạng thái “Đã bảo lưu”
+Thông tin cá nhân, chương trình học và tiến trình học được giữ nguyên
+Học viên được gỡ khỏi lớp đang học
+Lịch sử đổi trạng thái (người thực hiện, thời gian) được lưu
+Main flow
+1. Trợ lý chọn chức năng “Bảo lưu hồ sơ học viên”
+2. Hệ thống hiển thị màn hình tìm kiếm hồ sơ học viên
+3. Trợ lý nhập số điện thoại phụ huynh, mã học viên hoặc họ tên vào ô “Tìm kiếm”
+4. Hệ thống hiển thị danh sách hồ sơ học viên phù hợp chưa bảo lưu
+5. Trợ lý chọn hồ sơ học viên cần bảo lưu trong danh sách
+6. Hệ thống hiển thị thông tin hồ sơ và yêu cầu xác nhận bảo lưu
+7. Trợ lý bấm nút “Xác nhận bảo lưu”
+8. Hệ thống kiểm tra hồ sơ chưa ở trạng thái “Đã bảo lưu”
+9. Hệ thống chuyển trạng thái hồ sơ sang “Đã bảo lưu”, giữ nguyên dữ liệu học tập, gỡ học viên khỏi lớp đang học và lưu lịch sử đổi trạng thái
+10. Hệ thống hiển thị thông báo “Bảo lưu hồ sơ học viên thành công!” 
+Alternative flows
+N/A
+Exception flows
+4a. Nếu không tìm thấy hồ sơ phù hợp, hệ thống hiển thị thông báo “Không tìm thấy hồ sơ học viên phù hợp” và quay lại bước 3 
+7a. Nếu Trợ lý bấm nút “Huỷ”, hệ thống không thực hiện bảo lưu, quay về màn hình trước và kết thúc
+8a. Nếu hồ sơ đã ở trạng thái “Đã bảo lưu”, hệ thống hiển thị thông báo “Hồ sơ học viên đã được bảo lưu” và kết thúc
+9a. Nếu cập nhật không thành công, hệ thống hoàn tác thay đổi, hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC6-01, BR-UC6-04 đến BR-UC6-06, BR-UC6-18, BR-UC6-19, BR-UC6-20 đến BR-UC6-23, BR-UC6-26, BR-UC6-28
+Non-functional requirement
+N/A
+ 
+3.6.6. Usecase 6.5. “Khôi phục hồ sơ học viên”
+Use case ID
+6.5
+Use case name
+Khôi phục hồ sơ học viên
+Description
+Là Trợ lý, tôi muốn khôi phục hồ sơ học viên đã bảo lưu để học viên có thể tiếp tục quá trình học tập
+Actors
+Trợ lý
+Priority
+Medium
+Triggers
+Trợ lý chọn chức năng “Khôi phục hồ sơ học viên” trên hệ thống
+Pre-conditions
+Trợ lý đã đăng nhập thành công vào hệ thống
+Post-conditions
+Hồ sơ học viên được chuyển sang trạng thái “Chờ xếp lớp”
+Dữ liệu học tập trước khi bảo lưu được giữ nguyên để phục vụ việc xếp lớp
+Lịch sử đổi trạng thái được lưu
+Main flow
+1. Trợ lý chọn chức năng “Khôi phục hồ sơ học viên”
+2. Hệ thống hiển thị màn hình tìm kiếm hồ sơ học viên
+3. Trợ lý nhập số điện thoại phụ huynh, mã học viên hoặc họ tên vào ô “Tìm kiếm”
+4. Hệ thống hiển thị danh sách hồ sơ học viên đã bảo lưu phù hợp
+5. Trợ lý chọn hồ sơ học viên cần khôi phục trong danh sách
+6. Hệ thống hiển thị thông tin hồ sơ kèm chương trình, tiến trình học trước khi bảo lưu và yêu cầu xác nhận khôi phục
+7. Trợ lý bấm nút “Xác nhận khôi phục”
+8. Hệ thống kiểm tra hồ sơ đang ở trạng thái “Đã bảo lưu”
+9. Hệ thống chuyển trạng thái hồ sơ sang “Chờ xếp lớp”, giữ nguyên dữ liệu học tập và lưu lịch sử đổi trạng thái
+10. Hệ thống hiển thị thông báo “Khôi phục hồ sơ học viên thành công!”
+Alternative flows
+N/A
+Exception flows
+4a. Nếu không tìm thấy hồ sơ đã bảo lưu phù hợp, hệ thống hiển thị thông báo “Không tìm thấy hồ sơ đã bảo lưu phù hợp” và quay lại bước 3
+7a. Nếu Trợ lý bấm nút “Huỷ”, hệ thống không thực hiện khôi phục, quay về màn hình trước và kết thúc
+8a. Nếu hồ sơ không ở trạng thái “Đã bảo lưu”, hệ thống hiển thị thông báo “Hồ sơ học viên không ở trạng thái bảo lưu” và kết thúc
+9a. Nếu cập nhật không thành công, hệ thống hoàn tác thay đổi, hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC6-01, BR-UC6-04 đến BR-UC6-06, BR-UC6-18, BR-UC6-19, BR-UC6-24, BR-UC6-25, BR-UC6-27, BR-UC6-28
+Non-functional requirement
+N/A
+ 
+3.7. Usecase “Quản lý lớp học”
+(Mô tả khái quát UC):
+Nhóm Usecase này cung cấp các chức năng dành cho Trợ lý nhằm tạo lớp học mới, cập nhật thông tin lớp học, xếp học viên vào lớp và phân công giáo viên phụ trách.
+ 
+3.7.1. Business rules
+ID
+Business rules
+BR-UC7-01
+Thông tin bắt buộc khi tạo lớp học gồm tên lớp, chương trình học, lịch học và sĩ số tối đa; giáo viên phụ trách được phân công riêng
+BR-UC7-02
+Chương trình học gồm hai nhóm: “Cơ bản” dành cho học viên từ 5 đến 6 tuổi và “Nâng cao” dành cho học viên từ 7 đến 15 tuổi
+BR-UC7-03
+Sĩ số tối đa của lớp học không vượt quá 7 học viên (tiêu chuẩn một giáo viên phụ trách 5 đến 7 học viên); ca ghép học bù áp dụng theo BR-UC3-12
+BR-UC7-04
+Lịch học gồm thứ trong tuần, giờ bắt đầu và giờ kết thúc (sau giờ bắt đầu); trung tâm nghỉ Thứ 6 nên không tạo lớp vào Thứ 6
+BR-UC7-05
+Tên lớp học là duy nhất
+BR-UC7-06
+Thông tin lớp học sau khi cập nhật phải tuân thủ BR-UC7-01 đến BR-UC7-05
+BR-UC7-07
+Sĩ số tối đa sau khi cập nhật không được nhỏ hơn số học viên hiện có trong lớp
+BR-UC7-08
+Chỉ học viên có hồ sơ ở trạng thái “Chờ xếp lớp” mới được xếp lớp
+BR-UC7-09
+Học viên phải được xếp vào lớp cùng chương trình học và phù hợp độ tuổi
+BR-UC7-10
+Không được xếp thêm học viên vào lớp đã đạt sĩ số tối đa
+BR-UC7-11
+Lịch học của lớp được chọn không được trùng với lịch học hiện có của học viên
+BR-UC7-12
+Sau khi xếp lớp thành công, danh sách học viên và sĩ số lớp được cập nhật và hồ sơ học viên chuyển sang “Đang học”
+BR-UC7-13
+Mỗi lớp học được phân công cố định một giáo viên phụ trách xuyên suốt
+BR-UC7-14
+Lịch dạy của giáo viên không được trùng với lịch phụ trách lớp học khác
+BR-UC7-15
+Sau khi phân công thành công, lịch dạy của giáo viên được cập nhật
+BR-UC7-16
+Lớp học được mở sẵn trong tuần, không cần chờ học viên đăng ký; lớp có thể chưa có học viên
+ 
+3.7.2. Usecase 7.1. “Tạo lớp học mới”
+Use case ID
+7.1
+Use case name
+Tạo lớp học mới
+Description
+Là Trợ lý, tôi muốn tạo lớp học mới để tổ chức và quản lý lịch học cho học viên
+Actors
+Trợ lý
+Priority
+High
+Triggers
+Trợ lý chọn chức năng “Tạo lớp học mới” trên hệ thống
+Pre-conditions
+Trợ lý đã đăng nhập thành công vào hệ thống
+Post-conditions
+Lớp học mới được lưu vào hệ thống, chưa có học viên và giáo viên phụ trách, sẵn sàng để xếp lớp và phân công giáo viên
+Main flow
+1. Trợ lý chọn chức năng “Tạo lớp học mới”
+2. Hệ thống hiển thị biểu mẫu tạo lớp học
+3. Trợ lý nhập thông tin lớp học gồm tên lớp, chương trình học, lịch học và sĩ số tối đa
+4. Trợ lý bấm nút “Lưu”
+5. Hệ thống kiểm tra thông tin lớp học
+6. Hệ thống lưu lớp học mới
+7. Hệ thống hiển thị thông báo “Tạo lớp học thành công!”
+Alternative flows
+N/A
+Exception flows
+4a. Nếu Trợ lý bấm nút “Huỷ”, hệ thống không lưu thông tin, quay về màn hình trước và kết thúc
+5a. Nếu thông tin chưa đầy đủ hoặc không hợp lệ (thiếu thông tin bắt buộc, tên lớp trùng, lịch học vào Thứ 6, sĩ số tối đa vượt quá 7), hệ thống hiển thị thông báo “Thông tin lớp học không hợp lệ, vui lòng kiểm tra lại” ngay dưới trường sai và quay lại bước 3
+6a. Nếu lưu không thành công, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau.” và kết thúc
+Business rules
+BR-UC7-01 đến BR-UC7-05, BR-UC7-16 
+Non-functional requirement
+N/A
+ 
+3.7.3. Usecase 7.2. “Cập nhật thông tin lớp học”
+Use case ID
+7.2
+Use case name
+Cập nhật thông tin lớp
+Description
+Là trợ lý, tôi muốn cập nhật thông tin lớp học khi có thay đổi để dữ liệu lớp học luôn chính xác
+Actors
+Trợ lý
+Priority
+Medium
+Triggers
+Trợ lý chọn chức năng “Cập nhật thông tin lớp” trên hệ thống 
+Pre-conditions
+Trợ lý đã đăng nhập thành công vào hệ thống
+Post-conditions
+Thông tin lớp học được cập nhật và lưu vào hệ thống
+Main flow
+1. Trợ lý chọn chức năng “Cập nhật thông tin lớp”
+2. Hệ thống hiển thị danh sách lớp học
+3. Trợ lý chọn lớp học cần cập nhật trong danh sách
+4. Hệ thống hiển thị thông tin lớp học hiện tại trong biểu mẫu chỉnh sửa
+5. Trợ lý chỉnh sửa thông tin cần thay đổi
+6. Trợ lý bấm nút “Lưu”
+7. Hệ thống kiểm tra thông tin cập nhật
+8. Hệ thống lưu thông tin lớp học đã cập nhật
+9. Hệ thống hiển thị thông báo “Cập nhật thông tin lớp học thành công!”
+Alternative flows
+N/A
+Exception flows
+2a. Nếu chưa có lớp học nào, hệ thống hiển thị thông báo “Hiện chưa có lớp học nào” và kết thúc
+6a. Nếu Trợ lý bấm nút “Huỷ”, hệ thống không lưu thay đổi, quay về màn hình trước và kết thúc
+7a. Nếu thông tin cập nhật không hợp lệ, hệ thống hiển thị thông báo “Thông tin lớp học không hợp lệ. Vui lòng kiểm tra lại” ngay dưới trường dữ liệu sai và quay lại bước 5
+7b. Nếu sĩ số tối đa nhỏ hơn số học viên hiện có trong lớp, hệ thống hiển thị thông báo “Sĩ số tối đa không được nhỏ hơn số học viên hiện có” ngay dưới ô “Sĩ số tối đa” và quay lại bước 5
+8a. Nếu lưu không thành công, hệ thống hiển thị thông báo “Hiện tại đang có sự cố. Vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC7-01 đến BR-UC7-07 
+Non-functional requirement
+N/A
+ 
+3.7.4. Usecase 7.3. “Xếp học viên vào lớp”
+Use case ID
+7.3
+Use case name
+Xếp học viên vào lớp
+Description
+Là trợ lý, tôi muốn xếp học viên vào lớp học phù hợp chương trình học, độ tuổi và lịch học để học viên tham gia học tập
+Actors
+Trợ lý
+Priority
+High
+Triggers
+Trợ lý chọn chức năng “Xếp học viên vào lớp” trên hệ thống
+Pre-conditions
+Trợ lý đã đăng nhập thành công vào hệ thống
+Post-conditions
+Học viên được xếp vào lớp học phù hợp
+Danh sách học viên và sĩ số lớp được cập nhật
+Hồ sơ học viên chuyển sang trạng thái “Đang học”
+Main flow
+1. Trợ lý chọn chức năng “Xếp học viên vào lớp”
+2. Hệ thống hiển thị danh sách học viên có hồ sơ ở trạng thái “Chờ xếp lớp”
+3. Trợ lý chọn học viên cần xếp lớp trong danh sách
+4. Hệ thống hiển thị danh sách lớp học còn chỗ, cùng chương trình học và phù hợp độ tuổi của học viên
+5. Trợ lý chọn lớp học muốn xếp học viên vào
+6. Trợ lý bấm nút “Xác nhận”
+7. Hệ thống kiểm tra sĩ số của lớp và lịch học của lớp so với lịch học hiện có của học viên
+8. Hệ thống lưu thông tin xếp lớp, cập nhật danh sách học viên và sĩ số lớp, chuyển hồ sơ sang “Đang học”
+9. Hệ thống hiển thị thông báo “Xếp học viên vào lớp thành công!”
+Alternative flows
+N/A
+Exception flows
+2a. Nếu không có học viên nào ở trạng thái “Chờ xếp lớp”, hệ thống hiển thị thông báo “Hiện không có học viên nào cần xếp lớp” và kết thúc
+4a. Nếu không có lớp học phù hợp còn chỗ, hệ thống hiển thị thông báo “Hiện tại không có lớp học phù hợp” và kết thúc
+6a. Nếu Trợ lý bấm nút “Huỷ”, hệ thống không lưu thông tin xếp lớp, quay về danh sách học viên và kết thúc
+7a. Nếu lớp học đã đủ sĩ số, hệ thống hiển thị thông báo “Lớp học đã đủ sĩ số, vui lòng chọn lớp khác” và quay lại bước 4
+7b. Nếu lịch học của lớp trùng với lịch học hiện có của học viên, hệ thống hiển thị thông báo “Lịch học bị trùng. Vui lòng chọn lớp khác” và quay lại bước 4
+8a. Nếu lưu không thành công, hệ thống hoàn tác thay đổi, hiển thị thông báo “Hiện tại đang có sự cố. Vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC7-02, BR-UC7-03, BR-UC7-08 đến BR-UC7-12 
+Non-functional requirement
+Lịch học của các lớp hiển thị dạng khung lưới theo ngày, tuần, tháng
+ 
+3.7.5. Usecase 7.4. “Phân công giáo viên phụ trách”
+Use case ID
+7.4
+Use case name
+Phân công giáo viên phụ trách
+Description
+Là trợ lý, tôi muốn phân công giáo viên phụ trách lớp học để các lớp có giáo viên giảng dạy theo lịch
+Actors
+Trợ lý
+Priority
+High
+Triggers
+Trợ lý chọn chức năng “Phân công giáo viên phụ trách” trên hệ thống
+Pre-conditions
+Trợ lý đã đăng nhập thành công vào hệ thống
+Post-conditions
+Giáo viên phụ trách được gắn với lớp học
+Lịch dạy của giáo viên được cập nhật
+Main flow
+1. Trợ lý chọn chức năng “Phân công giáo viên phụ trách”
+2. Hệ thống hiển thị danh sách lớp học
+3. Trợ lý chọn lớp học cần phân công trong danh sách
+4. Hệ thống hiển thị thông tin lớp học và danh sách giáo viên kèm lịch dạy
+5. Trợ lý chọn giáo viên phụ trách trong danh sách
+6. Trợ lý bấm nút “Phân công”
+7. Hệ thống kiểm tra lịch dạy của giáo viên so với lịch học của lớp
+8. Hệ thống lưu thông tin phân công và cập nhật lịch dạy của giáo viên
+9. Hệ thống hiển thị thông báo “Phân công giáo viên thành công!”
+Alternative flows
+N/A
+Exception flows
+2a. Nếu chưa có lớp học nào, hệ thống hiển thị thông báo “Hiện chưa có lớp học nào” và kết thúc
+6a. Nếu Trợ lý bấm nút “Huỷ”, hệ thống không lưu thông tin phân công, quay về màn hình trước và kết thúc
+7a. Nếu giáo viên có lịch dạy trùng với lịch học của lớp, hệ thống hiển thị thông báo “Giáo viên đã có lịch dạy trùng, vui lòng chọn giáo viên khác” và quay lại bước 5
+8a. Nếu lưu không thành công, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC7-13 đến BR-UC7-15 
+Non-functional requirement
+Lịch dạy của giáo viên hiển thị dạng khung lưới theo ngày, tuần, tháng
+ 
+3.8. Use case “Điều phối lịch học bù”
+(Mô tả khái quát UC):
+Nhóm Use Case này cung cấp các chức năng dành cho Trợ lý nhằm tiếp nhận và chủ động ghi nhận lịch nghỉ của học viên (khi phụ huynh báo qua kênh ngoài hoặc vắng đột xuất), lập đề xuất xếp ca học bù và cập nhật lịch học bù sau khi được duyệt.
+ (Hình phân rã UC):
+ 
+3.8.1. Business rules
+ID
+Business rules
+BR-UC8-01
+Trợ lý ghi nhận nghỉ cho mọi học viên đang học tại cơ sở, không giới hạn theo tài khoản phụ huynh. Yêu cầu xin nghỉ do Trợ lý ghi nhận có cùng trạng thái và quy tắc học bù với yêu cầu do phụ huynh gửi.
+BR-UC8-02
+Ca học có thể ghi nhận nghỉ gồm ca học chưa diễn ra, và ca học đã diễn ra có điểm danh vắng mà hạn học bù (tính từ ngày của ca học đó) chưa qua.
+BR-UC8-03
+Lý do nghỉ là thông tin không bắt buộc. Đối với trường hợp vắng đột xuất hoặc Phụ huynh chưa báo lý do, Trợ lý có thể ghi chú ngắn gọn (như “Vắng đột xuất”, “Báo qua Zalo”) hoặc để trống, hệ thống vẫn ghi nhận đơn thành công và cấp lượt học bù 30 ngày bình thường.
+BR-UC8-04
+Mọi ca học có học viên vắng đột xuất đều phải được Trợ lý ghi nhận thành yêu cầu xin nghỉ, kể cả khi chưa liên hệ được phụ huynh, để học viên không mất quyền học bù.
+BR-UC8-05
+Một buổi nghỉ chỉ bị trừ một lần, tại thời điểm yêu cầu xin nghỉ được ghi nhận (use case 3.1 hoặc 8.1). Điểm danh không trừ buổi của học viên vắng mặt. Khi số buổi còn lại của tháng chứa ca học bằng 0, hệ thống không cho ghi nhận.
+BR-UC8-06
+Trợ lý xử lý mọi yêu cầu xin nghỉ chưa hết hạn, không giới hạn theo tài khoản phụ huynh.
+BR-UC8-07
+Ở luồng rà soát, Trợ lý không đổi ca học bù mà phụ huynh đã đăng ký. Muốn đổi ca, phụ huynh hủy học bù rồi đăng ký lại, hoặc Trợ lý chọn ca thay phụ huynh ở luồng chọn ca thay.
+BR-UC8-08
+Khi Trợ lý chọn ca thay phụ huynh, ca học bù được giữ chỗ và yêu cầu chuyển sang “Đã đăng ký học bù” như khi phụ huynh tự đăng ký. Trợ lý trao đổi và nhận được đồng ý của phụ huynh ngoài hệ thống trước khi chọn ca.
+BR-UC8-09
+Khi Trợ lý trình duyệt, yêu cầu chuyển sang “Chờ duyệt” và đề xuất xuất hiện trong danh sách chờ phê duyệt của Quản lý.
+BR-UC8-10
+Các quy tắc về ca học bù khả dụng, hạn học bù, giữ chỗ, hết hạn và số buổi áp dụng theo BR-UC3-08, BR-UC3-10 đến BR-UC3-16.
+BR-UC8-11
+Mọi thay đổi dữ liệu của một lần thao tác được thực hiện trọn vẹn, hoặc hoàn tác toàn bộ khi có lỗi.
+ 
+3.8.2. Usecase 8.1. “Ghi nhận lịch nghỉ của học viên”
+Use case ID
+8.1
+Use case name
+Ghi nhận lịch nghỉ của học viên
+Description
+Là trợ lý, tôi muốn ghi nhận lịch nghỉ của học viên (do phụ huynh báo qua kênh khác, hoặc vắng đột xuất, kể cả khi chưa liên hệ được phụ huynh) để hệ thống lưu buổi nghỉ và phụ huynh có thể đăng ký ca học bù
+Actors
+Trợ lý
+Priority
+High
+Triggers
+Trợ lý chọn chức năng “Ghi nhận lịch nghỉ” trên hệ thống
+Pre-conditions
+Trợ lý đã đăng nhập thành công vào hệ thống
+Post-conditions
+Yêu cầu xin nghỉ được lưu với trạng thái “Chờ xếp lịch bù”
+Ca học được đánh dấu “Đã xin nghỉ”
+Số buổi còn lại của học viên trong tháng của ca học giảm 1
+Phụ huynh nhận được thông báo xác nhận học viên nghỉ
+Main flow
+1. Trợ lý chọn chức năng “Ghi nhận lịch nghỉ” trên hệ thống
+2. Hệ thống hiển thị danh sách học viên đang học tại cơ sở
+3. Trợ lý chọn học viên cần ghi nhận nghỉ trong danh sách
+4. Hệ thống hiển thị danh sách ca học của học viên có thể ghi nhận nghỉ
+5. Trợ lý chọn ca học cần ghi nhận nghỉ trong danh sách
+6. Trợ lý nhập lý do vào ô “Lý do nghỉ” (nếu có; không bắt buộc)
+7. Trợ lý bấm nút “Lưu”
+8. Hệ thống kiểm tra ca học và số buổi còn lại của học viên
+9. Hệ thống lưu yêu cầu xin nghỉ, đánh dấu ca học là “Đã xin nghỉ” và trừ 1 buổi
+10. Hệ thống hiển thị thông báo “Ghi nhận lịch nghỉ thành công!” và gửi thông báo xác nhận học viên nghỉ đến phụ huynh
+Alternative flows
+N/A
+Exception flows
+4a. Nếu học viên không có ca học nào có thể ghi nhận nghỉ, hệ thống hiển thị thông báo “Học viên hiện không có ca học nào để ghi nhận nghỉ” và kết thúc
+7a. Nếu Trợ lý bấm nút “Hủy”, hệ thống không lưu yêu cầu, quay về màn hình trước và kết thúc
+8a. Nếu ca học đã có yêu cầu xin nghỉ, hệ thống hiển thị thông báo “Ca học này đã được ghi nhận nghỉ trước đó” và kết thúc
+8b. Nếu số buổi còn lại của học viên trong tháng của ca học đã chọn bằng 0, hệ thống hiển thị thông báo “Học viên đã hết số buổi còn lại trong tháng.” và kết thúc
+9a. Nếu lưu không thành công, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC8-01 đến BR-UC8-05, BR-UC8-11; BR-UC3-04 đến BR-UC3-10 
+Non-functional requirement
+N/A
+ 
+3.8.3. Usecase 8.2. “Lập đề xuất xếp ca học bù”
+Use case ID
+8.2
+Use case name
+Lập đề xuất xếp ca học bù
+Description
+Là trợ lý, tôi muốn rà soát đăng ký học bù của phụ huynh, hoặc chủ động chọn ca học bù khi phụ huynh chưa đăng ký, rồi trình Quản lý phê duyệt
+Actors
+Trợ lý
+Priority
+High
+Triggers
+Trợ lý chọn chức năng “Lập đề xuất ca học bù” trên hệ thống 
+Pre-conditions
+Trợ lý đã đăng nhập thành công vào hệ thống 
+Post-conditions
+Yêu cầu xin nghỉ được xử lý ở trạng thái “Chờ duyệt”, kèm ca học bù đề xuất đã được giữ chỗ
+Đề xuất xuất hiện trong danh sách chờ phê duyệt của Quản lý
+Main flow
+1. Trợ lý chọn chức năng “Lập đề xuất ca học bù” trên hệ thống
+2. Hệ thống hiển thị danh sách yêu cầu xin nghỉ cần xử lý
+3. Trợ lý chọn yêu cầu cần xử lý trong danh sách
+4. Hệ thống hiển thị chi tiết yêu cầu và ca học bù đã đăng ký
+5. Trợ lý bấm nút “Trình duyệt”
+6. Hệ thống kiểm tra yêu cầu chưa hết hạn và đang ở trạng thái “Đã đăng ký học bù”
+7. Hệ thống chuyển trạng thái yêu cầu sang “Chờ duyệt”, đưa đề xuất vào danh sách chờ phê duyệt của Quản lý và gỡ yêu cầu khỏi danh sách chờ lập đề xuất của Trợ lý
+8. Hệ thống hiển thị thông báo “Trình duyệt đề xuất ca học bù thành công!”
+Alternative flows
+3a. Nếu yêu cầu đang ở trạng thái “Chờ xếp lịch bù” (chưa có ca học bù đăng ký), Trợ lý chọn ca thay cho phụ huynh
+3a1. Hệ thống tìm và hiển thị các ca học bù khả dụng dưới dạng lịch lưới
+3a2. Trợ lý chọn ca học bù đề xuất trong lịch
+3a3. Hệ thống kiểm tra yêu cầu còn ở trạng thái “Chờ xếp lịch bù” và ca học bù còn chỗ
+3a4. Hệ thống gắn ca học bù vào yêu cầu xin nghỉ, chuyển trạng thái sang “Đã đăng ký học bù” và giữ chỗ trong ca học bù
+UC tiếp tục ở bước 4
+Exception flows
+2a. Nếu không có yêu cầu nào cần xử lý, hệ thống hiển thị thông báo “Hiện không có yêu cầu học bù nào cần xử lý” và kết thúc
+3b. Nếu yêu cầu không còn ở trạng thái “Chờ xếp lịch bù”, hệ thống hiển thị thông báo “Yêu cầu này đã được thay đổi, không thể chọn ca” và kết thúc
+3c. Nếu ca học bù đã chọn vừa hết chỗ, hệ thống hiển thị thông báo “Ca học này vừa hết chỗ. Vui lòng chọn ca khác” và quay lại bước 3a1
+3d. Nếu không có ca học bù khả dụng, hệ thống hiển thị thông báo “Hiện chưa có ca học bù phù hợp trong hạn học bù” và kết thúc. Yêu cầu vẫn ở trạng thái “Chờ xếp lịch bù”
+5a. Nếu Trợ lý bấm nút “Hủy”, hệ thống không thay đổi dữ liệu, quay về màn hình trước và kết thúc
+6a. Nếu yêu cầu đã ở trạng thái “Hết hạn”, hệ thống hiển thị thông báo “Yêu cầu học bù này đã quá thời hạn học bù” và kết thúc
+6b. Nếu yêu cầu không còn ở trạng thái “Đã đăng ký học bù”, hệ thống hiển thị thông báo “Yêu cầu này đã được thay đổi nên không thể trình duyệt” và kết thúc
+7a. Nếu lưu không thành công, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC8-06 đến BR-UC8-11; BR-UC3-08, BR-UC3-10 đến BR-UC3-16 
+Non-functional requirement
+N/A
+ 
+3.9. Usecase “Quản lý học phí”
+Nhóm Usecase này cung cấp các chức năng dành cho Trợ lý nhằm theo dõi tình trạng học phí của học viên và ghi nhận trạng thái đóng học phí mà phụ huynh đã thanh toán ngoài hệ thống.
+ 
+3.9.1. Business rules
+ID
+Business rules
+BR-UC9-01
+Học phí được thu theo tháng. Trạng thái học phí của học viên được ghi nhận và theo dõi theo từng tháng
+BR-UC9-02
+Trạng thái học phí của học viên trong một tháng chỉ có hai giá trị: “Đã thanh toán” và “Chưa thanh toán”
+BR-UC9-03
+Hệ thống chỉ ghi nhận và hiển thị trạng thái đóng học phí cùng biểu giá. Việc thu tiền, nhắc phí và đối soát ngân hàng do bộ phận kế toán thực hiện ngoài hệ thống; hệ thống không thanh toán trực tuyến và không tự động đối soát giao dịch ngân hàng
+BR-UC9-04
+Trợ lý cập nhật trạng thái đóng học phí của học viên lên hệ thống trong vòng 48 giờ
+BR-UC9-05
+Trợ lý tra cứu được trạng thái học phí và biểu giá của mọi học viên toàn cơ sở
+BR-UC9-06
+Số buổi còn lại của học viên được xác lập theo từng tháng đã ghi nhận “Đã thanh toán” và không cộng dồn sang tháng khác
+BR-UC9-07
+Số tiền học phí và biểu phí hiển thị theo định dạng Việt Nam Đồng (VNĐ)
+BR-UC9-08
+Mọi thay đổi dữ liệu của một lần ghi nhận được thực hiện trọn vẹn, hoặc hoàn tác toàn bộ khi có lỗi
+BR-UC9-09
+Trợ lý tra cứu học phí theo họ tên học viên, tháng và trạng thái học phí; điều kiện không bắt buộc, bỏ trống “Học viên” thì tra cứu toàn bộ học viên của cơ sở, “Tháng” mặc định là tháng hiện tại
+BR-UC9-10
+Kết quả tra cứu gồm họ tên học viên, chương trình học, tháng, học phí theo biểu giá (VNĐ), trạng thái học phí và số buổi còn lại của học viên trong tháng
+BR-UC9-11
+Mỗi học viên mỗi tháng chỉ có một trạng thái học phí; tháng đã “Đã thanh toán” không được ghi nhận lại
+BR-UC9-12
+Mỗi lần ghi nhận học phí được lưu lịch sử gồm người ghi nhận và thời điểm ghi nhận
+BR-UC9-13
+Không ghi nhận học phí cho hồ sơ học viên ở trạng thái “Đã bảo lưu”
+ 
+3.9.2. Usecase 9.1. “Ghi nhận học phí”
+Use case ID
+9.1
+Use case name
+Ghi nhận học phí
+Description
+Là trợ lý, tôi muốn ghi nhận học phí tháng đã được phụ huynh thanh toán để cập nhật trạng thái đóng học phí của học viên
+Actors
+Trợ lý
+Priority
+High
+Triggers
+Trợ lý chọn chức năng “Ghi nhận học phí” trên hệ thống
+Pre-conditions
+Trợ lý đã đăng nhập thành công vào hệ thống 
+Post-conditions
+Trạng thái đóng học phí của học viên trong tháng được cập nhật thành “Đã thanh toán”
+Số buổi học của tháng được xác lập cho học viên
+Người ghi nhận và thời điểm ghi nhận được lưu
+Main flow
+1. Trợ lý chọn chức năng “Ghi nhận học phí”
+2. Hệ thống hiển thị danh sách học viên cùng trạng thái học phí
+3. Trợ lý chọn học viên cần ghi nhận học phí trong danh sách
+4. Hệ thống hiển thị thông tin học phí của học viên gồm biểu phí và trạng thái theo tháng
+5. Trợ lý chọn tháng cần ghi nhận trong ô “Tháng”
+6. Trợ lý bấm nút “Lưu”
+7. Hệ thống kiểm tra trạng thái học phí của tháng đã chọn
+8. Hệ thống cập nhật trạng thái “Đã thanh toán”, xác lập số buổi của tháng và lưu lịch sử ghi nhận
+9. Hệ thống hiển thị thông báo “Ghi nhận học phí thành công!” 
+Alternative flows
+N/A
+Exception flows
+2a. Nếu không có học viên nào, hệ thống hiển thị thông báo “Hiện không có học viên nào để ghi nhận học phí” và kết thúc
+6a. Nếu Trợ lý bấm nút “Huỷ”, hệ thống không lưu, quay về màn hình trước và kết thúc
+7a. Nếu học phí của tháng đã ở trạng thái “Đã thanh toán”, hệ thống hiển thị thông báo “Học phí tháng này đã được ghi nhận” và kết thúc
+8a. Nếu lưu không thành công, hệ thống hoàn tác thay đổi, hiển thị thông báo “Hiện tại đang có sự cố. Vui lòng thử lại sau” và kết thúc 
+Business rules
+BR-UC9-01 đến BR-UC9-04, BR-UC9-06 đến BR-UC9-08, BR-UC9-11 đến BR-UC9-13 
+Non-functional requirement
+N/A
+ 
+3.9.3. Usecase 9.2. “Tra cứu tình trạng học phí”
+ 
+Use case ID
+9.2
+Use case name
+Tra cứu tình trạng học phí
+Description
+Là trợ lý, tôi muốn tra cứu tình trạng học phí của học viên để đối soát và hỗ trợ phụ huynh đóng phí
+Actors
+Trợ lý
+Priority
+Medium
+Triggers
+Trợ lý chọn chức năng “Tra cứu tình trạng học phí” trên hệ thống
+Pre-conditions
+Trợ lý đã đăng nhập thành công vào hệ thống
+Post-conditions
+Danh sách học viên cùng trạng thái học phí và số buổi còn lại trong tháng phù hợp với điều kiện tra cứu được hiển thị trên màn hình
+Main flow
+1. Trợ lý chọn chức năng “Tra cứu tình trạng học phí” trên hệ thống
+2. Hệ thống hiển thị màn hình tra cứu học phí
+3. Trợ lý nhập điều kiện tra cứu vào các ô “Học viên”, “Tháng” và “Trạng thái học phí”
+4. Trợ lý bấm nút “Tìm kiếm”
+5. Hệ thống tìm các học viên phù hợp với điều kiện tra cứu
+6. Hệ thống hiển thị danh sách kết quả gồm học viên, chương trình học, tháng, học phí, trạng thái học phí và số buổi còn lại của học viên trong tháng
+Alternative flows
+N/A
+Exception flows
+5a. Nếu không tìm thấy học viên phù hợp, hệ thống hiển thị thông báo “Không tìm thấy học viên phù hợp” và kết thúc
+5b. Nếu không truy xuất được dữ liệu, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC9-01, BR-UC9-02, BR-UC9-05, BR-UC9-07, BR-UC9-09, BR-UC9-10
+Non-functional requirement
+N/A
+ 
+3.10. Usecase “Quản lý tiến độ học tập”
+Nhóm chức năng của Trợ lý để ghi nhận tiến độ học tập của học viên theo chương trình học, tra cứu lịch sử tiến độ và lập danh sách học viên cần đánh giá.
+(Chèn hình phân rã UC):
+ 
+3.10.1. Business rules
+ID
+Business rules
+BR-UC10-01
+Học viên học theo chương trình, lộ trình dài hạn phù hợp độ tuổi (Cơ bản 5 đến 6 tuổi, Nâng cao 7 đến 15 tuổi), không học theo khóa.
+BR-UC10-02
+Tình trạng tiến độ học tập của học viên gồm hai giá trị: “Đúng tiến độ” và “Chậm tiến độ”.
+BR-UC10-03
+Giáo viên theo dõi chuyên môn và đưa ra nhận xét về học viên (nét vẽ, phối màu, mức độ tiếp thu). Trợ lý ghi nhận ngày đánh giá, ca học, giáo viên phụ trách đánh giá và tình trạng tiến độ vào hồ sơ học viên. Giáo viên xem được tình trạng tiến độ của học viên mình dạy nhưng không tự cập nhật tình trạng này.
+BR-UC10-04
+Lịch sử tiến độ học tập được lưu trữ lâu dài và không bị xóa, kể cả khi học viên ở trạng thái “Đã bảo lưu” hoặc “Đã ẩn”.
+BR-UC10-05
+Khi học viên quay lại học sau bảo lưu, hệ thống hiển thị tiến độ đã lưu để xếp học tiếp đúng lộ trình.
+BR-UC10-06
+Trợ lý tra cứu được lịch sử tiến độ của mọi học viên toàn cơ sở.
+BR-UC10-07
+Danh sách học viên cần đánh giá gồm các học viên có tình trạng “Chậm tiến độ”. Học viên “Đã bảo lưu” hoặc “Đã ẩn” không được đưa vào danh sách.
+BR-UC10-08
+Mọi thay đổi dữ liệu của một lần ghi nhận được thực hiện trọn vẹn, hoặc hoàn tác toàn bộ khi có lỗi.
+BR-UC10-09
+Trợ lý chỉ ghi nhận tiến độ cho ca học đã kết thúc.
+BR-UC10-10
+Mỗi ca học của mỗi học viên có tối đa một bản ghi tiến độ.
+BR-UC10-11
+Ngày đánh giá không trước ngày của ca học và không sau ngày hiện tại.
+BR-UC10-12
+Mỗi bản ghi tiến độ lưu thêm người ghi nhận và thời điểm ghi nhận để lưu vết.
+BR-UC10-13
+Phụ huynh chỉ xem lịch sử tiến độ của con mình. Giáo viên chỉ xem học viên trong các ca mình dạy.
+ 
+3.10.2. Usecase 10.1. “Ghi nhận tiến độ học viên”
+Use case ID
+10.1
+Use case name
+Ghi nhận tiến độ học viên
+Description
+Là trợ lý, tôi muốn ghi nhận tình trạng tiến độ của học viên sau khi giáo viên đánh giá vào hồ sơ để lưu lịch sử tiến độ và kịp thời phát hiện học viên chậm tiến độ
+Actors
+Trợ lý
+Priority
+Medium
+Triggers
+Trợ lý chọn chức năng “Ghi nhận tiến độ” trên hệ thống
+Pre-conditions
+Trợ lý đã đăng nhập thành công vào hệ thống 
+Post-conditions
+Bản ghi tiến độ (ngày đánh giá, ca học, giáo viên phụ trách, tình trạng tiến độ) được lưu vào lịch sử tiến độ trong hồ sơ học viên
+Bản ghi lưu người ghi nhận và thời điểm ghi nhận
+Main flow
+1. Trợ lý chọn chức năng “Ghi nhận tiến độ” trên hệ thống
+2. Hệ thống hiển thị danh sách học viên đang học
+3. Trợ lý chọn học viên cần ghi nhận tiến độ trong danh sách
+4. Hệ thống hiển thị danh sách ca học đã kết thúc của học viên chưa có bản ghi tiến độ
+5. Trợ lý chọn ca học cần ghi nhận trong danh sách
+6. Hệ thống hiển thị giáo viên phụ trách ca học đã chọn
+7. Trợ lý nhập ngày đánh giá vào ô “Ngày đánh giá”
+8. Trợ lý chọn tình trạng tiến độ (“Đúng tiến độ” hoặc “Chậm tiến độ”)
+9. Trợ lý bấm nút “Lưu”
+10. Hệ thống kiểm tra ngày đánh giá, tình trạng tiến độ và ca học
+11. Hệ thống lưu bản ghi tiến độ vào lịch sử tiến độ của học viên
+12. Hệ thống hiển thị thông báo “Ghi nhận tiến độ thành công!”
+Alternative flows
+N/A
+Exception flows
+4a. Nếu học viên không có ca học đã kết thúc nào chưa có bản ghi tiến độ, hệ thống hiển thị thông báo “Học viên hiện không có ca học nào cần ghi nhận tiến độ” và kết thúc
+9a. Nếu Trợ lý bấm nút “Huỷ”, hệ thống không lưu và quay về màn hình trước, kết thúc
+10a. Nếu chưa nhập ngày đánh giá hoặc chưa chọn tình trạng tiến độ, hệ thống hiển thị thông báo “Vui lòng nhập đầy đủ thông tin!” ngay dưới ô còn thiếu
+UC quay lại bước 7
+10b. Nếu ngày đánh giá trước ngày của ca học hoặc sau ngày hiện tại, hệ thống hiển thị thông báo “Ngày đánh giá không hợp lệ!” ngay dưới ô “Ngày đánh giá”
+UC quay lại bước 7
+10c. Nếu ca học đã có bản ghi tiến độ, hệ thống hiển thị thông báo “Ca học này đã được ghi nhận tiến độ” và kết thúc
+11a. Nếu lưu không thành công, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC10-02, BR-UC10-03, BR-UC10-04, BR-UC10-08 đến BR-UC10-12
+Non-functional requirement
+N/A
+ 
+3.10.3. Usecase 10.2. “Tra cứu lịch sử tiến độ”
+Use case ID
+10.2
+Use case name
+Tra cứu lịch sử tiến độ
+Description
+Là trợ lý, tôi muốn tra cứu lịch sử tiến độ học tập của học viên để xem quá trình học tập tích lũy, hỗ trợ phụ huynh và xếp lớp phù hợp khi học viên quay lại sau bảo lưu
+Actors
+Trợ lý
+Priority
+Medium
+Triggers
+Trợ lý chọn chức năng “Tra cứu lịch sử tiến độ” trên hệ thống
+Pre-conditions
+Trợ lý đã đăng nhập thành công vào hệ thống
+Post-conditions
+Danh sách học viên và chi tiết lịch sử tiến độ học tập phù hợp với điều kiện tra cứu được hiển thị trên màn hình
+Main flow
+1. Trợ lý chọn chức năng “Tra cứu lịch sử tiến độ” trên hệ thống
+2. Hệ thống hiển thị màn hình tra cứu lịch sử tiến độ
+3. Trợ lý nhập điều kiện tra cứu vào các ô “Học viên”, “Chương trình học” và “Trạng thái hồ sơ”
+4. Trợ lý bấm nút “Tìm kiếm”
+5. Hệ thống tìm các học viên phù hợp với điều kiện tra cứu
+6. Hệ thống hiển thị danh sách kết quả học viên
+7. Trợ lý chọn học viên cần xem trong danh sách
+8. Hệ thống hiển thị chi tiết lịch sử tiến độ của học viên (chương trình học, ca học, ngày đánh giá, giáo viên phụ trách, tình trạng tiến độ, nhận xét, người ghi nhận và thời điểm ghi nhận)
+Alternative flows
+N/A
+Exception flows
+5a. Nếu không tìm thấy học viên phù hợp, hệ thống hiển thị thông báo “Không tìm thấy học viên phù hợp” và kết thúc
+5b. Nếu không truy xuất được dữ liệu, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+8a. Nếu học viên chưa có bản ghi tiến độ nào, hệ thống hiển thị thông báo “Học viên này chưa có lịch sử tiến độ” và kết thúc
+Business rules
+BR-UC10-01, BR-UC10-02, BR-UC10-04, BR-UC10-05, BR-UC10-06, BR-UC10-12, BR-UC10-12
+Non-functional requirement
+N/A
+ 
+3.10.4. Usecase 10.3. “Lập danh sách học viên cần đánh giá”
+Use case ID
+10.3
+Use case name
+Lập danh sách học viên cần đánh giá
+Description
+Là trợ lý, tôi muốn lập danh sách các học viên cần đánh giá (các học viên đang bị trễ/chậm tiến độ) để đôn đốc, theo dõi và phối hợp với giáo viên, quản lý đưa ra phương án hỗ trợ kịp thời
+Actors
+Trợ lý
+Priority
+Medium
+Triggers
+Trợ lý chọn chức năng “Lập danh sách học viên cần đánh giá” trên hệ thống
+Pre-conditions
+Trợ lý đã đăng nhập thành công vào hệ thống 
+Post-conditions
+Danh sách các học viên có tình trạng “Chậm tiến độ” đang theo học tại cơ sở được hiển thị đầy đủ trên màn hình
+Main flow
+1. Trợ lý chọn chức năng “Lập danh sách học viên cần đánh giá” trên hệ thống
+2. Hệ thống hiển thị màn hình lập danh sách kèm các ô lọc điều kiện (“Chương trình học”, “Ca học”, “Giáo viên phụ trách”)
+3. Trợ lý chọn điều kiện lọc (nếu cần)
+4. Trợ lý bấm nút “Lập danh sách”
+5. Hệ thống tự động trích xuất danh sách các học viên đang học có tình trạng “Chậm tiến độ” (loại trừ các học viên ở trạng thái “Đã bảo lưu”)
+6. Hệ thống hiển thị danh sách kết quả gồm học viên, chương trình học, ca học, giáo viên phụ trách, tình trạng tiến độ và lần đánh giá gần nhất
+Alternative flows
+6a. Trợ lý bấm nút “Xuất Excel”, hệ thống trích xuất và tải xuống danh sách học viên dưới dạng file Excel
+Exception flows
+5a. Nếu không có học viên nào thuộc diện chậm tiến độ thỏa mãn điều kiện lọc, hệ thống hiển thị thông báo “Hiện tại không có học viên nào cần đánh giá” và kết thúc
+5b. Nếu không truy xuất được dữ liệu, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC10-02, BR-UC10-06, BR-UC10-07
+Non-functional requirement
+N/A
+ 
+3.11. Use case “Quản lý ca dạy”
+(Mô tả khái quát UC):
+Nhóm Use Case này cung cấp các chức năng dành cho Giáo viên nhằm hỗ trợ công tác giảng dạy hàng ngày bao gồm các công việc: tra cứu thời khóa biểu và lịch dạy cá nhân theo tuần/ngày, thực hiện điểm danh học viên tại lớp, chốt điểm danh để hệ thống tự động trừ buổi học, đồng thời cùng trợ lý xử lý các trường hợp học viên vắng mặt
+(Hình phân rã UC):
+ 
+ 
+3.11.1. Business rules
+ID
+Business rules
+BR-UC11-01
+Giáo viên chỉ điểm danh và xem lịch dạy của các ca học mình được phân công, và chỉ xem danh sách học viên trong các ca đó
+BR-UC11-02
+Điểm danh ghi nhận tình trạng của từng học viên là “Có mặt” hoặc “Vắng mặt”
+BR-UC11-03
+Dữ liệu điểm danh được lưu tạm trong ca học và chỉ trở thành danh sách điểm danh chính thức sau khi giáo viên chốt điểm danh
+BR-UC11-04
+Mỗi ca học chỉ chốt điểm danh một lần
+BR-UC11-05
+Khi mất điện hoặc mất kết nối Internet đột ngột, giáo viên vẫn điểm danh được; dữ liệu lưu tạm trên thiết bị và tự động đồng bộ trong vòng 30 giây khi có kết nối trở lại
+BR-UC11-06
+Sau khi chốt, hệ thống trừ 1 buổi trong số buổi còn lại của tháng chứa ca học cho mỗi học viên “Có mặt” của ca học thường
+BR-UC11-07
+Học viên “Vắng mặt” không bị trừ buổi khi chốt điểm danh, vì buổi nghỉ được trừ khi ghi nhận yêu cầu xin nghỉ; ca học bù và buổi học thử không trừ buổi
+BR-UC11-08
+Khi có học viên “Vắng mặt”, hệ thống thông báo cho phụ huynh của học viên đó; ca có học viên vắng được Trợ lý ghi nhận ở use case 8.1
+BR-UC11-09
+Lịch giảng dạy của giáo viên gồm ngày dạy, giờ dạy và lớp được phân công (kể cả ca học bù đã duyệt), hiển thị theo ngày hoặc tuần
+BR-UC11-10
+Giáo viên chỉ xem lịch giảng dạy, không được tự thay đổi lịch đã phân công
+ 
+3.11.2. Usecase 11.1. “Điểm danh ca học”
+Use case ID
+11.1
+Use case name
+Điểm danh ca học
+Description
+Là giáo viên, tôi muốn thực hiện điểm danh học viên trên hệ thống
+Actors
+Giáo viên
+Priority
+High
+Triggers
+Giáo viên chọn chức năng “Điểm danh” trên ứng dụng khi ca học bắt đầu 
+Pre-conditions
+Giáo viên đã đăng nhập thành công vào ứng dụng
+Post-conditions
+Danh sách điểm danh chính thức của ca học được ghi nhận
+Số buổi còn lại của các học viên có mặt trong tháng của ca học giảm 1
+Học viên vắng mặt đột xuất được thông báo cho phụ huynh
+Main flow
+1. Giáo viên chọn chức năng “Điểm danh”
+2. Hệ thống hiển thị danh sách ca học được phân công cho giáo viên trong ngày
+3. Giáo viên chọn ca học cần điểm danh trong danh sách
+4. Hệ thống hiển thị danh sách học viên của ca học
+5. Giáo viên chọn tình trạng “Có mặt” hoặc “Vắng mặt” cho từng học viên
+6. Hệ thống lưu tạm dữ liệu điểm danh
+7. Giáo viên bấm nút “Chốt điểm danh” khi hết giờ
+8. Hệ thống kiểm tra mọi học viên đã được điểm danh và ca học chưa chốt
+9. Hệ thống thực hiện ghi nhận danh sách điểm danh chính thức của ca học và trừ 1 buổi trong số buổi còn lại của các học viên “Có mặt”
+10. Hệ thống hiển thị số buổi còn lại của các học viên có mặt
+Alternative flows
+6a. Nếu mất điện hoặc mất kết nối Internet, hệ thống lưu tạm dữ liệu điểm danh vào bộ nhớ thiết bị
+6a1. Khi có kết nối trở lại, hệ thống tự động đồng bộ dữ liệu lên máy chủ trong vòng 30 giây
+UC tiếp tục ở bước 7
+6b. Nếu có học viên “Vắng mặt” đột xuất, hệ thống gửi thông báo vắng của học viên đến phụ huynh tương ứng
+UC tiếp tục ở bước 7
+Exception flows
+2a. Nếu giáo viên không có ca học nào trong ngày, hệ thống hiển thị thông báo “Hôm nay chưa có ca học nào được phân công” và kết thúc
+4a. Nếu ca học chưa có học viên, hệ thống hiển thị thông báo “Ca học này chưa có học viên” và kết thúc
+8a. Nếu còn học viên chưa được điểm danh, hệ thống hiển thị thông báo “Vui lòng điểm danh đủ học viên trong ca học!” và quay lại bước 5
+8b. Nếu ca học đã chốt điểm danh, hệ thống hiển thị thông báo “Ca học này đã chốt điểm danh” và kết thúc
+9a. Nếu ghi nhận không thành công, hệ thống hoàn tác thay đổi, giữ nguyên dữ liệu lưu tạm, hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC11-01 đến BR-UC11-08 
+Non-functional requirement
+Cho phép điểm danh và lưu tạm khi mất kết nối, đồng bộ trong vòng 30 giây khi có mạng trở lại
+Hoàn thành điểm danh trong tối đa 3 thao tác chạm 
+ 
+3.11.3. Usecase 11.2. “Tra cứu lịch giảng dạy”
+Use case ID
+11.2
+Use case name
+Tra cứu lịch giảng dạy 
+Description
+Là giáo viên, tôi muốn tra cứu lịch giảng dạy cá nhân theo ngày hoặc tuần để chủ động theo dõi các ca dạy được phân công
+Actors
+Giáo viên
+Priority
+High
+Triggers
+Giáo viên chọn chức năng “Tra cứu lịch giảng dạy” trên ứng dụng
+Pre-conditions
+Giáo viên đã đăng nhập thành công vào ứng dụng
+Post-conditions
+Lịch giảng dạy cá nhân của giáo viên được hiển thị
+Main flow
+1. Giáo viên chọn chức năng “Tra cứu lịch giảng dạy”
+2. Hệ thống truy xuất lịch giảng dạy cá nhân của giáo viên
+3. Hệ thống hiển thị lịch giảng dạy của tuần hiện tại, gồm ngày dạy, giờ dạy và lớp được phân công
+Alternative flows
+3a. Nếu giáo viên muốn xem theo ngày hoặc tuần khác, giáo viên chọn chế độ xem “Ngày” hoặc “Tuần” và chọn mốc thời gian
+3a1. Hệ thống hiển thị lịch giảng dạy theo chế độ và mốc thời gian đã chọn
+UC kết thúc
+Exception flows
+2a. Nếu không truy xuất được dữ liệu, hệ thống hiển thị thông báo “Hiện tại đang có sự cố. Vui lòng thử lại sau” và kết thúc
+3b. Nếu không có ca dạy nào trong khoảng thời gian đã chọn, hệ thống hiển thị thông báo “Chưa có ca dạy nào trong khoảng thời gian này” và kết thúc
+Business rules
+BR-UC11-01, BR-UC11-09, BR-UC11-10 
+Non-functional requirement
+N/A
+ 
+3.12. Use case “Quản lý tiến độ học viên”
+(Mô tả khái quát UC):
+Nhóm Use Case này cung cấp các chức năng dành cho Giáo viên để theo dõi, đánh giá và ghi nhận quá trình học tập của học viên, bao gồm cập nhật nhận xét chuyên môn kèm hình ảnh tác phẩm hoàn thành của học viên sau mỗi ca học để lưu trữ vào nhật ký học tập và thực hiện đánh giá năng lực cho học viên trong các buổi học thử.
+(Hình phân rã UC):
+ 
+3.12.1. Business rules
+ID
+Business rules
+BR-UC12-01
+Nhận xét và ảnh bài vẽ hoàn thành của học viên sau mỗi ca học phải được cập nhật trong ngày và lưu thành dòng thời gian phát triển của từng học viên
+BR-UC12-02
+Giáo viên chỉ đăng tải ảnh, nhập nhận xét và đánh giá năng lực cho học viên thuộc ca học mình được phân công
+BR-UC12-03
+Ảnh và nhận xét chỉ nhập cho ca học đã diễn ra và cho học viên có mặt trong ca học đó
+BR-UC12-04
+Mỗi ảnh, nhận xét phải gắn đúng hồ sơ học viên và đúng ca học, được lưu trong nhật ký học tập của học viên
+BR-UC12-05
+Học viên phải có ảnh tác phẩm hợp lệ do giáo viên cập nhật
+BR-UC12-06
+Nhận xét gồm ba nội dung về kỹ năng: nét vẽ, màu sắc và khả năng tiếp thu
+BR-UC12-07
+Mỗi học viên có tối đa một nhận xét trong mỗi ca học
+BR-UC12-08
+Giáo viên chỉ nhập nhận xét chuyên môn; tình trạng tiến độ (“Đúng tiến độ”, “Chậm tiến độ”) do Trợ lý ghi nhận ở use case 10.1
+BR-UC12-09
+Đánh giá năng lực buổi học thử chỉ thực hiện cho học viên đã tham gia buổi học thử thuộc ca được phân công; mỗi học viên một đánh giá, lưu vào đơn học thử và chuyển đơn sang “Đã hoàn thành”
+BR-UC12-10
+Đánh giá năng lực gồm ba nội dung: nét vẽ, màu sắc và khả năng tiếp thu
+ 
+3.12.2. Usecase 12.1. “Đăng tải tác phẩm”
+Use case ID
+12.1
+Use case name
+Đăng tải ảnh tác phẩm của bé
+Description
+Là giáo viên, tôi muốn đăng tải ảnh tác phẩm của học viên sau mỗi ca học để lưu trữ và cập nhật quá trình học tập của từng bé
+Actors
+Giáo viên
+Priority
+High
+Triggers
+Giáo viên chọn chức năng “Đăng tải ảnh tác phẩm” trên ứng dụng 
+Pre-conditions
+Giáo viên đã đăng nhập thành công vào ứng dụng
+Post-conditions
+Ảnh tác phẩm (ảnh gốc và ảnh thu nhỏ) được lưu trữ
+Ảnh được gắn vào nhật ký học tập của học viên theo ca học tương ứng
+Thời điểm đăng tải được ghi nhận
+Main flow
+1. Giáo viên chọn chức năng “Đăng tải ảnh tác phẩm”
+2. Hệ thống hiển thị danh sách ca học đã diễn ra trong ngày của giáo viên
+3. Giáo viên chọn ca học trong danh sách
+4. Hệ thống hiển thị danh sách học viên có mặt của ca học
+5. Giáo viên chọn học viên cần đăng tải ảnh
+6. Giáo viên chọn ảnh tác phẩm từ thư viện ảnh
+7. Giáo viên bấm nút “Đăng tải”
+8. Hệ thống kiểm tra định dạng và dung lượng ảnh
+9. Hệ thống lưu ảnh gốc, tạo ảnh thu nhỏ và gắn ảnh vào nhật ký học tập của học viên theo ca học
+10. Hệ thống hiển thị ảnh tác phẩm đã đăng tải
+Alternative flows
+N/A
+Exception flows
+2a. Nếu giáo viên chưa có ca học nào đã diễn ra trong ngày, hệ thống hiển thị thông báo “Hôm nay chưa có ca học nào để đăng tải” và kết thúc
+4a. Nếu ca học chưa có học viên có mặt, hệ thống hiển thị thông báo “Ca học này chưa có học viên có mặt” và kết thúc
+7a. Nếu giáo viên bấm nút “Huỷ”, hệ thống không lưu ảnh, quay về màn hình trước và kết thúc
+7b. Nếu chưa chọn ảnh, hệ thống hiển thị thông báo “Vui lòng chọn ảnh tác phẩm!” và quay lại bước 6
+8a. Nếu ảnh sai định dạng hoặc vượt quá dung lượng, hệ thống hiển thị thông báo “Ảnh không hợp lệ. Vui lòng chọn ảnh khác!” và quay lại bước 6
+9a. Nếu lưu không thành công, hệ thống hoàn tác thay đổi, hiển thị thông báo “Hiện tại đang có sự cố. Vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC12-01 đến BR-UC12-06 
+Non-functional requirement
+Ảnh thu nhỏ dưới 200KB, ảnh gốc độ phân giải cao trên kho lưu trữ đám mây
+ 
+3.12.3. Usecase 12.2. “Cập nhật nhận xét học viên”
+Use case ID
+12.2
+Use case name
+Cập nhật nhận xét học viên
+Description
+Là giáo viên, tôi muốn cập nhật nhận xét về kỹ năng của từng học viên sau mỗi ca học để ghi nhận quá trình học tập và sự tiến bộ của các bé
+Actors
+Giáo viên
+Priority
+High
+Triggers
+Giáo viên chọn chức năng “Cập nhật nhận xét học viên” trên ứng dụng
+Pre-conditions
+Giáo viên đã đăng nhập thành công vào ứng dụng 
+Post-conditions
+Nhận xét của học viên được lưu vào nhật ký học tập theo ca học tương ứng
+Main flow
+1. Giáo viên chọn chức năng “Cập nhật nhận xét học viên”
+2. Hệ thống hiển thị danh sách ca học đã diễn ra trong ngày của giáo viên
+3. Giáo viên chọn ca học trong danh sách
+4. Hệ thống hiển thị danh sách học viên có mặt của ca học
+5. Giáo viên chọn học viên cần nhận xét
+6. Hệ thống hiển thị biểu mẫu nhận xét gồm các ô “Nét vẽ”, “Màu sắc” và “Khả năng tiếp thu”
+7. Giáo viên nhập nhận xét vào các ô
+8. Giáo viên bấm nút “Lưu”
+9. Hệ thống kiểm tra nội dung nhận xét
+10. Hệ thống lưu nhận xét vào nhật ký học tập của học viên theo ca học
+11. Hệ thống hiển thị thông báo “Cập nhật nhận xét thành công!”
+Alternative flows
+N/A
+Exception flows
+2a. Nếu giáo viên chưa có ca học nào đã diễn ra trong ngày, hệ thống hiển thị thông báo “Hôm nay chưa có ca học nào để nhận xét” và kết thúc
+4a. Nếu ca học chưa có học viên có mặt, hệ thống hiển thị thông báo “Ca học này chưa có học viên có mặt” và kết thúc
+8a. Nếu giáo viên bấm nút “Huỷ”, hệ thống không lưu nhận xét, quay về màn hình trước và kết thúc
+9a. Nếu chưa nhập đầy đủ nhận xét, hệ thống hiển thị thông báo “Vui lòng nhập đầy đủ nhận xét!” ngay dưới ô còn thiếu và quay lại bước 7
+9b. Nếu học viên đã có nhận xét trong ca học này, hệ thống hiển thị thông báo “Học viên đã có nhận xét trong ca học này” và kết thúc
+10a. Nếu lưu không thành công, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc 
+Business rules
+BR-UC12-01 đến BR-UC12-04, BR-UC12-07 đến BR-UC12-09 
+Non-functional requirement
+N/A
+ 
+3.12.4. Usecase 12.3. “Đánh giá năng lực buổi học thử”
+Use case ID
+12.3
+Use case name
+Đánh giá năng lực buổi học thử
+Description
+Là giáo viên, tôi muốn đánh giá năng lực của học viên sau buổi học thử để ghi nhận khả năng và mức độ tiếp thu của học viên
+Actors
+Giáo viên
+Priority
+High
+Triggers
+Giáo viên chọn chức năng “Đánh giá năng lực buổi học thử” trên ứng dụng
+Pre-conditions
+Giáo viên đã đăng nhập thành công vào ứng dụng 
+Post-conditions
+Kết quả đánh giá năng lực được lưu vào đơn học thử của học viên
+Đơn học thử chuyển sang trạng thái “Đã hoàn thành”
+Main flow
+1. Giáo viên chọn chức năng “Đánh giá năng lực buổi học thử”
+2. Hệ thống hiển thị danh sách học viên học thử đã tham gia buổi học thử thuộc ca của giáo viên và chưa có đánh giá
+3. Giáo viên chọn học viên cần đánh giá trong danh sách
+4. Hệ thống hiển thị thông tin buổi học thử và biểu mẫu đánh giá gồm các ô “Nét vẽ”, “Màu sắc” và “Khả năng tiếp thu”
+5. Giáo viên nhập đánh giá vào các ô
+6. Giáo viên bấm nút “Lưu”
+7. Hệ thống kiểm tra nội dung đánh giá
+8. Hệ thống lưu kết quả đánh giá vào đơn học thử và chuyển đơn sang “Đã hoàn thành”
+9. Hệ thống hiển thị thông báo “Lưu đánh giá năng lực thành công!”
+Alternative flows
+N/A
+Exception flows
+2a. Nếu không có học viên học thử nào cần đánh giá, hệ thống hiển thị thông báo “Hiện không có học viên học thử nào cần đánh giá” và kết thúc
+6a. Nếu giáo viên bấm nút “Huỷ”, hệ thống không lưu đánh giá, quay về màn hình trước và kết thúc
+7a. Nếu chưa nhập đầy đủ đánh giá, hệ thống hiển thị thông báo “Vui lòng nhập đầy đủ đánh giá!” ngay dưới ô còn thiếu và quay lại bước 5
+7b. Nếu học viên đã có đánh giá, hệ thống hiển thị thông báo “Học viên đã có đánh giá năng lực” và kết thúc
+8a. Nếu lưu không thành công, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC12-02, BR-UC12-10, BR-UC12-11 
+Non-functional requirement
+N/A
+ 
+3.13. Use case “Phê duyệt lịch trình”
+(Mô tả khái quát UC):
+Nhóm Use Case này cung cấp các chức năng dành riêng cho Quản lý cơ sở nhằm xem xét, kiểm tra các điều kiện vận hành và ra quyết định phê duyệt hoặc từ chối các đề xuất xếp ca học thử (học viên mới) và đề xuất xếp ca học bù (học viên chính thức) do Trợ lý trình lên.
+(Hình phân rã UC):
+ 
+3.13.1. Business rules
+ID
+Business rules
+BR-UC13-01
+Chỉ Quản lý phê duyệt hoặc không duyệt danh sách ca học thử và đề xuất ca học bù do Trợ lý trình.
+BR-UC13-02
+Sĩ số mỗi ca học thử tối đa 7 học viên, tính cả học viên học thử. Ca học thử vượt sĩ số không được phê duyệt.
+BR-UC13-03
+Danh sách ca học thử phải được Quản lý phê duyệt trước khi buổi học thử diễn ra.
+BR-UC13-04
+Khi không duyệt ca học thử, học viên học thử được gỡ khỏi ca, đơn học thử quay về “Chờ xếp ca học thử” để Trợ lý chọn ca đề xuất khác và gửi lại cho phụ huynh chọn.
+BR-UC13-05
+Sau khi phê duyệt ca học thử, hệ thống tự động cập nhật học viên học thử vào danh sách của giáo viên phụ trách và thông báo cho phụ huynh và giáo viên.
+BR-UC13-06
+Khi phê duyệt đề xuất học bù, yêu cầu chuyển sang “Đã xếp lịch bù”, chỗ giữ trở thành chỗ chính thức, hệ thống tự động cập nhật học viên vào danh sách học viên bù của ca và thông báo cho phụ huynh và giáo viên phụ trách.
+BR-UC13-07
+Khi không duyệt đề xuất học bù, yêu cầu quay về “Chờ xếp lịch bù”, chỗ đã giữ được trả lại, hạn học bù giữ nguyên và Trợ lý được thông báo để chọn lại ca hoặc để phụ huynh đăng ký lại.
+BR-UC13-08
+Đề xuất học bù có yêu cầu ở trạng thái “Hết hạn” không được xử lý.
+BR-UC13-09
+Mọi thay đổi dữ liệu của một lần thao tác được thực hiện trọn vẹn, hoặc hoàn tác toàn bộ khi có lỗi.
+ 
+3.13.2. Usecase 13.1. “Phê duyệt ca học thử”
+Use case ID
+13.1
+Use case name
+Phê duyệt ca học thử 
+Description
+Là quản lý, tôi muốn xem xét và phê duyệt danh sách ca học thử đã được Trợ lý đề xuất và phụ huynh chọn để buổi học thử của học viên được chốt, hoặc được xếp lại khi không phù hợp
+Actors
+Quản lý 
+Priority
+High 
+Triggers
+Quản lý chọn chức năng “Phê duyệt ca học thử” trên hệ thống
+Pre-conditions
+Quản lý đã đăng nhập thành công vào hệ thống
+Post-conditions
+Nếu phê duyệt, ca học thử ở trạng thái “Đã duyệt ca học thử”; học viên học thử được chốt vào ca và nằm trong danh sách học viên của giáo viên phụ trách; phụ huynh và giáo viên được thông báo
+Nếu không duyệt, học viên học thử được gỡ khỏi ca; đơn học thử quay về “Chờ xếp ca học thử” để Trợ lý chọn ca đề xuất khác và gửi lại cho phụ huynh chọn; Trợ lý được thông báo
+Main flow
+1. Quản lý chọn chức năng “Phê duyệt ca học thử” trên hệ thống
+2. Hệ thống hiển thị danh sách ca học thử đang chờ phê duyệt
+3. Quản lý chọn ca học thử cần phê duyệt trong danh sách
+4. Hệ thống tự động kiểm tra sĩ số của ca và hiển thị chi tiết ca gồm danh sách học viên học thử, sĩ số hiện tại và kết quả kiểm tra
+5. Quản lý bấm nút “Phê duyệt”
+6. Hệ thống kiểm tra ca học thử còn ở trạng thái “Chờ duyệt ca học thử” và sĩ số không vượt quá 7
+7. Hệ thống chuyển ca sang “Đã duyệt ca học thử”, chốt học viên học thử vào ca, cập nhật vào danh sách học viên của giáo viên phụ trách và gỡ ca khỏi danh sách chờ phê duyệt
+8. Hệ thống gửi thông báo xác nhận lịch học thử đến phụ huynh và thông báo cho giáo viên phụ trách
+9. Hệ thống hiển thị thông báo “Phê duyệt ca học thử thành công!”
+Alternative flows
+5a. Nếu Quản lý không đồng ý với danh sách ca học thử, Quản lý bấm nút “Không duyệt”
+5a1. Hệ thống kiểm tra ca học thử vẫn ở trạng thái “Chờ duyệt ca học thử”
+5a2. Hệ thống gỡ học viên học thử khỏi ca, chuyển đơn học thử về “Chờ xếp ca học thử”, gỡ ca khỏi danh sách chờ phê duyệt và thông báo cho Trợ lý
+5a3. Hệ thống hiển thị thông báo “Đã không duyệt ca học thử.”
+UC kết thúc
+Exception flows
+2a. Nếu không có ca học thử nào đang chờ phê duyệt, hệ thống hiển thị thông báo “Hiện không có ca học thử nào cần phê duyệt” và kết thúc
+6a. Nếu ca học thử không còn ở trạng thái “Chờ duyệt ca học thử”, hệ thống hiển thị thông báo “Ca học thử này đã được thay đổi nên không thể xử lý” và kết thúc
+6b. Nếu sĩ số của ca vượt quá 7, hệ thống hiển thị thông báo “Ca học thử vượt sĩ số tối đa nên không thể phê duyệt” và quay lại bước 5
+7a. Nếu ghi nhận không thành công, hệ thống hoàn tác mọi thay đổi dữ liệu trong giao dịch, hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC13-01 đến BR-UC13-05, BR-UC13-09 
+Non-functional requirement
+N/A
+ 
+3.13.3. Usecase 13.2. “Phê duyệt đề xuất xếp bù”
+Use case ID
+13.2
+Use case name
+Phê duyệt đề xuất xếp bù 
+Description
+Là quản lý, tôi muốn xem xét và phê duyệt đề xuất ca học bù do Trợ lý trình để ca học bù của học viên được chốt, hoặc được xếp lại khi không phù hợp
+Actors
+Quản lý
+Priority
+High
+Triggers
+Quản lý chọn chức năng “Phê duyệt ca học bù” trên hệ thống
+Pre-conditions
+Quản lý đã đăng nhập thành công vào hệ thống
+Post-conditions
+Nếu phê duyệt, yêu cầu xin nghỉ ở trạng thái “Đã xếp lịch bù”; chỗ giữ trong ca học bù trở thành chỗ chính thức; học viên nằm trong danh sách học viên bù của ca học bù; phụ huynh và giáo viên phụ trách được thông báo
+Nếu không duyệt, ca học bù được gỡ khỏi yêu cầu xin nghỉ; yêu cầu quay về “Chờ xếp lịch bù”, hạn học bù giữ nguyên; chỗ đã giữ được trả lại; Trợ lý được thông báo
+Main flow
+1. Quản lý chọn chức năng “Phê duyệt ca học bù” trên hệ thống
+2. Hệ thống hiển thị danh sách đề xuất đang chờ phê duyệt
+3. Quản lý chọn đề xuất cần xử lý trong danh sách
+4. Hệ thống hiển thị chi tiết đề xuất gồm học viên, ngày nghỉ, ca học bù đề xuất, sĩ số hiện tại của ca và hạn học bù
+5. Quản lý bấm nút “Phê duyệt”
+6. Hệ thống kiểm tra yêu cầu chưa hết hạn và còn ở trạng thái “Chờ duyệt”
+7. Hệ thống chuyển trạng thái yêu cầu sang “Đã xếp lịch bù”, chuyển chỗ giữ thành chỗ chính thức, cập nhật học viên vào danh sách học viên bù của ca và gỡ yêu cầu khỏi danh sách chờ phê duyệt
+8. Hệ thống gửi thông báo xác nhận lịch học bù đến phụ huynh và thông báo cho giáo viên phụ trách
+9. Hệ thống hiển thị thông báo “Phê duyệt đề xuất ca học bù thành công!”
+Alternative flows
+5a. Quản lý không đồng ý với đề xuất, Quản lý bấm nút “Không duyệt”
+5a1. Hệ thống kiểm tra yêu cầu chưa hết hạn và còn ở trạng thái “Chờ duyệt”
+5a2. Hệ thống gỡ ca học bù khỏi yêu cầu xin nghỉ, chuyển trạng thái về “Chờ xếp lịch bù”, trả lại chỗ đã giữ, gỡ yêu cầu khỏi danh sách chờ phê duyệt và thông báo cho Trợ lý
+5a3. Hệ thống hiển thị thông báo “Đã không duyệt đề xuất ca học bù.”
+UC kết thúc
+Exception flows
+2a. Nếu không có đề xuất nào đang chờ phê duyệt, hệ thống hiển thị thông báo “Hiện không có đề xuất ca học bù nào cần phê duyệt” và kết thúc
+6a. Nếu yêu cầu đã ở trạng thái “Hết hạn”, hệ thống hiển thị thông báo “Đề xuất này đã quá hạn học bù nên không thể xử lý” và kết thúc
+6b. Nếu yêu cầu không còn ở trạng thái “Chờ duyệt”, hệ thống hiển thị thông báo “Đề xuất này đã được thay đổi nên không thể xử lý” và kết thúc
+7a. Nếu lưu không thành công, hệ thống hoàn tác mọi thay đổi dữ liệu trong giao dịch, hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC13-01, BR-UC13-06 đến BR-UC13-09; BR-UC3-10, BR-UC3-14 đến BR-UC3-16
+Non-functional requirement
+N/A
+ 
+3.14. Usecase “Xem báo cáo và thống kê”
+Nhóm chức năng của Quản lý để xem thống kê tình hình học viên, báo cáo vận hành lớp học và báo cáo cảnh báo học phí. Số liệu được hệ thống tự tổng hợp định kỳ, giúp Quản lý nắm tình hình mà không phải thống kê thủ công.
+(Chèn hình phân rã UC ):
+ 
+3.14.1 Business rules
+ID
+Business rules
+BR-UC14-01
+Quản lý xem được toàn bộ báo cáo và thống kê của cơ sở.
+BR-UC14-02
+Thống kê tình hình học viên gồm: số học viên mới (tính theo tuần), số học viên cũ, số học viên đang bảo lưu và tổng số học viên của cơ sở.
+BR-UC14-03
+Học viên có trạng thái “Đã bảo lưu” được thống kê riêng.
+BR-UC14-04
+Báo cáo vận hành lớp học gồm số ca học và tỷ lệ chuyên cần. Tỷ lệ chuyên cần được tính từ dữ liệu điểm danh.
+BR-UC14-05
+Báo cáo thống kê được hệ thống tự động tổng hợp theo tuần và theo tháng, không cần thống kê thủ công.
+BR-UC14-06
+Báo cáo cảnh báo học phí liệt kê các học viên sắp hết buổi học để chủ động nhắc phí. Học viên sắp hết buổi là học viên có số buổi còn lại của tháng không vượt quá [N] buổi.
+BR-UC14-07
+Báo cáo cảnh báo học phí hiển thị kèm trạng thái học phí (“Đã thanh toán” hoặc “Chưa thanh toán”) của từng học viên trong danh sách.
+BR-UC14-08
+Số liệu trên trang tổng quan được hiển thị theo thời gian thực.
+BR-UC14-09
+Số tiền học phí hiển thị theo định dạng Việt Nam Đồng (VNĐ).
+ 
+3.14.2. Usecase 14.1. “Thống kê tình hình học viên”
+Use case ID
+14.1
+Use case name
+Thống kê tình hình học viên
+Description
+Là quản lý, tôi muốn xem thống kê số lượng học viên (học viên mới, học viên cũ, học viên tạm bảo lưu và tổng số học viên) theo thời gian để nắm bắt quy mô và tình hình biến động học viên của cơ sở mà không cần thống kê thủ công
+Actors
+Quản lý
+Priority
+Medium
+Triggers
+Quản lý chọn chức năng “Thống kê tình hình học viên” trên hệ thống
+Pre-conditions
+Quản lý đã đăng nhập thành công vào hệ thống
+Post-conditions
+Báo cáo thống kê tình hình học viên cùng biểu đồ biến động theo khoảng thời gian được hiển thị đầy đủ trên màn hình
+Main flow
+1. Quản lý chọn chức năng “Thống kê tình hình học viên” trên hệ thống
+2. Hệ thống hiển thị màn hình thống kê tình hình học viên kèm bộ lọc khoảng thời gian (“Tuần”, “Tháng”, “Từ ngày - Đến ngày”)
+3. Quản lý chọn khoảng thời gian cần thống kê
+4. Quản lý bấm nút “Thống kê”
+5. Hệ thống tự động tổng hợp số liệu học viên trong khoảng thời gian đã chọn (gồm số học viên mới, số học viên cũ, số học viên đã bảo lưu và tổng số học viên của cơ sở)
+6. Hệ thống hiển thị số liệu thống kê chi tiết và biểu đồ so sánh biến động học viên
+Alternative flows
+6a. Quản lý bấm nút “Xuất báo cáo”, hệ thống trích xuất và tải xuống báo cáo thống kê dưới dạng file Excel
+Exception flows
+5a. Nếu không có dữ liệu học viên trong khoảng thời gian đã chọn, hệ thống hiển thị thông báo “Không có dữ liệu thống kê trong khoảng thời gian này” và kết thúc 
+5b. Nếu không truy xuất được dữ liệu, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc 
+Business rules
+BR-UC14-01, BR-UC14-02, BR-UC14-03, BR-UC14-05, BR-UC14-08
+Non-functional requirement
+Số liệu hiển thị theo thời gian thực, có biểu đồ trực quan
+ 
+3.14.3. Usecase 14.2. “Báo cáo vận hành lớp học”
+Use case ID
+14.2
+Use case name
+Báo cáo vận hành lớp học
+Description
+Là quản lý, tôi muốn xem báo cáo vận hành lớp học (tổng số ca học, sĩ số trung bình, tỷ lệ chuyên cần và tình hình học bù) để đánh giá sự vận hành và độ chuyên cần của các ca học tại cơ sở mà không phải thống kê thủ công
+Actors
+Quản lý
+Priority
+Medium
+Triggers
+Quản lý chọn chức năng “Báo cáo vận hành lớp học” trên hệ thống
+Pre-conditions
+Quản lý đã đăng nhập thành công vào hệ thống
+Post-conditions
+Báo cáo vận hành lớp học cùng các số liệu thống kê chuyên cần và ca học theo khoảng thời gian được hiển thị đầy đủ trên màn hình
+Main flow
+1. Quản lý chọn chức năng “Báo cáo vận hành lớp học” trên hệ thống
+2. Hệ thống hiển thị màn hình báo cáo vận hành lớp học kèm bộ lọc khoảng thời gian (“Tuần”, “Tháng”, “Từ ngày - Đến ngày”) và bộ lọc lớp học/ca học
+3. Quản lý chọn khoảng thời gian cần xem báo cáo
+4. Quản lý bấm nút “Xem báo cáo”
+5. Hệ thống tổng hợp chỉ số vận hành (tổng số ca học đã diễn ra, sĩ số bình quân/ca, tỷ lệ chuyên cần từ dữ liệu điểm danh, tổng số lượt vắng có phép/không phép và số buổi học bù đã xử lý)
+6. Hệ thống hiển thị bảng số liệu chi tiết và biểu đồ so sánh tỷ lệ chuyên cần giữa các ca học
+Alternative flows
+6a. Quản lý bấm nút “Xuất báo cáo”, hệ thống trích xuất và tải xuống báo cáo vận hành dưới dạng file Excel
+Exception flows
+5a. Nếu không có dữ liệu vận hành lớp học trong khoảng thời gian đã chọn, hệ thống hiển thị thông báo “Không có dữ liệu báo cáo vận hành trong khoảng thời gian này” và kết thúc
+5b. Nếu không truy xuất được dữ liệu, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC14-01, BR-UC14-04, BR-UC14-05, BR-UC14-08
+Non-functional requirement
+Số liệu hiển thị theo thời gian thực, có biểu đồ trực quan
+ 
+3.14.4. Usecase 14.3. “Báo cáo cảnh báo học phí”
+Use case ID
+14.3
+Use case name
+Báo cáo cảnh báo học phí
+Description
+Là quản lý, tôi muốn xem báo cáo cảnh báo học phí (danh sách học viên sắp hết số buổi học hoặc chưa hoàn thành học phí) để chủ động nắm tình hình đôn đốc, chỉ đạo Trợ lý nhắc nhở phụ huynh gia hạn đúng hạn mà không phải rà soát thủ công
+Actors
+Quản lý
+Priority
+Medium
+Triggers
+Quản lý chọn chức năng “Báo cáo cảnh báo học phí” trên hệ thống
+Pre-conditions
+Quản lý đã đăng nhập thành công vào hệ thống
+Post-conditions
+Danh sách cảnh báo học phí kèm chi tiết số buổi học còn lại và trạng thái học phí của học viên được hiển thị đầy đủ trên màn hình
+Main flow
+1. Quản lý chọn chức năng “Báo cáo cảnh báo học phí” trên hệ thống
+2. Hệ thống hiển thị màn hình báo cáo cảnh báo học phí kèm ô ngưỡng cảnh báo số buổi còn lại (N buổi) và bộ lọc trạng thái học phí (“Chưa thanh toán”, “Đã thanh toán”)
+3. Quản lý điều chỉnh ngưỡng cảnh báo N buổi (hoặc giữ mặc định N = 2) hoặc chọn bộ lọc trạng thái học phí
+4. Quản lý bấm nút “Xem cảnh báo”
+5. Hệ thống tự động trích xuất danh sách các học viên có số buổi học còn lại không vượt quá N buổi hoặc có trạng thái học phí phù hợp
+6. Hệ thống hiển thị danh sách cảnh báo gồm học viên, chương trình học, SĐT phụ huynh, số buổi học còn lại, trạng thái học phí và số tiền học phí tương ứng
+Alternative flows
+6a. Quản lý bấm nút “Xuất báo cáo”, hệ thống trích xuất và tải xuống danh sách cảnh báo dưới dạng file Excel
+Exception flows
+5a. Nếu không có học viên nào thuộc diện cảnh báo thỏa mãn điều kiện lọc, hệ thống hiển thị thông báo “Hiện tại không có học viên nào thuộc diện cảnh báo học phí” và kết thúc
+5b. Nếu không truy xuất được dữ liệu, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC14-01, BR-UC14-06, BR-UC14-07, BR-UC14-08, BR-UC14-09
+Non-functional requirement
+Số liệu hiển thị theo thời gian thực, có biểu đồ trực quan
+ 
+3.15. Usecase “Giám sát chất lượng và tiến độ”
+Nhóm chức năng của Giám sát để kiểm tra việc giáo viên cập nhật ảnh tranh vẽ và nhận xét sau mỗi ca học có đúng hạn quy định hay không, và gửi nhắc nhở khi phát hiện chậm trễ. Giám sát là vai trò độc lập với Quản lý, có giao diện riêng.
+ 
+(Chèn hình phân rã UC):
+ 
+3.15.1 Business rules
+ID
+Business rules
+BR-UC15-01
+Giám sát có giao diện và quyền riêng. Giám sát không thực hiện các việc của Quản lý và tài khoản của vai trò này không truy cập được màn hình của vai trò khác.
+BR-UC15-02
+Chỉ kiểm tra các ca học đã kết thúc.
+BR-UC15-03
+Giáo viên phải cập nhật ảnh tranh vẽ và nhận xét của học viên sau mỗi ca học trong ngày.
+BR-UC15-04
+Ca học vi phạm tiến độ là ca học đã kết thúc mà hết hạn cập nhật (hết ngày của ca học) vẫn chưa có ảnh tranh vẽ hoặc chưa có nhận xét.
+BR-UC15-05
+Thông báo nhắc nhở được gửi đến giáo viên phụ trách ca học vi phạm. Khi chậm cập nhật dữ liệu tiến độ thuộc phần Trợ lý phụ trách, thông báo gửi đến Trợ lý.
+BR-UC15-06
+Thông báo nhắc nhở nêu rõ ca học và nội dung còn thiếu (ảnh tranh vẽ hoặc nhận xét).
+BR-UC15-07
+Giám sát chỉ kiểm tra và nhắc nhở, không chỉnh sửa ảnh tranh vẽ hoặc nhận xét của giáo viên.
+ 
+3.15.2. Usecase 15.1. “Kiểm tra tiến độ review của giáo viên”
+Use case ID
+15.1
+Use case name
+Kiểm tra tiến độ review của giáo viên
+Description
+Là giám sát, tôi muốn kiểm tra tình trạng cập nhật ảnh tác phẩm và nhận xét tiến độ của giáo viên sau mỗi ca học đã kết thúc để kịp thời phát hiện các trường hợp chậm trễ, đảm bảo chất lượng vận hành và tính minh bạch thông tin
+Actors
+Giám sát
+Priority
+Medium
+Triggers
+Giám sát chọn chức năng “Kiểm tra tiến độ review của giáo viên” trên hệ thống
+Pre-conditions
+Giám sát đã đăng nhập thành công vào hệ thống với tài khoản vai trò Giám sát
+Post-conditions
+Danh sách các ca học đã kết thúc cùng tình trạng cập nhật ảnh tác phẩm, nhận xét tiến độ và trạng thái tuân thủ thời hạn của giáo viên được hiển thị đầy đủ trên màn hình
+Main flow
+1. Giám sát chọn chức năng “Kiểm tra tiến độ review của giáo viên” trên hệ thống
+2. Hệ thống hiển thị màn hình kiểm tra tiến độ review kèm các ô lọc điều kiện (“Giáo viên phụ trách”, “Thời gian/Ca học”, “Trạng thái cập nhật”)
+3. Giám sát chọn điều kiện lọc
+4. Giám sát bấm nút “Kiểm tra”
+5. Hệ thống tự động trích xuất danh sách các ca học đã kết thúc thỏa mãn điều kiện lọc
+6. Hệ thống hiển thị danh sách kết quả gồm mã ca học, ngày học, giáo viên phụ trách, sĩ số ca, trạng thái ảnh tác phẩm (“Đã đăng / Chưa đăng”), trạng thái nhận xét (“Đã nhập / Chưa nhập”) và trạng thái tuân thủ (“Đúng hạn / Quá hạn”)
+Alternative flows
+6a. Giám sát bấm nút “Xuất báo cáo”, hệ thống trích xuất và tải xuống danh sách rà soát dưới dạng file Excel
+Exception flows
+5a. Nếu không có ca học nào đã kết thúc hoặc tất cả ca học đều đã hoàn thành cập nhật đúng hạn, hệ thống hiển thị thông báo “Tất cả các ca học đã kết thúc đều đã hoàn thành cập nhật tiến độ đầy đủ” và kết thúc
+5b. Nếu không truy xuất được dữ liệu, hệ thống hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC15-01, BR-UC15-02, BR-UC15-03, BR-UC15-04, BR-UC15-07
+Non-functional requirement
+N/A
+ 
+3.15.3. Usecase 15.2. “Gửi nhắc nhở vi phạm tiến độ”
+Use case ID
+15.2
+Use case name
+Gửi nhắc nhở vi phạm tiến độ
+Description
+Là giám sát, tôi muốn phát thông báo nhắc nhở đến giáo viên hoặc trợ lý vi phạm thời hạn cập nhật tác phẩm/nhận xét để đôn đốc hoàn thành đúng quy định, đảm bảo tính minh bạch dữ liệu của hệ thống
+Actors
+Giám sát
+Priority
+Medium
+Triggers
+Giám sát chọn chức năng “Gửi nhắc nhở vi phạm tiến độ” trên hệ thống
+Pre-conditions
+Giám sát đã đăng nhập thành công vào hệ thống với tài khoản vai trò Giám sát
+Post-conditions
+Thông báo nhắc nhở vi phạm (nêu rõ mã ca học và nội dung còn thiếu) được gửi thành công đến tài khoản của Giáo viên phụ trách hoặc Trợ lý tương ứng
+Main flow
+1. Giám sát chọn chức năng “Gửi nhắc nhở vi phạm tiến độ” trên hệ thống
+2. Hệ thống hiển thị danh sách các ca học vi phạm tiến độ (quá hạn cập nhật ảnh tác phẩm hoặc nhận xét)
+3. Giám sát chọn ca học vi phạm cần xử lý trong danh sách
+4. Hệ thống hiển thị chi tiết ca học vi phạm kèm thông tin đối tượng chịu trách nhiệm (Giáo viên phụ trách hoặc Trợ lý) và nội dung bị thiếu
+5. Giám sát bấm nút “Gửi nhắc nhở”
+6. Hệ thống tự động khởi tạo và phát thông báo nhắc nhở vi phạm đến đối tượng tương ứng
+7. Hệ thống cập nhật trạng thái nhắc nhở của ca học thành “Đã gửi nhắc nhở”
+8. Hệ thống hiển thị thông báo “Gửi nhắc nhở vi phạm tiến độ thành công!”
+Alternative flows
+3a. Giám sát tích chọn nhiều ca học vi phạm và bấm nút “Gửi nhắc nhở tất cả”. Hệ thống tự động gửi thông báo nhắc nhở đến toàn bộ các Giáo viên/Trợ lý liên quan trong danh sách
+UC tiếp tục ở bước 7
+Exception flows
+2a. Nếu không có ca học nào vi phạm tiến độ, hệ thống hiển thị thông báo “Hiện tại không có ca học nào vi phạm tiến độ” và kết thúc
+5a. Nếu Giám sát bấm nút “Hủy”, hệ thống giữ nguyên trạng thái, không gửi thông báo và quay về màn hình trước, kết thúc
+6a. Nếu không gửi được thông báo do lỗi kết nối hoặc sự cố hệ thống, hệ thống hoàn tác thao tác, hiển thị thông báo “Hiện tại đang có sự cố, vui lòng thử lại sau” và kết thúc
+Business rules
+BR-UC15-01, BR-UC15-04, BR-UC15-05, BR-UC15-06, BR-UC15-07
+Non-functional requirement
+N/A
+ 
+
+YÊU CẦU PHI CHỨC NĂNG (NON-FUNCTIONAL REQUIREMENTS)
+Yêu cầu hiệu năng
+ID
+Yêu cầu phi chức năng (Non-functional requirements)
+NFR-01
+Thời gian hệ thống phản hồi đối với các tác vụ thông thường (điểm danh, tra cứu lịch học, lọc danh sách học viên, duyệt ca học) không được vượt quá 2 giây trong điều kiện mạng tiêu chuẩn
+NFR-02
+Thời gian tải lên và hiển thị ảnh bài vẽ có dung lượng từ 2MB - 5MB lên máy chủ đám mây không được vượt quá 5 giây cho mỗi tệp
+NFR-03
+Hệ thống phải đảm bảo hoạt động ổn định, không bị nghẽn khi có ít nhất 50 người dùng đồng thời thao tác tại các khung giờ cao điểm (đầu ca học khi giáo viên điểm danh, hoặc cuối ca khi phụ huynh tra cứu tiến độ)
+NFR-04
+Hệ thống phải tự động nén kích thước ảnh bài vẽ hiển thị dạng thumbnail dưới 200KB để tối ưu hóa thời gian tải trên ứng dụng di động mà vẫn giữ nguyên ảnh gốc độ phân giải cao trên kho lưu trữ Cloud
+Bảng 2. Yêu cầu hiệu năng
+Yêu cầu vận hành và hỗ trợ
+ID
+Yêu cầu phi chức năng (Non-functional requirements)
+NFR-01
+Giao diện Quản lý, Trợ lý và Giám sát phải tương thích trên nền tảng Web (chạy mượt mà trên các trình duyệt Chrome, Edge, Safari phiên bản mới nhất); giao diện Giáo viên và Phụ huynh phải vận hành tối ưu trên ứng dụng di động
+NFR-02
+Ứng dụng di động của Giáo viên phải cho phép thực hiện điểm danh và lưu tạm dữ liệu vào bộ nhớ cục bộ khi cơ sở gặp sự cố mất điện hoặc mất kết nối Internet đột ngột
+NFR-03
+Toàn bộ dữ liệu điểm danh lưu tạm ngoại tuyến phải được tự động đồng bộ lên CSDL trung tâm trong vòng 30 giây ngay khi thiết bị có lại kết nối mạng Internet, bảo đảm không làm mất bản ghi điểm danh
+NFR-04
+Cấu trúc kiến trúc CSDL phải cho phép mở rộng quy mô quản lý thêm từ 2 đến 3 cơ sở mới mà không cần phải tái cấu trúc toàn bộ mã nguồn hệ thống
+Bảng 3. Yêu cầu vận hành và hỗ trợ
+Yêu cầu bảo mật và quyền riêng tư
+ID
+Yêu cầu phi chức năng (Non-functional requirements)
+NFR-01
+Mọi người dùng bắt buộc phải xác thực thông qua ID/Email công việc/SDT và Mật khẩu.
+NFR-02
+Hệ thống phân định rạch ròi 5 vai trò độc lập (Quản lý, Trợ lý, Giáo viên, Giám sát, Phụ huynh). Tuyệt đối không cho phép tài khoản thuộc vai trò này truy cập màn hình quản trị của vai trò khác
+NFR-03
+Phụ huynh chỉ được xem thông tin cá nhân, lịch học, nhận xét và ảnh tranh vẽ của chính con mình; không được phép xem thông tin hoặc tác phẩm của học viên khác trong cùng lớp học
+Bảng 4. Yêu cầu bảo mật và quyền riêng tư
+Yêu cầu về độ tin cậy và lưu trữ dữ liệu
+ID
+Yêu cầu phi chức năng (Non-functional requirements)
+NFR-01
+Hệ thống phải duy trì thời gian hoạt động tối thiểu 99.0% trong khung giờ vận hành của trung tâm (từ 07:30 đến 21:00 hàng ngày, kể cả Thứ Bảy và Chủ Nhật)
+NFR-02
+Khi học viên tạm dừng hoặc bảo lưu khóa học, hệ thống không xóa dữ liệu mà phải lưu trữ vĩnh viễn sơ yếu lý lịch, cấp độ học và tiến trình bài học cũ để phục vụ xếp lớp khi bé quay lại
+NFR-03
+Cơ sở dữ liệu trung tâm phải được thiết lập cơ chế tự động sao lưu ít nhất 01 lần/ngày vào lúc 23:30 để phòng ngừa rủi ro mất mát dữ liệu vận hành
+Bảng 5. Yêu cầu về độ tin cậy và lưu trữ dữ liệu
+Yêu cầu về giao diện và quốc tế hóa
+ID
+Yêu cầu phi chức năng (Non-functional requirements)
+NFR-01
+Giao diện hệ thống phải sử dụng màu sắc nhận diện thương hiệu của Lớp vẽ Ngôi Nhà Nhỏ (tông màu tươi sáng, thân thiện với môi trường thiếu nhi), phông chữ rõ ràng, cỡ chữ tối thiểu 14px để thuận tiện cho việc quan sát
+NFR-02
+Giáo viên và Trợ lý có thể thực hiện xong các nghiệp vụ như mở danh sách điểm danh, gửi yêu cầu báo nghỉ, tra cứu lịch trống ca bù trong vòng không quá 3 thao tác chạm/nhấp chuột
+NFR-03
+Hệ thống không hiển thị các mã lỗi kỹ thuật khô khan (như Error 404, 500); các câu thông báo phải sử dụng ngôn từ gần gũi, lịch sự, đúng phong cách chăm sóc của trung tâm
+NFR-04
+Giao diện của Quản lý và Trợ lý phải tích hợp biểu đồ trực quan, cho phép bấm xem ngay: số ca học trong ngày, số học viên mới, học viên bảo lưu và cảnh báo học viên sắp hết buổi
+NFR-05
+Hệ thống phải hỗ trợ giao diện song ngữ Tiếng Việt và Tiếng Anh, cho phép người dùng chủ động chuyển đổi ngôn ngữ trên ứng dụng
+NFR-06
+Toàn bộ các thông tin liên quan đến học phí và biểu phí khóa học hiển thị thống nhất theo định dạng tiền tệ Việt Nam Đồng (VNĐ)
+Bảng 6. Yêu cầu về giao diện và quốc tế hoá

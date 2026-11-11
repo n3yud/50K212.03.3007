@@ -1,0 +1,21 @@
+:root {
+  --primary: #33b5e5;
+  --primary-button: #2eb1dc;
+  --primary-dark: #1f7fa3;
+  --sidebar: #dff3fa;
+  --page: #f4fafd;
+  --surface: #fff;
+  --text: #333;
+  --muted: #6b93a2;
+  --border: #cce7f2;
+  --line: #e5e7eb;
+  --danger: #dc3545;
+  --font: "Inter", Arial, sans-serif;
+  --font-soft: "Nunito", Arial, sans-serif;
+  --radius: 10px;
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --sidebar-width: 240px;
+}

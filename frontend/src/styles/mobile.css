@@ -1,0 +1,156 @@
+.mobile-app {
+  max-width: 760px;
+  margin: auto;
+  background: #f6fbfd;
+  min-height: 100vh;
+  padding-bottom: 85px;
+}
+.mobile-app .workspace {
+  margin: 0;
+}
+.mobile-app aside {
+  display: none;
+}
+.mobile-app aside.open {
+  display: flex;
+  position: fixed;
+  inset: 85px 0 78px;
+  flex-direction: column;
+  z-index: 20;
+  background: var(--sidebar);
+  padding: 24px;
+  overflow: auto;
+}
+.mobile-app aside nav {
+  display: grid;
+  gap: 10px;
+  margin: 24px 0;
+}
+.mobile-app aside nav button {
+  background: white;
+  color: var(--text);
+}
+.mobile-app aside nav button.active {
+  background: var(--primary);
+  color: #fff;
+}
+.mobile-app .app-header {
+  height: 85px;
+  border-bottom: 2px solid var(--primary);
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  padding: 16px 20px;
+}
+.mobile-app .app-header .menu-toggle {
+  display: block;
+  padding: 4px;
+  font-size: 20px;
+}
+.mobile-app .app-header > .brand {
+  flex: 1;
+}
+.mobile-app .app-header > small {
+  font-size: 14px;
+}
+.mobile-app .app-content {
+  padding: 20px 22px;
+}
+.mobile-app .breadcrumb {
+  display: none;
+}
+.mobile-app h1 {
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+.mobile-app .bottom-nav {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 760px;
+  background: #fff;
+  border-top: 2px solid #70cde6;
+  z-index: 15;
+  padding: 7px 10px;
+  justify-content: space-around;
+  height: 76px;
+  gap: 5px;
+}
+.mobile-app .bottom-nav button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3px;
+  padding: 5px 8px;
+  color: #88a0ac;
+  background: #fff;
+  font-weight: 400;
+  font-size: 14px;
+  min-width: 64px;
+  max-width: 130px;
+}
+.mobile-app .bottom-nav button img {
+  max-height: 22px;
+  object-fit: contain;
+}
+.mobile-app .bottom-nav button.active {
+  background: #e0f6fd;
+  color: var(--primary);
+}
+.mobile-app .panel {
+  border-color: #dfedf3;
+  border-radius: 14px;
+  padding: 18px;
+}
+.mobile-app .split {
+  padding: 0;
+  background: transparent;
+}
+.mobile-app .stat-grid {
+  grid-template-columns: 1fr 1fr;
+}
+.mobile-app .toolbar {
+  gap: 12px;
+}
+.mobile-app .toolbar button {
+  flex: 1;
+}
+.mobile-app .toolbar .field {
+  min-width: 100%;
+}
+.mobile-app .form-grid {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+.mobile-app .details > div {
+  grid-template-columns: 1fr;
+  gap: 4px;
+}
+.mobile-app .actions > button {
+  flex: 1;
+}
+.mobile-app .badge {
+  white-space: normal;
+}
+.mobile-app .table-scroll {
+  margin: 0 -10px;
+}
+.mobile-app .attendance-row {
+  padding: 12px 10px;
+}
+.mobile-app .attendance-row strong {
+  font-size: 14px;
+}
+.mobile-app .attendance-row > div {
+  flex-shrink: 0;
+}
+.mobile-app .attendance-row button {
+  padding: 6px 8px;
+}
+.mobile-app .calendar-event {
+  margin: 4px;
+}

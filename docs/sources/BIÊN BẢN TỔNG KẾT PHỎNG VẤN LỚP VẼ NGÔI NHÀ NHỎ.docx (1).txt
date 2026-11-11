@@ -1,0 +1,286 @@
+BIÊN BẢN TỔNG KẾT PHỎNG VẤN
+Người viết biên bản: Nguyễn Lê Bảo Châu
+1. Thời gian
+8h00 - 9h00, ngày 14 tháng 09 năm 2026
+2. Hình thức
+Online qua Google Meet
+3. Địa điểm
+Phòng D004 - Trường Đại học Kinh tế - Đại học Đà Nẵng
+4. Thành phần
+Người được phỏng vấn: Chị Lê Thị Thanh Nhi - Trợ lý tại Lớp vẽ Ngôi Nhà Nhỏ
+Người thực hiện phỏng vấn:
+Trần Thị Mỹ Duyên
+Hà Thái Bảo
+Nguyễn Thị Quỳnh
+Nguyễn Lê Bảo Châu
+Phonevilay Phengchanh
+5. Mục đích
+Khảo sát hiện trạng quy trình vận hành và thu thập các yêu cầu nghiệp vụ thực tế tại Lớp vẽ Ngôi Nhà Nhỏ bao gồm: quy trình tư vấn, đăng ký học thử và nhập học; quy trình sắp xếp lịch dạy/lịch học; xử lý nghỉ học và xếp lịch học bù; quy trình điểm danh học viên và cập nhật tiến trình học.
+Xác định phạm vi dự án, làm cơ sở để phân tích, mô hình hóa và thiết kế hệ thống phần mềm hỗ trợ quản lý và tự động hóa quy trình trên điện thoại và máy tính.
+6. Nội dung tổng quát
+6.1. Yêu cầu chức năng
+Quản lý tuyển sinh và học thử
+Quản lý hồ sơ học viên và phụ huynh
+Quản lý lớp học và thời khoá biểu
+Điều phối báo nghỉ và xếp lịch học bù
+Điểm danh và đánh giá tiến độ học tập
+Giám sát và quản lý chất lượng
+Cổng thông tin phụ huynh
+Theo dõi học phí và báo cáo tổng quan
+6.2. Yêu cầu phi chức năng
+Yêu cầu vận hành và khả năng sử dụng: Hệ thống hoạt động linh hoạt trên cả nền tảng web (máy tính) và ứng dụng di động; giao diện lịch học thiết kế trực quan dạng lưới (tương tự Google Calendar); hỗ trợ cơ chế lưu trữ ngoại tuyến (offline) để điểm danh khi mất mạng và đồng bộ tự động khi có kết nối trở lại.
+Yêu cầu hiệu năng và khả năng mở rộng: Hệ thống phản hồi nhanh chóng, vận hành mượt mà, hạn chế giật lag trong khung giờ cao điểm đầu ca học; kiến trúc dữ liệu có khả năng mở rộng để đáp ứng quy mô tăng trưởng từ hàng trăm đến hàng nghìn học viên mới mỗi năm.
+Yêu cầu bảo mật và quyền riêng tư: Đảm bảo an toàn thông tin với cơ chế đăng nhập bằng tài khoản nội bộ (ID/Email công việc); cá nhân hóa quyền truy cập, bảo mật tuyệt đối hình ảnh bài vẽ và thông tin cá nhân của các bé (chỉ phụ huynh của bé đó mới được quyền xem).
+Yêu cầu phân quyền và kiểm soát truy cập: Thiết lập phân quyền độc lập, rạch ròi theo vai trò người dùng (Quản lý, Trợ lý, Giáo viên, Giám sát, Phụ huynh); quyền cấp mới, khóa tài khoản và quản trị hệ thống do Bộ phận kỹ thuật và nhân sự (Admin) quản lý tập trung.
+Yêu cầu văn hóa, bảo trì và khả năng hỗ trợ: Hỗ trợ đa ngôn ngữ (tiếng Việt và tiếng Anh); quy chuẩn định dạng tiền tệ bắt buộc là Việt Nam Đồng (VNĐ); các hoạt động bảo trì, nâng cấp hệ thống được thực hiện vào ban đêm (ngoài giờ vận hành) để tránh làm gián đoạn công việc.
+
+7. Nội dung chi tiết cuộc họp
+7.1. Yêu cầu chức năng
+7.1.1. Quản lý tuyển sinh và học thử
+Hỗ trợ tiếp nhận thông tin đăng ký học thử từ website/app (họ tên bé, ngày sinh, số điện thoại phụ huynh, khung giờ mong muốn).
+Hỗ trợ trợ lý phân loại lớp dựa trên độ tuổi (Lớp Cơ bản: 5-6 tuổi; Lớp Nâng cao: 7-15 tuổi) và ghi nhận kết quả tư vấn lộ trình học.
+Hỗ trợ Trợ lý chọn ca học thử thỏa mãn quy định sĩ số ( 7 học viên/ca) và gửi Quản lý phê duyệt danh sách trước khi gửi lịch chính thức cho phụ huynh.
+Cho phép Giáo viên ghi nhận xét đánh giá năng lực của bé sau ca học trải nghiệm để Trợ lý làm căn cứ tư vấn phụ huynh đăng ký chính thức.
+7.1.2. Quản lý hồ sơ học viên và phụ huynh
+Cho phép tạo mới, tra cứu, cập nhật thông tin lý lịch học viên, khóa học đang theo học, số buổi còn lại và lịch sử điểm danh.
+Cho phép một tài khoản phụ huynh liên kết và quản lý đồng thời nhiều hồ sơ học viên (chính sách ưu đãi dành cho anh/chị/em cùng học).
+Hỗ trợ chuyển trạng thái học viên sang “Đã bảo lưu” hoặc “Đã ẩn” khi tạm ngừng học để lưu trữ dữ liệu lịch sử tiến trình, không xóa vĩnh viễn khỏi CSDL, cho phép khôi phục khi học viên quay lại học.
+7.1.3. Quản lý lớp học và thời khóa biểu
+Thiết lập thời khóa biểu các ca học trong tuần (các suất học mở từ Thứ 2 đến Chủ nhật, riêng Thứ 6 trung tâm nghỉ).
+Xếp học viên vào lớp theo đúng độ tuổi và phân công cố định một giáo viên phụ trách xuyên suốt khóa học (1 giáo viên phụ trách tiêu chuẩn 5-7 học viên).
+Cung cấp giao diện thời khóa biểu dạng lưới (Calendar view - tương tự Google Calendar) cho Quản lý và Trợ lý dễ dàng bao quát các ca học.
+7.1.4. Điều phối báo nghỉ và xếp lịch học bù
+Tiếp nhận yêu cầu xin nghỉ có phép từ phụ huynh gửi qua hệ thống trước ca học.
+Hệ thống tự động kiểm tra ca học cùng trình độ còn chỗ trống (đảm bảo sĩ số sau khi ghép bù tối đa không quá 8 học viên/ca) để Trợ lý lập đề xuất xếp bù để học viên học bù trong vòng 30 ngày.
+Quản lý xem xét duyệt đề xuất ca bù; hệ thống tự động cập nhật danh sách học viên bù vào ca dạy của giáo viên và gửi thông báo xác nhận cho phụ huynh.
+Cho phép giáo viên báo vắng học viên đột xuất ngay tại lớp để trợ lý chủ động liên hệ phụ huynh sắp xếp bù.
+7.1.5. Điểm danh và đánh giá tiến độ học tập
+Giao diện tối ưu trên điện thoại cho phép giáo viên thao tác điểm danh nhanh (có mặt/vắng); hệ thống tự động trừ số buổi học tương ứng trong gói học của học viên.
+Cho phép giáo viên chụp và tải ảnh tác phẩm hoàn thành của bé sau mỗi buổi học, kèm nhận xét chi tiết về kỹ năng vẽ (nét vẽ, phối màu, mức độ tiếp thu).
+Hệ thống lưu trữ toàn bộ nhật ký và bài vẽ thành dòng thời gian phát triển của bé.
+7.1.6. Giám sát và quản lý chất lượng
+Cung cấp chức năng cho Giám sát kiểm tra việc cập nhật nhận xét và ảnh tranh vẽ của giáo viên sau mỗi ca học xem có đúng hạn quy định hay không.
+Cho phép Giám sát gửi thông báo nhắc nhở đến giáo viên hoặc trợ lý khi phát hiện chậm trễ trong việc cập nhật dữ liệu tiến độ của học viên.
+7.1.7. Cổng thông tin Phụ huynh
+Phụ huynh chủ động xem thời khóa biểu hàng tuần, số buổi học còn lại trong gói và lịch sử chuyên cần của con.
+Cho phép phụ huynh gửi đơn xin nghỉ trực tiếp trên ứng dụng và chọn ca học bù phù hợp từ danh sách ca gợi ý.
+Phụ huynh theo dõi nhận xét của giáo viên và xem ảnh các tác phẩm của con (chế độ xem riêng tư cá nhân hóa, đảm bảo quyền riêng tư cho bé).
+7.1.8. Theo dõi học phí và báo cáo tổng quan
+Hiển thị biểu giá các khóa học và trạng thái thanh toán (“Đã thanh toán” / “Chưa thanh toán”) để Trợ lý đối soát và hỗ trợ phụ huynh đóng phí.
+Trang tổng quan hiển thị trực quan theo thời gian thực: số ca học trong ngày, số học viên mới trong tuần, số học viên đang bảo lưu, và danh sách cảnh báo học viên sắp hết buổi học để chủ động nhắc phí.
+Tự động kết xuất biểu mẫu thống kê tình hình học viên (mới/cũ), tỷ lệ chuyên cần và số liệu vận hành định kỳ theo tuần/tháng.
+7.2. Yêu cầu phi chức năng
+7.2.1. Yêu cầu vận hành và khả năng sử dụng
+Hệ thống phải vận hành ổn định trên trình duyệt web máy tính (dành cho Quản lý, Trợ lý thao tác báo cáo, xếp lịch) và tối ưu hóa giao diện ứng dụng trên điện thoại thông minh (dành cho Giáo viên điểm danh và Phụ huynh theo dõi).
+Màn hình quản lý lịch dạy và ca học phải được biểu diễn trực quan dạng khung lưới theo ngày/tuần/tháng tương tự Google Calendar giúp Trợ lý và Quản lý dễ dàng bao quát phòng học và ca trống.
+Cơ chế hoạt động ngoại tuyến khi cơ sở gặp sự cố mất điện hoặc rớt mạng Internet đột ngột, giáo viên vẫn có thể mở app để thực hiện điểm danh bình thường. Dữ liệu điểm danh được lưu tạm thời vào bộ nhớ cục bộ của thiết bị và tự động đẩy lên máy chủ/CSDL trung tâm ngay khi có kết nối trở lại.
+Trường hợp hệ thống phát sinh sự cố kết nối, giao diện phía phụ huynh phải hiển thị câu thông báo nhẹ nhàng, gần gũi (ví dụ: “Hiện tại hệ thống đang có sự cố, ba mẹ đợi Ngôi Nhà Nhỏ một xíu nhé!”).
+7.2.2. Yêu cầu hiệu năng và khả năng mở rộng
+Trong khung giờ cao điểm đón trả trẻ và đầu ca học (khi nhiều giáo viên đồng loạt điểm danh và phụ huynh truy cập), hệ thống phải phản hồi mượt mà với độ trễ thao tác dưới 2 giây, không bị treo ứng dụng.
+Khả năng mở rộng dữ liệu: Cơ sở dữ liệu và hạ tầng hệ thống phải có khả năng lưu trữ, xử lý khối lượng dữ liệu tăng trưởng đều đặn từ hàng trăm đến hàng nghìn hồ sơ học viên, lịch sử điểm danh và hình ảnh bài vẽ tích lũy qua từng năm mà không làm suy giảm hiệu năng truy vấn.
+7.2.3. Yêu cầu bảo mật và quyền riêng tư
+Cán bộ nhân viên (Quản lý, Trợ lý, Giáo viên, Giám sát) đăng nhập hệ thống thông qua mã định danh nội bộ (ID) hoặc Email công việc được cấp.
+Hình ảnh bài vẽ và thông tin cá nhân của các bé là dữ liệu nhạy cảm. Hệ thống phải cá nhân hóa giao diện của phụ huynh: phụ huynh chỉ có quyền xem nhật ký, nhận xét và bộ sưu tập bài vẽ của chính con mình, tuyệt đối không công khai bài vẽ cá nhân của bé sang tài khoản phụ huynh khác.
+7.2.4. Yêu cầu phân quyền và kiểm soát truy cập
+Phân quyền truy cập theo vai trò: Hệ thống phân tách rạch ròi phạm vi dữ liệu và chức năng cho 5 nhóm tác nhân:
+Giáo viên: Chỉ có quyền xem danh sách học viên trong các ca học mình trực tiếp giảng dạy; thao tác điểm danh nhanh đầu giờ; đăng tải ảnh tác phẩm hoàn thiện và nhập nhận xét vào nhật ký lớp học; không có quyền chỉnh sửa thông tin cá nhân của học viên hay tự ý xếp lớp.
+Giám sát: Có giao diện độc lập để kiểm tra tính đầy đủ và đúng hạn trong việc cập nhật nhận xét (review) bài vẽ của giáo viên; gửi cảnh báo nhắc nhở khi phát hiện chậm trễ tiến độ.
+Trợ lý: Có quyền xem danh sách học viên toàn cơ sở, tạo mới/chỉnh sửa hồ sơ học viên; ghi nhận đơn xin nghỉ, tra cứu ca trống và lập đề xuất xếp lịch học bù; cập nhật trạng thái đóng học phí (đã đóng/chưa đóng); theo dõi dashboard ca học trong ngày.
+Quản lý: Có toàn quyền giám sát vận hành cơ sở; xem báo cáo thống kê, biểu đồ phân tích số liệu học viên; chịu trách nhiệm trực tiếp phê duyệt các đề xuất ca học bù / chuyển suất học do Trợ lý trình lên trước khi danh sách được chốt và gửi thông báo cho phụ huynh. Quản lý có quyền hạn cao hơn và có thể thực hiện thay các tác vụ vận hành của Trợ lý khi cần thiết.
+Phụ huynh: Chỉ được cấp quyền truy cập vào cổng thông tin gia đình; xem thời khóa biểu, tra cứu số buổi còn lại, nhận xét và bộ sưu tập bài vẽ của con mình.
+Quản trị định danh độc lập: Quản lý cơ sở không có thẩm quyền tạo mới hay khóa tài khoản nhân viên. Toàn bộ quyền cấp tài khoản, phân vai trò và xử lý sự cố tài khoản do Bộ phận Nhân sự kết hợp Kỹ thuật thực hiện tập trung.
+7.2.5. Yêu cầu văn hóa, bảo trì và khả năng hỗ trợ
+Mọi hoạt động cập nhật phần mềm, sao lưu và bảo trì định kỳ phải được thiết lập thực hiện vào ban đêm (từ 00:00 đến 05:00 sáng) để không làm gián đoạn hoạt động giảng dạy và tư vấn trong giờ hành chính.
+Đa ngôn ngữ: Hệ thống hỗ trợ song ngữ (tiếng Việt mặc định và tiếng Anh) nhằm phục vụ đối tượng học viên và phụ huynh là người nước ngoài đang theo học tại trung tâm.
+Chuẩn tiền tệ: Đơn vị tiền tệ hiển thị trên các màn hình khóa học và học phí phải được cố định theo chuẩn Việt Nam Đồng (VNĐ).
+7.3. Chi tiết nội dung phỏng vấn
+I. Mở đầu buổi phỏng vấn
+Người phỏng vấn: Dạ em chào chị ạ! Lời đầu tiên, thay mặt nhóm sinh viên trường Đại học Kinh tế - Đại học Đà Nẵng, tụi em xin cảm ơn chị rất nhiều vì đã đồng ý dành thời gian hỗ trợ tụi em làm dự án môn học Phân tích và Thiết kế Hệ thống Thông tin.
+Như chúng em đã trao đổi trước, mục đích của buổi phỏng vấn hôm nay là để tụi em tìm hiểu kỹ hơn về quy trình đăng ký lớp học, sắp xếp lịch dạy của giáo viên và điểm danh học viên tại Lớp vẽ Ngôi Nhà Nhỏ. Từ đó, tụi em sẽ phân tích và thiết kế một hệ thống giúp lớp vẽ tự động hóa và quản lý các công việc này dễ dàng hơn trên điện thoại và máy tính.
+Chị Nhi: Chào các bạn nha, mình là Nhi, hiện đang là trợ lý Lớp vẽ Ngôi Nhà Nhỏ tại cơ sở Hoà Xuân, Nguyễn Phước Lan. Mình rất mong các bạn sẽ có những đề xuất tốt cho bên cơ sở của mình.
+Người phỏng vấn: Theo yêu cầu của môn học, tụi em cần ghi hình lại buổi trao đổi này làm minh chứng nộp cho giảng viên. Video này chỉ phục vụ mục đích học tập nội bộ và không chia sẻ ra ngoài. Chị cho phép tụi em quay lại buổi phỏng vấn này nhé ạ?
+Chị Nhi: Ừ oke các em.
+Thông tin chung:
+Người phỏng vấn: Chị đảm nhận những công việc gì trong Lớp ạ?
+Chị Nhi: Đối với phần việc của trợ lý, mình sẽ liên quan nhiều tới việc điều phối học sinh thông qua các app, làm việc với phụ huynh cũng như là sẽ xử lý một vài trường hợp về nghỉ học, học bù và có thêm cả một phần học phí.
+Người phỏng vấn: Lớp vẽ có bao nhiêu giáo viên ạ? Mỗi giáo viên phụ trách những buổi/nhóm nào? Một giáo viên có dạy cố định 1 ca duy nhất, hay dạy nhiều ca/nhiều lớp khác nhau trong tuần ạ?
+Chị Nhi: Hiện tại bên cơ sở Hòa Xuân có 20 giáo viên, 1 giáo viên sẽ nhận học sinh từ 5-7 bạn nhưng mà sẽ không có phân phòng mà ngồi theo bàn và một bàn như vậy là 2 cô, học theo các suất học trải dài thứ 2 đến thứ 5 và thứ 7 chủ nhật, còn thứ 6 trung tâm nghỉ.
+Người phỏng vấn: Một lớp học có tối đa bao nhiêu học viên ạ?
+Chị Nhi: Một giáo viên sẽ nhận từ 5-7 bạn, tuy nhiên có những bạn đi học bù thì 1 lớp các cô nhận có thể tối đa là 8 bạn cho những bạn đi học bù nữa.
+Người phỏng vấn: Các khóa học ở trung tâm thường được tính theo hình thức nào: Đăng ký theo gói số buổi cố định hay tính theo khóa/tháng cố định ạ?
+Chị Nhi: Bên mình sẽ không đi theo khóa, mà đi theo chương trình học, có nghĩa là mỗi độ tuổi sẽ có mỗi lộ trình học riêng, học phí đóng theo tháng, khi học viên học đến trình độ nhất định và muốn bảo lưu thì bên mình sẽ bảo lưu kết quả học tập cho học viên và khi nào họ quay lại học thì học tiếp lộ trình của mình chứ không đi theo khóa mà đi theo lộ trình dài.
+Người phỏng vấn: Em thấy trên website trung tâm đã đào tạo nhiều học viên. Như vậy, trung bình mỗi tháng cơ sở chị tiếp nhận khoảng bao nhiêu bé mới ạ? Chia theo mấy độ tuổi/trình độ ạ?
+Chị Nhi: Bên mình không tính trung bình 1 tháng nhận bao nhiêu bé bởi vì lưu lượng học sinh thay đổi thường xuyên và tuỳ vào đợt, ví dụ đợt hè sẽ số lượng học sinh đăng ký khá là đông, còn vào năm học thì sẽ ưu tiên mấy môn văn hóa trước và tạm bảo lưu 1-2 tháng, khi đó số lượng học sinh sẽ bắt đầu giảm dần hoặc đoạn sau tết, mưa bão, nên số lượng học sinh mỗi tháng không có đều nhau nên bên mình không có tính trung bình cho mỗi tháng. Đối với các hóa học chia ra 3 phân cấp:
+ + Cơ bản: Dành cho các bạn 5-6 tuổi
++ Nâng cao: Dành cho các bạn 7-15 tuổi
++ Người lớn: Chỉ có 1 suất. 
+Chủ yếu vẫn là lớp cơ bản và lớp nâng cao.
+II. Khảo sát hiện trạng (As-is) và Thu thập yêu cầu (To-be)
+Chủ đề 1: Khảo sát hiện trạng (As-is system) và cải tiến
+Nhóm câu hỏi về nền tảng hệ thống hiện tại:
+Người phỏng vấn: Hiện tại lớp vẽ có đang sử dụng một hệ thống/phần mềm nào để quản lý việc đăng ký khóa học và quản lý lịch học không ạ?
+Chị Nhi: Chủ yếu bên mình đang có hệ thống Classbus, ngoài ra có hệ thống bổ sung như Excel, zalo, messenger.
+Người phỏng vấn: Công cụ Classbus này được trung tâm dùng từ khi nào ạ?
+Chị Nhi: Công cụ Classbus sử dụng từ khi bên mình mở rộng cơ sở, việc quản lí học viên bắt đầu phức tạp hơn, bên mình bắt đầu xây dựng sử dụng hệ thống để quản lí học 1viên, trước đây chỉ có một cơ sở nhỏ ở bên Hàn Thuyên, số lượng học viên ít, khi mở cơ sở 2 và 3 thì bên mình sử dụng hệ thống bổ trợ để quản lý hiệu quả hơn.
+Người phỏng vấn: Chị dùng công cụ Classbus và các công cụ khác để làm những việc gì ạ?
+Chị Nhi: Thường chủ yếu là để lưu trữ thông tin học sinh, lịch nghỉ, lịch học của các bạn, cũng như lớp các bạn đăng kí như thế nào, điểm danh học bù, hoặc tình trạng về cập nhật review tình hình học, tiến độ các bạn, ngoài ra bên mình có thêm hệ thống bổ trợ khác để cập nhật thông tin nội bộ với nhau giữa các giáo viên và quản lý hoặc là cấp trên với cấp dưới. 
+Người phỏng vấn: Việc gì vẫn phải làm thủ công ngoài các công cụ đó ạ?
+Chị Nhi: Đa phần các hệ thống có xây dựng về tích hợp với nhau, tuy nhiên về việc nhập thông tin vẫn chưa có sự liên kết giữa các hệ thống, ví dụ bên excel và hệ thống chưa có tích hợp số, đa phần phải nhập tay vào, thì đôi lúc nó xảy ra sai sót vì nhập thủ công thì số liệu khá là nhiều. 
+Người phỏng vấn: Công cụ Classbus giải quyết tốt vấn đề gì? Còn hạn chế/bất tiện gì khiến lớp vẫn cân nhắc đổi sang hệ thống mới không ạ?
+Chị Nhi: Về thuận tiện, Classbus bây giờ đã hoàn thiện hơn, đã bắt đầu phân lớp, cập nhật 3 giao diện bên quản lý, giám sát, giáo viên, đã bắt đầu cập nhật thêm tiến trình review, độ trễ tiến trình cho các bạn, tuy nhiên chưa tích hợp thêm các tính năng ví dụ như: lịch vắng của mấy bạn, mà chỉ báo cái buổi các bạn nghỉ thôi, và việc thông tin các buổi học bù của các bạn thì sẽ dựa vào hệ thống Excel, và mình sẽ truyền thông và xác nhận với phụ huynh, sau đó xác nhận lại với giáo viên sau đó đưa lên một cái sheet ngoài chứ nó không có tích hợp vào app và nó đang bất cập ở phần đó thôi.Người phỏng vấn: Từng có sai sót nào xảy ra khi dùng công cụ này không ạ?
+Chị Nhi: Đôi lúc cũng sẽ có bởi vì đối với các hệ thống thì sẽ luôn có sự cập nhật trong quá trình mà mình làm việc, khi cập nhật đôi lúc bị lag làm cho mình bị trễ thông tin đến phụ huynh.
+Người phỏng vấn: Nếu có hệ thống mới, chị muốn giữ lại điều gì ở công cụ hiện tại ạ?
+Chị Nhi: Nếu mà giữ thì sẽ giữ các tính năng cơ bản như phân lớp, phân giáo viên, điểm danh học bù, ngoài ra nếu được thì vẫn giữ 3 giao diện quản lý, giám sát, giáo viên, ngoài ra thì sẽ có thể cập nhật tiến độ review của các bạn.
+Câu hỏi chung cho cả 2 nhánh:
+Người phỏng vấn: Nếu có phần mềm mới, Lớp vẽ mong muốn nó cải thiện được điều gì rõ rệt nhất so với cách làm hiện tại ạ?
+Chị Nhi: Nếu mà cải thiện thì mình mong muốn nó có thêm giao diện dành cho phụ huynh, cho phụ huynh có thể theo dõi được tình hình học của các bạn, buổi nghỉ bù một cách chủ động thay vì nhắn tin với giáo viên và đợi giáo viên phản hồi đôi lúc sẽ mang tính bị động, ngoài ra có thể tích hợp thêm báo lịch học bù cho các bạn vào hệ thống, khi đó tránh lộn xộn thông tin để phụ huynh và giáo viên có thể dựa vào và dễ kiểm soát hơn.
+Nhóm câu hỏi phân tích nguyên nhân gốc rễ:
+Người phỏng vấn: Ở lớp vẽ có hay gặp sự cố bị rớt mạng Internet không? Nếu mất mạng đột ngột thì công việc bị ảnh hưởng như thế nào ạ?
+Chị Nhi: Bên khu vực đó, lâu lâu mới sửa điện một lần vì khu vực Hòa Xuân nhiều công ty nên ít xảy ra tình trạng mất điện. Đối với việc cúp điện hay rớt mạng thì khá là ít, lâu lâu chỉ cúp điện một lần thôi. Còn việc ảnh hưởng hay không thì đương nhiên sẽ ảnh hưởng vì bên mình đa phần làm việc trên máy tính và điện thoại khá là nhiều, nhưng điện thoại thì có 5g còn máy tính thì không nên sẽ bị gián đoạn thao tác ở trên máy tính.
+Người phỏng vấn: Hình thức thu học phí chủ yếu của lớp là gì ạ? Hàng tháng chị có phải đối soát học phí không? Có gặp khó khăn gì không ạ?
+Chị Nhi: Học phí thu qua chuyển khoản, mình chỉ làm một phần nhỏ với cái học phí có nghĩa là nhập học phí lên trên app, còn phần việc khác liên quan đến học phí sẽ có một hệ thống bên bộ phận kế toán, bên đó xử lý học phí và đối soát học phí.
+Người phỏng vấn: Tin nhắn xin nghỉ học hoặc đăng ký mới của phụ huynh hay bị trôi/bỏ sót không ạ?
+Chị Nhi: Đôi lúc cũng sẽ có trường hợp bị trôi tin nhắn của phụ huynh, bởi vì lưu lượng tin nhắn khá là nhiều. Khi check thì mình sẽ check từ dưới lên, đôi lúc nhiều quá, mình bấm vào và để đó quên phản hồi và kiểm tra lại thì đôi lúc bị sót một vài cái. 
+Người phỏng vấn: Dữ liệu số buổi học còn lại của học viên có thỉnh thoảng bị sai lệch giữa sổ sách và thực tế không ạ?
+Chị Nhi: Về điểm danh bên mình sẽ khá khắt khe. Các cô thực hiện điểm danh theo 2 quy trình, đầu tiên sẽ điểm danh trên giấy trước trong buổi học, sau đó cuối buổi học các cô sẽ đối chiếu xong mới nhập trên hệ thống, nên thông thường ở các buổi học chính của các bạn sẽ ít sai. Nhưng đối với buổi học bù, trường hợp tháng đó các bạn nghỉ khá là nhiều, các bạn xác nhận rồi nhưng có trường hợp phụ huynh đưa con tới mà không báo trước, khi như vậy đôi lúc bị nhầm lẫn thông tin và có sai sót. Khi xảy ra vấn đề thì sẽ xác nhận cả 2 bên và sẽ giải thích cho phụ huynh. 
+Người phỏng vấn: Đã từng có trường hợp phụ huynh phàn nàn vì thông tin thỏa thuận với tư vấn viên bị lệch so với thực tế khi bé vào học chưa ạ?
+Chị Nhi: Trước khi các bạn vào học thì sẽ được tư vấn kĩ các chương trình và lộ trình của các bạn, tuy nhiên vì lộ trình bên lớp là lộ trình dài có thể tính theo nhiều năm, đôi khi phụ huynh sẽ không nắm được bạn đang học theo chương trình nào, phụ huynh lâu lâu sẽ hỏi hiện tại bé đang học chương trình nào rồi, lộ trình tiếp theo là gì, thường các câu hỏi này giáo viên sẽ hỗ trợ giải đáp ba mẹ, hoặc bên lớp lúc gửi review sẽ gửi luôn cái bảng mà tiến trình học của các bạn để phụ huynh dễ nắm bắt. 
+Người phỏng vấn: Phụ huynh có thường xuyên quan tâm đến số buổi học còn lại của bé không ạ?
+Chị Nhi: Đa phần là sẽ có, bởi vì bên mình thu học phí theo tháng, một tháng trung bình các bạn sẽ học 8-10 buổi, tuy nhiên sẽ có các bạn nghỉ học 1-2 buổi bên mình sẽ có chính sách hỗ trợ học bù cho học viên trong vòng 30 ngày nên phụ huynh sẽ quan tâm lịch học bù của các bạn nên sẽ thường là trong tháng này bé còn bao nhiêu buổi,  thời hạn học bù sẽ như thế nào để phụ huynh sắp xếp cho bé đi học bù để kịp tiến độ bài của các bạn. 
+Nhóm câu hỏi phân tích thời lượng:
+Người phỏng vấn: Trung bình khi có một học viên mới, chị mất khoảng bao nhiêu phút để nhập xong toàn bộ biểu mẫu thông tin của bé và phụ huynh vào hệ thống ạ?
+Chị Nhi: Chắc tầm 1-2 phút vì khá là nhanh.
+Người phỏng vấn: Trong buổi học, một giáo viên mất khoảng lâu để hoàn thành việc điểm danh cho cả lớp ạ?
+Chị Nhi: Một giáo viên chỉ nhận 5-7 bạn, 1 lớp tối đa 8 bạn nên đầu giờ các cô sẽ dành tầm 5-7 phút để điểm danh và báo vắng, để cho trung tâm biết hôm nay bạn nào nghỉ và đi học để báo cho phụ huynh sắp xếp lịch học bù.
+Người phỏng vấn: Mỗi tuần, chị mất khoảng bao lâu cho việc ngồi rà soát, xếp lịch học và xử lý các ca học bù/đổi ca cho học viên ạ?
+Chị Nhi: Mình sẽ làm theo ngày, không làm theo tuần, có nghĩa là đến khi nào có buổi học nó liên quan tới phụ huynh nên là mình sẽ check hàng ngày luôn chứ không có phân bổ theo tuần.
+Chủ đề 2: Phạm vi (Scope)
+Nhóm câu hỏi về phạm vi tổ chức:
+Người phỏng vấn: Tiếp theo chúng em sẽ hỏi các câu hỏi về phạm vi của hệ thống.
+Người phỏng vấn: Hiện tại, giải pháp phần mềm này dự kiến áp dụng cho toàn bộ các cơ sở của Lớp vẽ Ngôi Nhà Nhỏ hay chỉ triển khai thí điểm ở một chi nhánh hiện tại là cơ sở ở Hoà Xuân ạ?
+Chị Nhi: Chắc là khi mà mấy bạn xây xong thì mình sẽ thí điểm trên một nhóm nhỏ ở cơ sở Hoà Xuân trước, bởi vì khi áp dụng một lần cho cả cơ sở luôn thì đôi lúc nó sẽ có rủi ro, nên là bên mình sẽ ưu tiên phương án là thí điểm trên một nhóm nhỏ trước để xem hệ thống các bạn có còn lỗi nào không đã rồi sẽ feedback lại với các bạn.
+Nhóm câu hỏi về phạm vi người dùng:
+Người phỏng vấn: Hệ thống sẽ phục vụ cho những nhóm người dùng nào ạ (quản lý, trợ lý, giáo viên, phụ huynh, học viên)?
+Chị Nhi: Nếu mà được thì cả bốn đối tượng nếu mà các bạn tích hợp vào thì càng tốt, vì hiện tại cái hệ thống cũ nó đang tích hợp được 3 giao diện rồi nên là nếu mà cải tiến thêm 1 giao diện cho phụ huynh thì đó là một điểm cộng khá là lớn.
+Người phỏng vấn: Thế còn về học viên thì sao ạ?
+Chị Nhi: Học viên thì đa phần bên mình sẽ là các bạn nhỏ từ 5-7 tuổi, 5-15 tuổi, nên là các bạn chưa sử dụng nhiều về điện thoại nên là cũng không có cần thiết. 
+Nhóm câu hỏi về phạm vi chức năng:
+Người phỏng vấn: Nếu liệt kê nhanh, hệ thống mới sẽ có những nhóm chức năng như: Đăng ký khóa học (ghi danh học viên, xếp vào khóa/lớp), Quản lý lịch học (xếp lịch, đổi ca, điểm danh, nhắc lịch...)... Có chức năng nào phía lớp vẽ thấy chưa cấp thiết, có thể làm ở giai đoạn sau không ạ?
+Chị Nhi: Không mình thấy đa phần các cái đó đều cần thiết ấy nên là các bạn cứ triển khai thôi.
+Nhóm câu hỏi về ranh giới hệ thống và tránh trôi phạm vi:
+Người phỏng vấn: Có công việc nào hiện tại đang làm thủ công mà lớp vẽ muốn giữ thủ công, không đưa vào phần mềm không ạ?
+Chị Nhi: Chắc là phần làm việc với phụ huynh. Thì bên mình sẽ giao tiếp với phụ huynh trực tiếp luôn, sẽ ít dùng AI Chatbox mà sẽ là kiểu xử lý 1-1 với phụ huynh, có thể là phụ huynh ghé qua hoặc là gọi qua, hoặc là phụ huynh đến hẳn trung tâm để làm việc với bên lớp luôn. Bên mình vẫn ưu tiên xử lý 1-1 như vậy để giải quyết nhanh vấn đề cho phụ huynh và nó đúng trọng tâm. 
+Người phỏng vấn: Hệ thống này có cần xử lý luôn các nghiệp vụ ngoài đăng ký/lịch học không - như quản lý kho vật tư (màu vẽ, giấy...), quản lý lương giáo viên, kế toán tổng thể ạ?
+Chị Nhi: Thực ra là mấy cái phần đó sẽ liên quan đến một phòng ban khác, có nghĩa là sẽ có một bộ phận khác lo về cái đó, nên là mình nghĩ là khi tích hợp vào nó sẽ hơi bị lộn xộn, nên là chắc là hiện tại thì chưa đâu.
+Người phỏng vấn: Hệ thống nhóm em hướng tới là “Hệ thống đăng ký khóa học và quản lý lịch học” - chị có muốn hệ thống ghi nhận luôn việc đóng học phí của học viên không, hay phần đó chị vẫn muốn quản lý riêng như chị nói, tách biệt hoàn toàn khỏi hệ thống ạ?
+Chị Nhi: Về học phí thì chỉ cần là nó hiển thị bạn đã thanh toán học phí chưa hay là chưa thanh toán học phí để bên mình nắm lại thôi, còn cái phần xử lý học phí và đối soát thì đã có hệ thống về kế toán riêng, thì bên bộ phận kế toán sẽ làm việc, chứ sẽ không liên quan nhiều trên hệ thống hiện tại.
+Người phỏng vấn: Vậy hệ thống của tụi em là sẽ hiện trạng thái đã đóng hay chưa đóng của các bạn và sẽ hiển thị thêm thông tin về giá của các khoá học không ạ?
+Chị Nhi: Ừ đúng rồi.
+Chủ đề 3: Phân tích Quy trình nghiệp vụ
+Người phỏng vấn: Tụi em xin phép hỏi các câu hỏi về quy trình nghiệp vụ của bên mình ạ.
+Người phỏng vấn: Khi có phụ huynh nhắn tin qua Fanpage, gọi điện hỏi lớp cho con, hoặc điền form đăng ký trên website, chị bắt đầu tư vấn và ghi nhận thông tin ở đâu ạ?
+Chị Nhi: Sẽ có một hệ thống Excel để các cô lưu trữ cái thông tin đó, tụi mình sẽ cập nhật ở trên đó và sẽ thông tin đến phụ huynh bằng Zalo hoặc là gọi trực tiếp nếu mà phụ huynh chặn tin nhắn từ người lạ hoặc Zalo đầy, hoặc phụ huynh sẽ tới lớp trực tiếp luôn để nghe tư vấn và trao đổi.
+Người phỏng vấn: Riêng với dữ liệu từ form website đổ về, chị là người trực tiếp tiếp nhận hay có bộ phận trực page xử lý riêng ạ?
+Chị Nhi: Sẽ có bên bộ phận quản lý, thì sẽ bao gồm cô quản lý, bao gồm cả trợ lý - là mình và thêm một bộ phận Chat nữa để tránh việc bị miss thông tin vì việc đó khá là quan trọng ấy.
+Người phỏng vấn: Sau bước tư vấn, quy trình để một học viên chính thức “nhập học” gồm những bước nào, theo thứ tự nào ạ?
+Chị Nhi: Khi mà tư vấn xong thì tụi mình gửi một cái lịch, phụ huynh sẽ đăng ký lịch học thử cho mấy bạn, gọi là buổi học trải nghiệm, buổi học đó thì bên mình sẽ không thu phí. Sau buổi học trải nghiệm đó thì các cô sẽ trao đổi một xíu về tình hình học của các bạn cũng như là tư vấn rõ về lộ trình học cũng như là quy định của lớp. Phụ huynh sẽ cân nhắc và đăng ký sau buổi học đó hoặc có thể là phụ huynh sẽ về nhà để suy nghĩ thêm. Thì khi mà phụ huynh suy nghĩ thêm như vậy thì bên mình sẽ lưu thông tin, có thể là ở bên Zalo hoặc là quyển sổ để mà xem thử là phụ huynh có liên hệ lại không, nếu mà không thì bên mình sẽ chủ động.
+Người phỏng vấn: Ai là người quyết định xếp học viên mới vào lớp/ca học nào - dựa trên tiêu chí gì ạ?
+Chị Nhi: Bộ phận quản lý sẽ đảm nhận phần đấy và sắp xếp thì thứ nhất là sẽ dựa theo độ tuổi của các bạn, dựa vào độ tuổi để phân chia theo 2 cấp lớp như mình đã nói là lớp cơ bản và lớp nâng cao. Ngoài ra thì sẽ dựa vào tổng số lượng học sinh của mỗi suất của các cô, ví dụ cô nào đang có số lượng học sinh trong các lớp chưa được 7 bạn thì sẽ bắt đầu sắp xếp vào trong lớp đó.
+Người phỏng vấn: Như chị nói là một lớp vẽ cần 5-7 bạn thì mới chính thức mở lớp đúng không ạ hay là sao ạ ?
+Chị Nhi: À bên mình thì sẽ có các suất cố định rồi và sẽ luôn có học viên, ngoài ra kỳ hè thì sẽ có các suất khác vào ban ngày. Suất thì bên mình sẽ mở trước chứ không phải là đợi có học viên đăng ký rồi mới mở. Thì khoá lại là một lớp, một giáo viên chỉ nhận tầm bao nhiêu đó bạn thôi, còn suất thì bên mình sẽ mở trước rồi mới bắt đầu là đăng thông tin để nhận học viên.
+Người phỏng vấn: Trước khi đăng ký chính thức, các bé có những buổi học thử và có luôn test trình độ đúng không ạ?
+Chị Nhi: Ừ thì mấy bạn sẽ chỉ có một buổi học thử thôi, trong buổi học thử đó mấy bạn sẽ test luôn cả trình độ của mình.
+Người phỏng vấn: Khi học viên muốn đổi ca học hoặc xin nghỉ có học bù thì quy trình xử lý từng bước diễn ra như thế nào ạ?
+Chị Nhi: Phụ huynh sẽ nhắn trước lịch nghỉ của các bạn thì bên mình sẽ gửi xác nhận là hôm đó các bạn nghỉ, sau đó thì gửi lịch để các bạn đăng ký học bù. Ngoài ra thì trường hợp phụ huynh quên nhắn thì đầu giờ các cô có điểm danh, sau khi điểm danh thì các cô sẽ có một thao tác trong quy trình điểm danh đó là báo lên trên nhóm chung là hiện tại lớp của mình có bạn nào vắng, thì bên lớp sẽ chủ động nhắn cho phụ huynh luôn để phụ huynh biết là hôm đó con mình không có đi học để phụ huynh sắp xếp lịch bù. Còn về việc đổi lịch học thì đối với việc đổi lịch học cố định của các bạn thì phụ huynh sẽ báo trước với Lớp tầm 1 tuần để các cô biết được là hiện tại số lượng học sinh của giáo viên ở suất mà các bạn muốn đổi là bao nhiêu để mà thông tin lại với phụ huynh. Nếu mà các cô vẫn nhận học sinh thì các bạn sẽ được chuyển suất bình thường, nhưng mà nếu mà khi lớp học hết bàn rồi thì sẽ có phương án là các bạn chuyển giáo viên hoặc là chuyển suất học để đảm bảo được chất lượng của lớp là chỉ nhận từ 5-7 bạn và có chỗ cho các bạn học bù cũng như đảm bảo được chất lượng. 
+Người phỏng vấn: Phụ huynh cần nhắn tin xin nghỉ trước giờ học bao nhiêu tiếng thì mới được tính là nghỉ có phép và có học bù ạ?
+Chị Nhi: À không, bên mình không áp dụng yêu cầu đó vì học bù sẽ là quyền lợi của tất cả các bạn nên là phụ huynh quên thì bên mình sẽ nhắc và thông báo lịch học bù bình thường.
+Người phỏng vấn: Trong trường hợp một ca học đã đủ số lượng bé, nếu có phụ huynh muốn đăng ký vào ca đó hoặc có bé xin học bù vào thì sao ạ?
+Chị Nhi: Thì bên mình sẽ báo lại với phụ huynh thôi là hiện tại thì lớp của cô đã full suất và mình sẽ đề xuất cho các phụ huynh một lịch khác hoặc là cũng sẽ dời vào đúng ngày hôm đó nhưng mà sẽ là sang tuần sau bởi vì là tất cả các suất đều đảm bảo là được học bù nhưng mà chỉ nhận từ 1-2 bạn nên là nếu phụ huynh đăng ký hơi trễ, lớp đầy thì sẽ dời sang tuần sau, đúng cái suất đó cho phụ huynh. 
+Người phỏng vấn: Quy trình thu học phí diễn ra thế nào ạ?
+Chị Nhi: Bên kế toán sẽ có hệ thống nhắc học phí tự động thì bên lớp sẽ nhắc về cho phụ huynh, phụ huynh có thể là nhắn qua Zalo để lấy mã QR chuyển khoản hoặc là sẽ tới tại bàn quản lý để quét mã hoặc là thanh toán tiền mặt.
+Người phỏng vấn: Khi chuyển khoản, chị dựa vào đâu để biết phụ huynh đã đóng đủ ạ?
+Chị Nhi: Cái đó sẽ liên quan đến hệ thống của bên bộ phận kế toán. Các cô bên kế toán sẽ đối soát ngân hàng, bên mình thì sẽ đối soát học phí ngân hàng và nhập vào hết cho tất cả các bạn trong vòng 48h, thì nếu mà hệ thống báo sai thì có thể là học phí đang bị sót hay thế nào đó, thì hàng ngày bên phía kế toán sẽ làm cái phần việc đó và báo lại với bên mình.
+Người phỏng vấn: Khi một học viên nghỉ học hẳn, quy trình xử lý như thế nào ạ?
+Chị Nhi: Thì mình sẽ xác nhận lại với phụ huynh là các bạn sẽ tạm bảo lưu và sau đó thì sẽ bảo lưu theo kế hoạch cũng như là lưu kết quả học tập của các bạn trên hệ thống của mình. Thì lúc đó hệ thống sẽ ghi nhận là các bạn đã bảo lưu và sẽ không có gửi thêm các thông tin về cho phụ huynh nữa.
+Người phỏng vấn: Cuối mỗi buổi/tuần/tháng có công việc tổng hợp báo cáo nào lặp lại không ạ?
+Chị Nhi: Thì thường nó sẽ là báo cáo về tổng số lượng học sinh. Các bạn có bạn nào bảo lưu không? Có bạn nào học sinh mới không? để mình nắm được là hiện tại học viên của cơ sở mình là bao nhiêu.
+Người phỏng vấn: Chị có thể kể một tình huống khó xử lý nhất từng gặp (VD: 2 phụ huynh đăng ký cùng lúc 1 suất cuối cùng) không ạ?
+Chị Nhi: Về các phần đăng ký học bù ấy, thì nó sẽ không có bị quá là bối rối, confused về việc sắp xếp bởi vì là khi mà sắp xếp thì các cô cũng sẽ trao đổi rất kỹ với phụ huynh và nếu không có thì cũng sẽ đưa ra phương án giải quyết để hỗ trợ cho phụ huynh, còn về confused nhất chỉ là trường hợp mấy bạn học lịch dày quá nên là mấy bạn sẽ không sắp xếp học bù được thì đôi lúc như vậy nó sẽ hơi khó khăn trong việc sắp xếp lịch.
+Chủ đề 4: Tác nhân và Yêu cầu chức năng
+Người phỏng vấn: Tiếp theo em xin hỏi các câu hỏi về tác nhân và yêu cầu chức năng cho hệ thống. 
+Người phỏng vấn: Ai là những người trực tiếp sử dụng hệ thống này hàng ngày để thực hiện các thao tác vận hành cốt lõi như điểm danh hay xếp lịch ạ?
+Chị Nhi: 3 giao diện thì cả 3 đều sử dụng hằng ngày, kể cả bên giám sát, quản lý và giáo viên.
+Người phỏng vấn: Với vai trò là Trợ lý - người trực tiếp nhập các dữ liệu đăng ký khoá học và học phí vào phần mềm, chị cần hệ thống xuất ra những loại biểu mẫu, báo cáo hoặc thông báo tự động nào để giảm bớt thời gian tổng hợp thủ công ạ?
+Chị Nhi: Nó có thể là một biểu mục báo cáo theo tuần đi, nó sẽ tự sinh ra luôn cho mình là tổng trong tuần số lượng học sinh mới học sinh cũ như thế nào để bên mình biết luôn chứ không cần phải thống kê thủ công nữa.
+Người phỏng vấn: Dành cho giáo viên, chị muốn chức năng “Điểm danh học viên” trên hệ thống phải hoạt động cụ thể như thế nào ạ?
+Chị Nhi: Thứ nhất: về giao diện người dùng nên tối giản hơn và nó dễ thao tác, bên cạnh đó thì cũng có thể sử dụng trên điện thoại, ví dụ khi mà thay đổi trên giao diện mới thì nó sẽ không bị confused nhiều về cái giao diện.
+Người phỏng vấn: Dạ tức là: Giáo viên sẽ tự tích điểm danh trên điện thoại cá nhân, hệ thống sẽ tự động trừ đi buổi học của học viên đúng không ạ?
+Chị Nhi: Ừ đúng rồi.
+Người phỏng vấn: Trên màn hình điểm danh, chị có muốn hiển thị kèm ảnh đại diện của bé không, để giáo viên mới/giáo viên dạy thay không bị điểm danh nhầm bé ạ?
+Chị Nhi: Ảnh thì đôi lúc sẽ hơi khó trong cái việc đó vì đôi lúc phụ huynh cũng không có muốn sử dụng cá nhân của các bạn nhiều, nên về việc sử dụng hình ảnh thì phải xin phép phụ huynh, nhưng mà hiện tại thì chắc là chưa mình vẫn chưa có tích hợp về ảnh của mấy bạn.
+Người phỏng vấn: Dành cho phụ huynh, nếu hệ thống cho phép phụ huynh tự theo dõi thông tin, chị nghĩ phụ huynh sẽ mong muốn hệ thống cung cấp các chức năng cụ thể nào ạ?
+Chị Nhi: Chức năng thì sẽ là tổng buổi học trong tháng, buổi cần bù của bạn, buổi học bù đã hết hạn, tình hình học tập, bạn đang học chương trình nào, bài nào trong chương trình và tiến trình là ra làm sao, thì phụ huynh sẽ chủ động để theo dõi, cũng như là nếu được thì sẽ có cái phần nhật ký về cái quá trình học của các bạn tại lớp, thì phần nhật ký đó phụ huynh sẽ coi được tất cả các cái bài mà các bạn đã làm, thì nó sẽ bao gồm các cái bài mà phụ huynh theo dõi được cái quá trình trưởng thành của các bạn, trong quá trình đồng hành cùng lớp vẽ. 
+Người phỏng vấn: Thường trên trang tổng quan của hệ thống, chị muốn sẽ hiển thị như thế nào để cho cả chị và cả quản lý dễ dàng theo dõi ạ? 
+Chị Nhi: Bên mình có thể theo dõi theo kiểu là nó tích hợp phân tích dựa vào số lượng thực ở trên app, có thể là nó sẽ có 1 mục bấm, khi mình bấm vào đó thì nó sẽ xuất ra cho mình các biểu đồ, biểu mẫu để mình theo dõi được.
+Người phỏng vấn: Ví dụ như là chị có muốn hiển thị trên trang tổng quan để chị có thể xem nhanh về: số học viên mới, số ca học của ngày hôm đó hay cảnh báo những học viên sắp hết tháng học không ạ? 
+Chị Nhi: Xuất hiện trên trang tổng quan luôn hả? Có nghĩa là bấm vào là thấy luôn?
+Người phỏng vấn: Dạ
+Chị Nhi: Ừ như vậy cũng được, các bạn cứ triển khai nha.
+Chủ đề 5: Lưu trữ Dữ liệu và Mô hình cấu trúc
+Hồ sơ học viên và phụ huynh:
+Người phỏng vấn: Với mỗi học viên, lớp vẽ cần lưu thông tin gì ạ(họ tên, ngày sinh, SĐT phụ huynh, trình độ, khóa đang học, tình trạng học phí...)?
+Chị Nhi: Nó sẽ là các thông tin về sơ yếu lý lịch của các bạn thôi, sẽ có tích hợp thêm khóa đang học, lưu về cái tiến trình học của các bạn, các bạn học chương trình nào để trong việc bảo lưu, hệ thống sẽ bảo lưu các kết quả học tập của các bạn, để khi mà bạn sắp xếp được thời gian quay lại học thì khi click vào thì nó vẫn sẽ hiện hồi trước các bạn đang học ngang chương trình nào để mình biết mà sắp xếp cho con.
+Người phỏng vấn: Chị muốn khi đăng nhập hệ thống, người dùng sẽ sử dụng thông tin gì ạ?
+Chị Nhi: ID, gmail công việc.
+Người phỏng vấn: Đặc thù lớp vẽ sẽ có nhiều hình ảnh tác phẩm của các bé sau mỗi buổi học. Hiện tại chị có gửi ảnh này cho phụ huynh không? Chị có muốn hệ thống mới cho phép đính kèm ảnh bài vẽ vào hồ sơ/lịch sử buổi học của từng bé không ạ?
+Chị Nhi: Tất cả cái đó thì bên mình sẽ gửi về riêng cho phụ huynh các hình ảnh và video trong quá trình học của các bạn luôn, thì sẽ gửi qua Zalo cho phụ huynh, nhưng mà như mình có nói đó là có thể tạo 1 cái lịch cho lớp học, có thể tích hợp cả trên đó luôn, để nó lưu trữ 2 bên để phụ huynh dễ nắm.
+Người phỏng vấn: Dạ là sẽ đính kèm ảnh của các bài vẽ của các bé lên trong nhật ký lớp học ạ?
+Chị Nhi: Ừ, đúng rồi.
+Người phỏng vấn: Trường hợp một phụ huynh có 2-3 bé cùng học, hiện tại chị lưu hồ sơ như thế nào? Chị có muốn hệ thống quản lý theo mô hình 1 tài khoản phụ huynh liên kết nhiều hồ sơ bé không ạ?
+Chị Nhi: Hiện tại thì bên mình sẽ có chương trình dành cho anh chị em, thì khi mà 2 bạn vào học, khi mà vào hệ thống thì sẽ có các phần ghi chú, mình sẽ ghi chú anh chị em của bạn là ai để cho các cô nắm, còn làm theo các bạn đang xây dựng là cái giao diện dành cho phụ huynh thì các bạn có thể tích hợp như vậy thì mình thấy nó cũng là 1 cái điểm cộng lớn, bởi vì tích hợp được 2 3 bé vào thì cũng sẽ tiện theo dõi.
+Người phỏng vấn: Nếu một bé nghỉ học hẳn hoặc bị bấm nhầm “Xóa học viên”, chị muốn dữ liệu bị xóa vĩnh viễn hay chỉ chuyển sang trạng thái “Đã nghỉ/Đã ẩn” để sau này khôi phục lại lịch sử cũ nếu bé quay lại học ạ?
+Chị Nhi: Nếu vậy thì sẽ là “đã nghỉ”, “đã ẩn”. Vì cũng sẽ có trường hợp bạn bảo lưu là các bạn sẽ đi học lại nên là không nên sử dụng cái việc xóa vĩnh viễn thông tin của học viên bởi vì nó cũng là 1 phần database của bên mình. 
+Người phỏng vấn: Với mỗi lớp/khóa học, cần lưu thông tin gì ạ (tên khóa, số buổi, học phí, giáo viên, sĩ số tối đa, khung giờ...)? 
+Chị Nhi: Suất học, tổng số buổi học của các bạn, giáo viên phụ trách, điểm danh buổi nào, đang vắng buổi nào, thì đó là các yếu tố cơ bản. Ngoài ra thì trong quá trình sử dụng thì đôi lúc sẽ các phân quyền sẽ có các nhu cầu khác thì bên mình sẽ báo các bạn sau. 
+Người phỏng vấn: Với mỗi buổi học, cần lưu thông tin gì ạ (ngày giờ, phòng học, giáo viên dạy, điểm danh...)?
+Chị Nhi: Đối với giáo viên dạy thì mình nên tích hợp ngay từ đầu, bởi vì 1 bạn thì sẽ cố gắng đi theo 1 giáo viên thôi, còn về phòng học, thời gian điểm danh thì nên ngay thời điểm mà mấy bạn học để thực hiện luôn để trên lớp dễ quản lý và làm việc, biết hôm đó các bạn đi học vào khung giờ nào.
+Người phỏng vấn: Một học viên có thể đăng ký nhiều khóa học cùng lúc không ạ?
+Chị Nhi: Một học viên có thể đăng ký được nhiều khóa học cùng 1 lúc, như vậy các bạn sẽ học double suất lên thôi, sẽ học nhanh hơn. 
+Người phỏng vấn: Với dữ liệu cá nhân của học viên, phụ huynh hoặc số liệu vận hành của cơ sở, chị muốn phân chia quyền xem/sửa giữa Quản lý, Trợ lý và Giáo viên như thế nào ạ? 
+Chị Nhi: Nên tách biệt từng giao diện thì chỉ quản lý 1 phần nào đó thôi, ví dụ bên bộ phận quản lí thì sẽ có giao diện riêng bên quản lý và có các chức năng mà bên giáo viên không có, để nó rạch ròi trong việc quản lý về cách nhân sự làm việc, cũng như giáo viên thì sẽ có các tính năng như là điểm danh, còn bên giám sát thì sẽ có các tính năng phù hợp với vị trí giám sát mà nó bổ trợ cho các công việc ở bên đó, thì nó vẫn sẽ rạch ròi giữa 3 giao diện cho 3 bộ phận làm việc 1 cách hiệu quả. 
+Người phỏng vấn: Chẳng hạn như giáo viên chỉ được xem danh sách học viên trong ca học, lớp học mình phụ trách dạy và chỉ có quyền điểm danh, tải các ảnh bài vẽ của buổi học đó và sẽ không có quyền chỉnh sửa thông tin cá nhân, không được xếp lớp đúng không ạ?
+Chị Nhi: Ừ đúng rồi, hoặc là ví dụ như các cái thông tin như cập nhập review, thì nó sẽ liên quan tới việc các bạn chậm tiến độ hay đúng tiến độ, thì các cái đó sẽ bên quản lí và giám sát làm việc chứ giáo viên thì chỉ là người theo dõi thôi để biết được là hiện tại học sinh của mình đang đúng tiến độ hay là trễ tiến độ để mà có thể đưa ra phương án giải quyết. 
+Người Phỏng vấn: Tức là trợ lý sẽ được xem toàn bộ danh sách học viên, lịch dạy của tất cả và xem được báo cáo, sẽ tạo hồ sơ học viên chỉnh sửa thông tin, điều chỉnh lịch học, đổi ca và xếp học bù cho học viên hay sao ạ?
+Chị Nhi: Đúng rồi, vì mình làm bên bộ phận quản lý nên mình sẽ làm các cái công việc đó.
+Người phỏng vấn: Cái từ giám sát mà chị nói nó có phải là quản lý không ạ?
+Chị Nhi: Không, giám sát đó là một bên khác quản lý cái việc cập nhật có đầy đủ hay không ở các cái phần tiến độ review của các bạn cũng như là các cái phần khác, cái phần mà bên quản lý không có làm. 
+Người phỏng vấn: Ai sẽ là người có quyền nắm toàn quyền admin, cấp mới hay là khóa tài khoản đăng nhập của nhân viên hay giáo viên, ai sẽ là người làm việc đó ạ?
+Chị Nhi: Thì sẽ là bên bộ phận nhân sự và làm việc với bộ phận kĩ thuật, 2 cái bên đó sẽ là 2 bên chính để làm admin.
+Người phỏng vấn: Tức là quản lí của cơ sở, sẽ có bên thứ 3 để làm quản lí việc admin, quản lý sẽ không có quyền cấp mới hay là khóa tài khoản đúng không ạ?
+Chị Nhi: Về cái phần nhân sự hoặc tích hợp giáo viên vào thì cái đó sẽ là bên nhân sự làm, bên nhân sự sẽ làm cái phần đó cũng như là làm demo công việc để cho giáo viên của từng cơ sở, thì có cái đó được gửi về và giáo viên đăng nhập vào hệ thống chung thôi.
+Người phỏng vấn: Ngoài hồ sơ học viên, còn đối tượng dữ liệu nào khác bắt buộc phải lưu trữ lâu dài để đối chiếu sau nhiều tháng/năm không ạ?
+Chị Nhi: Khi các bạn tạm bảo lưu thì về cái tình hình tiến độ học tập của các bạn cũng như cái sơ yếu lý lịch mà các bạn đăng ký ban đầu thì nên lưu trữ lâu dài. 
+Người phỏng vấn: Những cái bài review của giáo viên thì có cần lưu trữ lâu dài không ạ?
+Chị Nhi: Review thì thường sẽ gửi qua Zalo, còn nếu mà được thì có thể giữ lại cũng được. 
+Chủ đề 6: Yêu cầu phi chức năng
+Người phỏng vấn: Trên màn hình máy tính của quản lý, chị muốn nhìn thời khóa biểu dưới dạng khung lịch tháng/tuần hay dạng danh sách theo dòng ạ?
+Chị Nhi: Giao diện giống bên Google Calendar là được, thì nó sẽ dễ cho mình coi và mình cũng dễ làm việc hơn.
+Người phỏng vấn: Vào khung giờ cao điểm, chị kỳ vọng tốc độ phản hồi của hệ thống ra sao ạ?
+Chị Nhi: Tốc độ phản hồi thì luôn kỳ vọng ở mức tốt nhất, có nghĩa là ít giật lag. 
+Người phỏng vấn: Hình ảnh và thông tin của các bé khá nhạy cảm. Chị có yêu cầu gì về giới hạn quyền xem ảnh bài vẽ/thông tin cá nhân của các bé không ạ?
+Chị Nhi: Cá nhân hóa cho cái giao diện của phụ huynh thôi, chỉ phụ huynh xem được ảnh của con mình chứ không có bị public ra ngoài, bởi vì nó cũng là cái quyền riêng tư của các bạn nhỏ nữa.
+Người phỏng vấn: Còn hình ảnh bài vẽ thì có được cho phép công khai làm bộ sưu tập ở trên hệ thống không ạ?
+Chị Nhi: Cái đó thì cần tích hợp bên phụ huynh thôi, còn bên media thì nó đã chạy các hình ảnh bên facebook rồi, nên cũng không cần tích hợp vào app.
+Người phỏng vấn: Hệ thống có cần hoạt động 24/7 để phụ huynh tra cứu/đăng ký bất cứ lúc nào. Nếu cần bảo trì, khung giờ nào trong tuần ít ảnh hưởng nhất ạ?
+Chị Nhi: Nếu mà bảo trì được thì nó nên giống các hệ thống khác là vào giữa đêm, bởi vì nếu bảo trì vào các khung giờ khác trong ngày vào giờ hành chính thì nó lại bị ảnh hưởng tới các công việc chung của bên mình.
+Người phỏng vấn: Nếu gặp sự cố mạng/lỗi kỹ thuật khi thao tác, chị muốn hệ thống hiển thị thông báo lỗi như thế nào ạ?
+Chị Nhi: Thông báo cái đoạn tin nhắn với phụ huynh thôi, ví dụ như là: Hiện tại đang có sự cố 1 xíu, ba mẹ đợi ngôi nhà nhỏ 1 xíu nhé.
+Người phỏng vấn: Hệ thống có cần hỗ trợ thêm ngôn ngữ khác (VD: tiếng Anh) cho phụ huynh/giáo viên người nước ngoài không ạ?
+Chị Nhi: Bên mình thì cũng có học viên nước ngoài, nên là nên tích hợp thêm nhiều các cái thứ tiếng, 
+Người phỏng vấn: Định dạng ngày tháng và tiền tệ hiển thị như thế nào ạ?
+Chị Nhi: Tiền tệ thì mình cứ để VNĐ thôi, bởi vì mình đang sử dụng dòng tiền Việt Nam để làm tất cả các giao dịch.
+Người phỏng vấn: Hệ thống có cần hoạt động được khi mất mạng/internet yếu không ạ?
+Chị Nhi: Nếu được các bạn cứ xây dựng theo kiểu là điểm danh và học bù chỉ cần cái đó có thể lưu trữ ngắn hạn bằng việc điểm danh khi mà offline sau khi mà có điện lại khi mà online lại thì mình sẽ có cái mục lưu trữ xong mình copy qua cái điểm danh chính thì nó sẽ khá là ổn.
+Người phỏng vấn: Số học viên dự kiến tăng trưởng trong 1-2 năm tới là bao nhiêu ạ? Hệ thống có cần thiết kế để đáp ứng được quy mô đó không ạ?
+Chị Nhi: Về sự tăng trưởng thì nó sẽ tùy thuộc vào từng cơ sở, vào phạm vi của cơ sở nữa, nhưng mà thường vào 1 năm thì số lượng vào của học viên cũng khá là nhiều, tầm mấy trăm bạn nên là nếu mà được thì cứ làm cái phạm vi lưu trữ nó tối đa nhất có thể là được.
+

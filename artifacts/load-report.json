@@ -1,0 +1,9 @@
+{
+  "concurrentClients": 50,
+  "requests": 50,
+  "allSuccessful": true,
+  "maxSeconds": 0.0568,
+  "p95Seconds": 0.0333,
+  "allUnderTwoSeconds": true,
+  "scope": "Local, read-only sample on an isolated SQL Server test database; not a production SLA."
+}

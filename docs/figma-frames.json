@@ -1,0 +1,1218 @@
+[
+  {
+    "id": "1:267",
+    "name": "PH-01-Chào mừng"
+  },
+  {
+    "id": "1:309",
+    "name": "PH-04-Quên mật khẩu"
+  },
+  {
+    "id": "1:331",
+    "name": "GV-03-Quên mật khẩu"
+  },
+  {
+    "id": "1:353",
+    "name": "PH-03-Đăng nhập lần đầu"
+  },
+  {
+    "id": "1:394",
+    "name": "PH-02-Đăng nhập"
+  },
+  {
+    "id": "1:415",
+    "name": "PH-02-Đăng nhập-01"
+  },
+  {
+    "id": "1:435",
+    "name": "GV-02-Đăng nhập-01"
+  },
+  {
+    "id": "1:449",
+    "name": "PH-02-Đăng nhập-02"
+  },
+  {
+    "id": "1:470",
+    "name": "PH-02-Đăng nhập-03"
+  },
+  {
+    "id": "1:492",
+    "name": "PH-02-Đăng nhập-04"
+  },
+  {
+    "id": "1:514",
+    "name": "PH-02-Đăng nhập-05"
+  },
+  {
+    "id": "1:536",
+    "name": "PH-02-Đăng nhập-06"
+  },
+  {
+    "id": "1:552",
+    "name": "PH-02-Đăng nhập-07"
+  },
+  {
+    "id": "1:574",
+    "name": "GV-02-Đăng nhập"
+  },
+  {
+    "id": "1:595",
+    "name": "GV-02-Đăng nhập-02"
+  },
+  {
+    "id": "1:616",
+    "name": "GV-02-Đăng nhập-03"
+  },
+  {
+    "id": "1:638",
+    "name": "GV-02-Đăng nhập-04"
+  },
+  {
+    "id": "1:654",
+    "name": "GV-02-Đăng nhập-05"
+  },
+  {
+    "id": "1:676",
+    "name": "GV-02-Đăng nhập-06"
+  },
+  {
+    "id": "1:692",
+    "name": "GV-02-Đăng nhập-07"
+  },
+  {
+    "id": "1:714",
+    "name": "GV-01-Chào mừng"
+  },
+  {
+    "id": "1:748",
+    "name": "SVG"
+  },
+  {
+    "id": "1:752",
+    "name": "SVG"
+  },
+  {
+    "id": "1:756",
+    "name": "DC-02-Đăng nhập-02"
+  },
+  {
+    "id": "1:807",
+    "name": "DC-02-Đăng nhập"
+  },
+  {
+    "id": "1:857",
+    "name": "DC-01-Chào mừng"
+  },
+  {
+    "id": "1:906",
+    "name": "SVG"
+  },
+  {
+    "id": "1:910",
+    "name": "PH-05-Trang chủ"
+  },
+  {
+    "id": "1:980",
+    "name": "PH-06-HỌC THỬ"
+  },
+  {
+    "id": "1:1039",
+    "name": "GV-02_Diem_danh_ca_hoc 1"
+  },
+  {
+    "id": "1:1112",
+    "name": "GV-17_Chon_ca_hoc_da_dien_ra 1"
+  },
+  {
+    "id": "1:1151",
+    "name": "GV-18_Chon_hoc_vien_co_mat 1"
+  },
+  {
+    "id": "1:1206",
+    "name": "GV-19_Chon_anh_tac_pham 1"
+  },
+  {
+    "id": "1:1250",
+    "name": "GV-20_Hien_thi_anh_da_dang_tai 1"
+  },
+  {
+    "id": "1:1291",
+    "name": "GV-21_Ngoai_le_2a 1"
+  },
+  {
+    "id": "1:1327",
+    "name": "GV-28_Chon_hoc_vien 1"
+  },
+  {
+    "id": "1:1382",
+    "name": "Frame"
+  },
+  {
+    "id": "1:1383",
+    "name": "Frame"
+  },
+  {
+    "id": "1:1386",
+    "name": "PH- NK- Lỗi TK chưa liên kết"
+  },
+  {
+    "id": "1:1420",
+    "name": "GV-08_Ngoai_le_4a 1"
+  },
+  {
+    "id": "1:1465",
+    "name": "GV-14_UC11_2_Luong_3a_Xem_tuan_khac 1"
+  },
+  {
+    "id": "1:1532",
+    "name": "GV-15_UC11_2_Ngoai_le_2a_Loi_truy_xuat 1"
+  },
+  {
+    "id": "1:1578",
+    "name": "GV-27_Chon_ca_hoc 1"
+  },
+  {
+    "id": "1:1619",
+    "name": "GV-16_UC11_2_Ngoai_le_3b_Khong_co_ca_day 1"
+  },
+  {
+    "id": "1:1665",
+    "name": "GV-09_Ngoai_le_8a 1"
+  },
+  {
+    "id": "1:1705",
+    "name": "GV-09_Ngoai_le_8a 2"
+  },
+  {
+    "id": "1:1744",
+    "name": "GV-11_Ngoai_le_9a 1"
+  },
+  {
+    "id": "1:1805",
+    "name": "Ngoi_Nha_Nho_GV_Trang_chu_Mobile 1"
+  },
+  {
+    "id": "1:1874",
+    "name": "GV-12_UC11_2_Lich_giang_day_Tuan_hien_tai 1"
+  },
+  {
+    "id": "1:1941",
+    "name": "GV-13_UC11_2_Luong_3a_Xem_theo_ngay 1"
+  },
+  {
+    "id": "1:1996",
+    "name": "GV-22_Ngoai_le_4a 1"
+  },
+  {
+    "id": "1:2030",
+    "name": "GV-23_Ngoai_le_7a 1"
+  },
+  {
+    "id": "1:2070",
+    "name": "GV-24_Ngoai_le_7b 1"
+  },
+  {
+    "id": "1:2104",
+    "name": "GV-25_Ngoai_le_8a 1"
+  },
+  {
+    "id": "1:2141",
+    "name": "GV-26_Ngoai_le_9a 1"
+  },
+  {
+    "id": "1:2176",
+    "name": "GV-29_Nhap_nhan_xet 1"
+  },
+  {
+    "id": "1:2223",
+    "name": "GV-30_Thanh_cong 1"
+  },
+  {
+    "id": "1:2263",
+    "name": "GV-31_Ngoai_le_2a 1"
+  },
+  {
+    "id": "1:2303",
+    "name": "GV-31_Ngoai_le_2a 2"
+  },
+  {
+    "id": "1:2343",
+    "name": "GV-31_Ngoai_le_2a 3"
+  },
+  {
+    "id": "1:2378",
+    "name": "GV-31_Ngoai_le_2a 4"
+  },
+  {
+    "id": "1:2412",
+    "name": "GV-31_Ngoai_le_2a 5"
+  },
+  {
+    "id": "1:2452",
+    "name": "GV-34_Ngoai_le_9a_Thieu_noi_dung 1"
+  },
+  {
+    "id": "1:2501",
+    "name": "GV-37_Danh_sach_hoc_vien_hoc_thu 1"
+  },
+  {
+    "id": "1:2556",
+    "name": "GV-38_Bieu_mau_danh_gia_nang_luc 1"
+  },
+  {
+    "id": "1:2604",
+    "name": "GV-39_Luu_danh_gia_thanh_cong 1"
+  },
+  {
+    "id": "1:2645",
+    "name": "GV-40_Ngoai_le_2a_Khong_co_hoc_vien 1"
+  },
+  {
+    "id": "1:2680",
+    "name": "GV-42_Ngoai_le_7a_Thieu_danh_gia 1"
+  },
+  {
+    "id": "1:2728",
+    "name": "GV-43_Ngoai_le_7b_Da_co_danh_gia 1"
+  },
+  {
+    "id": "1:2764",
+    "name": "GV-44_Ngoai_le_8a_Loi_luu 1"
+  },
+  {
+    "id": "1:2803",
+    "name": "GV-Menu-02_Diem_danh 1"
+  },
+  {
+    "id": "1:2844",
+    "name": "GV-Menu-03_Tac_pham 1"
+  },
+  {
+    "id": "1:2894",
+    "name": "Group 184"
+  },
+  {
+    "id": "1:2901",
+    "name": "TL-03-CẬP NHẬT KẾT QUẢ TƯ VẤN"
+  },
+  {
+    "id": "1:2976",
+    "name": "TL-03-CẬP NHẬT KẾT QUẢ TƯ VẤN-01"
+  },
+  {
+    "id": "1:3014",
+    "name": "TL-03-CẬP NHẬT KẾT QUẢ TƯ VẤN-02"
+  },
+  {
+    "id": "1:3065",
+    "name": "TL-03-CẬP NHẬT KẾT QUẢ TƯ VẤN-03"
+  },
+  {
+    "id": "1:3116",
+    "name": "TL-03-CẬP NHẬT KẾT QUẢ TƯ VẤN-05"
+  },
+  {
+    "id": "1:3190",
+    "name": "TL-03-CẬP NHẬT KẾT QUẢ TƯ VẤN-06"
+  },
+  {
+    "id": "1:3267",
+    "name": "TL-04-TẠO MỚI HỒ SƠ HỌC VIÊN"
+  },
+  {
+    "id": "1:3336",
+    "name": "TL-04-TẠO MỚI HỒ SƠ HỌC VIÊN-01"
+  },
+  {
+    "id": "1:3409",
+    "name": "TL-04-TẠO MỚI HỒ SƠ HỌC VIÊN-02"
+  },
+  {
+    "id": "1:3479",
+    "name": "TL-04-TẠO MỚI HỒ SƠ HỌC VIÊN-03"
+  },
+  {
+    "id": "1:3547",
+    "name": "TL-04-TẠO MỚI HỒ SƠ HỌC VIÊN-04"
+  },
+  {
+    "id": "1:3617",
+    "name": "TL-05-CẬP NHẬT THÔNG TIN HỌC VIÊN"
+  },
+  {
+    "id": "1:3700",
+    "name": "TL-05-CẬP NHẬT THÔNG TIN HỌC VIÊN-01"
+  },
+  {
+    "id": "1:3748",
+    "name": "TL-05-CẬP NHẬT THÔNG TIN HỌC VIÊN-02"
+  },
+  {
+    "id": "1:3836",
+    "name": "TL-05-CẬP NHẬT THÔNG TIN HỌC VIÊN-03"
+  },
+  {
+    "id": "1:3922",
+    "name": "TL-05-CẬP NHẬT THÔNG TIN HỌC VIÊN-04"
+  },
+  {
+    "id": "1:4006",
+    "name": "TL-TỔNG QUAN"
+  },
+  {
+    "id": "1:4048",
+    "name": "TL-01-TỔNG QUAN"
+  },
+  {
+    "id": "1:4247",
+    "name": "TL-02-TIẾP NHẬN ĐƠN HỌC THỬ"
+  },
+  {
+    "id": "1:4332",
+    "name": "TL-02-TIẾP NHẬN ĐƠN HỌC THỬ-01"
+  },
+  {
+    "id": "1:4370",
+    "name": "TL-02-TIẾP NHẬN ĐƠN HỌC THỬ-02"
+  },
+  {
+    "id": "1:4450",
+    "name": "TL-02-TIẾP NHẬN ĐƠN HỌC THỬ-03"
+  },
+  {
+    "id": "1:4530",
+    "name": "TL-02-TIẾP NHẬN ĐƠN HỌC THỬ-04"
+  },
+  {
+    "id": "1:4608",
+    "name": "TL-02-XẾP CA HỌC THỬ"
+  },
+  {
+    "id": "1:4691",
+    "name": "TL-02-XẾP CA HỌC THỬ-01"
+  },
+  {
+    "id": "1:4730",
+    "name": "TL-02-XẾP CA HỌC THỬ-02"
+  },
+  {
+    "id": "1:4793",
+    "name": "TL-02-XẾP CA HỌC THỬ-03"
+  },
+  {
+    "id": "1:4878",
+    "name": "TL-02-XẾP CA HỌC THỬ-04"
+  },
+  {
+    "id": "1:4957",
+    "name": "TL-02-XẾP CA HỌC THỬ-05"
+  },
+  {
+    "id": "1:5041",
+    "name": "TL-03-CẬP NHẬT KẾT QUẢ TƯ VẤN-04"
+  },
+  {
+    "id": "1:5119",
+    "name": "PH-07-ĐĂNG KÝ HỌC THỬ"
+  },
+  {
+    "id": "1:5175",
+    "name": "PH-07-ĐĂNG KÝ HỌC THỬ-03"
+  },
+  {
+    "id": "1:5202",
+    "name": "PH-07-ĐĂNG KÝ HỌC THỬ-02"
+  },
+  {
+    "id": "1:5260",
+    "name": "PH-07-ĐĂNG KÝ HỌC THỬ-04"
+  },
+  {
+    "id": "1:5285",
+    "name": "PH-07-ĐĂNG KÝ HỌC THỬ-01"
+  },
+  {
+    "id": "1:5328",
+    "name": "PH-UC2-2-Chi-tiet-cho-xac-nhan 1"
+  },
+  {
+    "id": "1:5382",
+    "name": "PH-UC2-2-Chua-co-don 1"
+  },
+  {
+    "id": "1:5408",
+    "name": "PH-UC2-2-Danh-sach-don-hoc-thu 1"
+  },
+  {
+    "id": "1:5489",
+    "name": "PH-UC2-2-Loi-khong-tai-duoc 1"
+  },
+  {
+    "id": "1:5516",
+    "name": "PH-UC2-2-Loi-khong-xac-nhan-duoc 1"
+  },
+  {
+    "id": "1:5544",
+    "name": "PH-UC2-2-Xac-nhan-thanh-cong 1"
+  },
+  {
+    "id": "1:5562",
+    "name": "PH-UC2-3-Chi-tiet-ket-qua 1"
+  },
+  {
+    "id": "1:5615",
+    "name": "PH-UC2-3-Chua-co-ket-qua 1"
+  },
+  {
+    "id": "1:5639",
+    "name": "PH-UC2-3-Danh-sach-buoi-hoc-thu 1"
+  },
+  {
+    "id": "1:5688",
+    "name": "PH-UC2-3-Ket-qua-chua-cap-nhat 1"
+  },
+  {
+    "id": "1:5715",
+    "name": "Group"
+  },
+  {
+    "id": "1:5721",
+    "name": "iPhone 13 &amp; 14 - 1"
+  },
+  {
+    "id": "1:5769",
+    "name": "PH-Menu-02_Xin_nghỉ 1"
+  },
+  {
+    "id": "1:5813",
+    "name": "PH-04_Gui_yeu_cau_xin_nghi_hoc 1"
+  },
+  {
+    "id": "1:5854",
+    "name": "PH-UC2-1-Thanh-cong 2"
+  },
+  {
+    "id": "1:5873",
+    "name": "PH-UC2-2-Loi-khong-tai-duoc 2"
+  },
+  {
+    "id": "1:5894",
+    "name": "PH-05_Dang_ky_ca_hoc_bu 1"
+  },
+  {
+    "id": "1:5945",
+    "name": "iPhone 13 &amp; 14 - 4"
+  },
+  {
+    "id": "1:5986",
+    "name": "iPhone 13 &amp; 14 - 2"
+  },
+  {
+    "id": "1:6039",
+    "name": "iPhone 13 &amp; 14 - 3"
+  },
+  {
+    "id": "1:6077",
+    "name": "PH-06_Huy_yeu_cau_hoc_bu 1"
+  },
+  {
+    "id": "1:6109",
+    "name": "PH-13_Khong_co_buoi_can_hoc_bu 1"
+  },
+  {
+    "id": "1:6134",
+    "name": "PH-18_Huy_hoc_bu_thanh_cong 1"
+  },
+  {
+    "id": "1:6150",
+    "name": "PH-19_Tai_khoan_chua_lien_ket_hoc_vien 1"
+  },
+  {
+    "id": "1:6167",
+    "name": "PH-21_Yeu_cau_hoc_bu_het_han 1"
+  },
+  {
+    "id": "1:6184",
+    "name": "PH-22_Khong_con_ca_hoc_bu_de_huy 1"
+  },
+  {
+    "id": "1:6200",
+    "name": "PH-23_Ca_hoc_bu_da_dien_ra 1"
+  },
+  {
+    "id": "1:6217",
+    "name": "PH-20_Khong_co_ca_hoc_bu_co_the_huy 1"
+  },
+  {
+    "id": "1:6234",
+    "name": "PH-24_Loi_luu_huy_hoc_bu 1"
+  },
+  {
+    "id": "1:6251",
+    "name": "PH- Xem nhật kí học tập"
+  },
+  {
+    "id": "1:6315",
+    "name": "PH- Xem thông báo"
+  },
+  {
+    "id": "1:6369",
+    "name": "PH- Chi tiết nhật kí học tập"
+  },
+  {
+    "id": "1:6418",
+    "name": "PH- Chi tiết thông báo"
+  },
+  {
+    "id": "1:6468",
+    "name": "PH- Nhật kí học tập trống"
+  },
+  {
+    "id": "1:6513",
+    "name": "PH- Lỗi không thể tải"
+  },
+  {
+    "id": "1:6657",
+    "name": "PH- Lỗi không thể tải"
+  },
+  {
+    "id": "1:6800",
+    "name": "PH-TKB- Chưa có lịch học"
+  },
+  {
+    "id": "1:6850",
+    "name": "PH- NK- Lỗi TK chưa liên kết"
+  },
+  {
+    "id": "1:7012",
+    "name": "PH- NK- Lỗi TK chưa liên kết"
+  },
+  {
+    "id": "1:7174",
+    "name": "PH- NK- Lỗi TK chưa liên kết"
+  },
+  {
+    "id": "1:7335",
+    "name": "PH- NK- Lỗi TK chưa liên kết"
+  },
+  {
+    "id": "1:7498",
+    "name": "Group"
+  },
+  {
+    "id": "1:7504",
+    "name": "PH-TKB- Chưa có lịch học"
+  },
+  {
+    "id": "1:7548",
+    "name": "PH-Menu-03_Lịch_học 1"
+  },
+  {
+    "id": "1:7604",
+    "name": "PH- Tra cứu tkb"
+  },
+  {
+    "id": "1:7670",
+    "name": "Group 295"
+  },
+  {
+    "id": "1:7676",
+    "name": "Group 294"
+  },
+  {
+    "id": "1:7682",
+    "name": "Group 296"
+  },
+  {
+    "id": "1:7688",
+    "name": "Group 297"
+  },
+  {
+    "id": "1:7694",
+    "name": "Desktop - 1"
+  },
+  {
+    "id": "1:7745",
+    "name": "Desktop - 3"
+  },
+  {
+    "id": "1:7801",
+    "name": "Desktop - 4"
+  },
+  {
+    "id": "1:7854",
+    "name": "Desktop - 5"
+  },
+  {
+    "id": "1:7904",
+    "name": "Desktop - 6"
+  },
+  {
+    "id": "1:7954",
+    "name": "01_GOC_A 1"
+  },
+  {
+    "id": "1:8008",
+    "name": "02_GOC_B 1"
+  },
+  {
+    "id": "1:8082",
+    "name": "04_MOI_danh_sach_ket_qua_tim_kiem 1"
+  },
+  {
+    "id": "1:8155",
+    "name": "05_MOI_loi_truy_xuat_du_lieu 1"
+  },
+  {
+    "id": "1:8205",
+    "name": "04_MOI_xac_nhan_bao_luu 1"
+  },
+  {
+    "id": "1:8276",
+    "name": "05_MOI_khong_tim_thay_ho_so 1"
+  },
+  {
+    "id": "1:8334",
+    "name": "06_MOI_cap_nhat_ho_so_that_bai 1"
+  },
+  {
+    "id": "1:8385",
+    "name": "03_MOI_danh_sach_ho_so_chua_bao_luu 1"
+  },
+  {
+    "id": "1:8457",
+    "name": "01_GOC_A 3"
+  },
+  {
+    "id": "1:8523",
+    "name": "02_GOC_B 3"
+  },
+  {
+    "id": "1:8587",
+    "name": "03_MOI_danh_sach_ho_so_da_bao_luu 1"
+  },
+  {
+    "id": "1:8653",
+    "name": "04_MOI_xac_nhan_khoi_phuc 1"
+  },
+  {
+    "id": "1:8763",
+    "name": "05_MOI_khong_tim_thay_ho_so_da_bao_luu 1"
+  },
+  {
+    "id": "1:8855",
+    "name": "06_MOI_cap_nhat_ho_so_that_bai 2"
+  },
+  {
+    "id": "1:8941",
+    "name": "03_MOI_nhap_dieu_kien_tim_kiem 1"
+  },
+  {
+    "id": "1:8996",
+    "name": "02_GOC_B 2"
+  },
+  {
+    "id": "1:9065",
+    "name": "01_GOC_A 2"
+  },
+  {
+    "id": "1:9137",
+    "name": "02_GOC_B 4"
+  },
+  {
+    "id": "1:9200",
+    "name": "03_MOI_bieu_mau_tao_lop_hoc 1"
+  },
+  {
+    "id": "1:9264",
+    "name": "04_MOI_ten_lop_trung 1"
+  },
+  {
+    "id": "1:9330",
+    "name": "05_MOI_luu_lop_hoc_that_bai 1"
+  },
+  {
+    "id": "1:9381",
+    "name": "01_GOC_A 4"
+  },
+  {
+    "id": "1:9446",
+    "name": "05_MOI_chua_co_lop_hoc_nao 1"
+  },
+  {
+    "id": "1:9493",
+    "name": "06_MOI_luu_cap_nhat_that_bai 1"
+  },
+  {
+    "id": "1:9543",
+    "name": "07_MOI_si_so_nho_hon_so_dang_hoc 1"
+  },
+  {
+    "id": "1:9608",
+    "name": "01_GOC_A 5"
+  },
+  {
+    "id": "1:9673",
+    "name": "03_MOI_danh_sach_lop_can_cap_nhat 1"
+  },
+  {
+    "id": "1:9741",
+    "name": "04_MOI_bieu_mau_chinh_sua 1"
+  },
+  {
+    "id": "1:9806",
+    "name": "Group 352"
+  },
+  {
+    "id": "1:9870",
+    "name": "04_MOI_chon_lop_con_cho 1"
+  },
+  {
+    "id": "1:9937",
+    "name": "05_MOI_khong_co_lop_hoc_phu_hop 1"
+  },
+  {
+    "id": "1:9993",
+    "name": "07_MOI_khong_co_hoc_vien_cho_xep_lop 1"
+  },
+  {
+    "id": "1:10049",
+    "name": "08_MOI_luu_xep_lop_that_bai 1"
+  },
+  {
+    "id": "1:10116",
+    "name": "thong-bao-khong-co-khung-trong"
+  },
+  {
+    "id": "1:10123",
+    "name": "01_GOC_A 6"
+  },
+  {
+    "id": "1:10219",
+    "name": "02_GOC_B 6"
+  },
+  {
+    "id": "1:10292",
+    "name": "03_MOI_danh_sach_hoc_vien_cho_xep_lop 1"
+  },
+  {
+    "id": "1:10362",
+    "name": "01_GOC_A 7"
+  },
+  {
+    "id": "1:10453",
+    "name": "02_GOC_B 7"
+  },
+  {
+    "id": "1:10525",
+    "name": "03_MOI_danh_sach_lop_hoc 1"
+  },
+  {
+    "id": "1:10589",
+    "name": "04_MOI_chon_giao_vien_va_lich_day 1"
+  },
+  {
+    "id": "1:10659",
+    "name": "05_MOI_chua_co_lop_hoc_nao 2"
+  },
+  {
+    "id": "1:10705",
+    "name": "06_MOI_luu_phan_cong_that_bai 1"
+  },
+  {
+    "id": "1:10755",
+    "name": "TL-13-GHI NHẬN LỊCH NGHỈ CỦA HỌC VIÊN"
+  },
+  {
+    "id": "1:10884",
+    "name": "TL-13-GHI NHẬN LỊCH NGHỈ CỦA HỌC VIÊN-01"
+  },
+  {
+    "id": "1:11000",
+    "name": "TL-13-GHI NHẬN LỊCH NGHỈ CỦA HỌC VIÊN-02"
+  },
+  {
+    "id": "1:11089",
+    "name": "TL-13-GHI NHẬN LỊCH NGHỈ CỦA HỌC VIÊN-03"
+  },
+  {
+    "id": "1:11210",
+    "name": "TL-13-GHI NHẬN LỊCH NGHỈ CỦA HỌC VIÊN-04"
+  },
+  {
+    "id": "1:11332",
+    "name": "TL-13-GHI NHẬN LỊCH NGHỈ CỦA HỌC VIÊN-06"
+  },
+  {
+    "id": "1:11453",
+    "name": "Group 358"
+  },
+  {
+    "id": "1:11581",
+    "name": "TL-14-LẬP ĐỀ XUẤT CA HỌC BÙ"
+  },
+  {
+    "id": "1:11670",
+    "name": "TL-14-LẬP ĐỀ XUẤT CA HỌC BÙ-01"
+  },
+  {
+    "id": "1:11720",
+    "name": "TL-14-LẬP ĐỀ XUẤT CA HỌC BÙ-03"
+  },
+  {
+    "id": "1:11788",
+    "name": "TL-14-LẬP ĐỀ XUẤT CA HỌC BÙ-04"
+  },
+  {
+    "id": "1:11911",
+    "name": "TL-14-LẬP ĐỀ XUẤT CA HỌC BÙ-05"
+  },
+  {
+    "id": "1:11983",
+    "name": "TL-14-LẬP ĐỀ XUẤT CA HỌC BÙ-06"
+  },
+  {
+    "id": "1:12039",
+    "name": "TL-14-LẬP ĐỀ XUẤT CA HỌC BÙ-07"
+  },
+  {
+    "id": "1:12134",
+    "name": "TL-14-LẬP ĐỀ XUẤT CA HỌC BÙ-08"
+  },
+  {
+    "id": "1:12230",
+    "name": "TL-14-LẬP ĐỀ XUẤT CA HỌC BÙ-10"
+  },
+  {
+    "id": "1:12319",
+    "name": "TL-14-LẬP ĐỀ XUẤT CA HỌC BÙ-03"
+  },
+  {
+    "id": "1:12438",
+    "name": "TL-14-LẬP ĐỀ XUẤT CA HỌC BÙ-09"
+  },
+  {
+    "id": "1:12522",
+    "name": "01_GOC_A 8"
+  },
+  {
+    "id": "1:12591",
+    "name": "02_GOC_B 8"
+  },
+  {
+    "id": "1:12662",
+    "name": "03_MOI_danh_sach_hoc_vien_va_trang_thai_hoc_phi 1"
+  },
+  {
+    "id": "1:12729",
+    "name": "04_MOI_chon_thang_ghi_nhan 1"
+  },
+  {
+    "id": "1:12793",
+    "name": "05_MOI_khong_co_hoc_vien 1"
+  },
+  {
+    "id": "1:12844",
+    "name": "06_MOI_luu_hoc_phi_that_bai 1"
+  },
+  {
+    "id": "1:12893",
+    "name": "02_GOC_B 9"
+  },
+  {
+    "id": "1:13010",
+    "name": "03_MOI_bo_loc_tra_cuu 1"
+  },
+  {
+    "id": "1:13066",
+    "name": "04_MOI_su_co_truy_xuat_du_lieu 1"
+  },
+  {
+    "id": "1:13115",
+    "name": "05_MOI_khong_tim_thay_hoc_vien 1"
+  },
+  {
+    "id": "1:13179",
+    "name": "01_GOC_A 10"
+  },
+  {
+    "id": "1:13242",
+    "name": "02_GOC_B 10"
+  },
+  {
+    "id": "1:13310",
+    "name": "03_MOI_danh_sach_hoc_vien_dang_hoc 1"
+  },
+  {
+    "id": "1:13374",
+    "name": "04_MOI_chon_ca_hoc_chua_ghi_nhan 1"
+  },
+  {
+    "id": "1:13440",
+    "name": "05_MOI_bieu_mau_ghi_nhan 1"
+  },
+  {
+    "id": "1:13506",
+    "name": "06_MOI_thieu_thong_tin_bat_buoc 1"
+  },
+  {
+    "id": "1:13571",
+    "name": "07_MOI_ngay_danh_gia_khong_hop_le 1"
+  },
+  {
+    "id": "1:13635",
+    "name": "08_MOI_khong_co_ca_hoc_can_ghi_nhan 1"
+  },
+  {
+    "id": "1:13689",
+    "name": "09_MOI_ca_hoc_da_ghi_nhan 1"
+  },
+  {
+    "id": "1:13741",
+    "name": "10_MOI_luu_tien_do_that_bai 1"
+  },
+  {
+    "id": "1:13791",
+    "name": "01_GOC_A 11"
+  },
+  {
+    "id": "1:13872",
+    "name": "02_GOC_B 11"
+  },
+  {
+    "id": "1:13938",
+    "name": "03_MOI_bo_loc_va_danh_sach_hoc_vien 1"
+  },
+  {
+    "id": "1:14016",
+    "name": "04_MOI_hoc_vien_chua_co_lich_su 1"
+  },
+  {
+    "id": "1:14070",
+    "name": "05_MOI_khong_tim_thay_hoc_vien 2"
+  },
+  {
+    "id": "1:14121",
+    "name": "06_MOI_loi_truy_xuat_lich_su 1"
+  },
+  {
+    "id": "1:14171",
+    "name": "01_GOC_A 12"
+  },
+  {
+    "id": "1:14254",
+    "name": "02_GOC_B 12"
+  },
+  {
+    "id": "1:14325",
+    "name": "03_MOI_bo_loc_lap_danh_sach 1"
+  },
+  {
+    "id": "1:14387",
+    "name": "04_MOI_khong_co_hoc_vien_can_danh_gia 1"
+  },
+  {
+    "id": "1:14455",
+    "name": "05_MOI_loi_truy_xuat_danh_sach 1"
+  },
+  {
+    "id": "1:14505",
+    "name": "01_GOC_A 9"
+  },
+  {
+    "id": "1:14839",
+    "name": "Group 360"
+  },
+  {
+    "id": "1:14912",
+    "name": "Group 361"
+  },
+  {
+    "id": "1:15013",
+    "name": "Group 363"
+  },
+  {
+    "id": "1:15112",
+    "name": "Group 364"
+  },
+  {
+    "id": "1:15195",
+    "name": "Group 365"
+  },
+  {
+    "id": "1:15278",
+    "name": "Group 366"
+  },
+  {
+    "id": "1:15365",
+    "name": "Group 367"
+  },
+  {
+    "id": "1:15438",
+    "name": "Group 368"
+  },
+  {
+    "id": "1:15478",
+    "name": "Group 370"
+  },
+  {
+    "id": "1:15558",
+    "name": "Group 373"
+  },
+  {
+    "id": "1:15632",
+    "name": "Group 362"
+  },
+  {
+    "id": "1:15726",
+    "name": "Group 369"
+  },
+  {
+    "id": "1:15806",
+    "name": "Group 371"
+  },
+  {
+    "id": "1:15875",
+    "name": "Group 372"
+  },
+  {
+    "id": "1:15944",
+    "name": "QL-03-THỐNG KÊ TÌNH HÌNH HỌC VIÊN"
+  },
+  {
+    "id": "1:16025",
+    "name": "QL-03-THỐNG KÊ TÌNH HÌNH HỌC VIÊN-01"
+  },
+  {
+    "id": "1:16082",
+    "name": "Group 359"
+  },
+  {
+    "id": "1:16225",
+    "name": "01_GOC_A 13"
+  },
+  {
+    "id": "1:16302",
+    "name": "02_GOC_B 13"
+  },
+  {
+    "id": "1:16365",
+    "name": "03_MOI_chon_thoi_gian_thong_ke 1"
+  },
+  {
+    "id": "1:16416",
+    "name": "04_MOI_khong_co_du_lieu_thong_ke 1"
+  },
+  {
+    "id": "1:16474",
+    "name": "05_MOI_loi_truy_xuat_thong_ke 1"
+  },
+  {
+    "id": "1:16515",
+    "name": "01_GOC_A 14"
+  },
+  {
+    "id": "1:16600",
+    "name": "02_GOC_B 14"
+  },
+  {
+    "id": "1:16667",
+    "name": "03_MOI_bo_loc_bao_cao 1"
+  },
+  {
+    "id": "1:16727",
+    "name": "04_MOI_khong_co_du_lieu_van_hanh 1"
+  },
+  {
+    "id": "1:16793",
+    "name": "05_MOI_loi_truy_xuat_van_hanh 1"
+  },
+  {
+    "id": "1:16839",
+    "name": "01_GOC_A 15"
+  },
+  {
+    "id": "1:16911",
+    "name": "02_GOC_B 15"
+  },
+  {
+    "id": "1:16966",
+    "name": "03_MOI_nguong_canh_bao_va_bo_loc 1"
+  },
+  {
+    "id": "1:17016",
+    "name": "04_MOI_khong_co_hoc_vien_can_canh_bao 1"
+  },
+  {
+    "id": "1:17071",
+    "name": "05_MOI_loi_truy_xuat_canh_bao 1"
+  },
+  {
+    "id": "1:17113",
+    "name": "GS-01-KIỂM TRA TIẾN ĐỘ REVIEW CỦA GIÁO VIÊN"
+  },
+  {
+    "id": "1:17191",
+    "name": "GS-01-KIỂM TRA TIẾN ĐỘ REVIEW CỦA GIÁO VIÊN-01"
+  },
+  {
+    "id": "1:17242",
+    "name": "GS-02-GỬI NHẮC NHỞ VI PHẠM TIẾN ĐỘ"
+  },
+  {
+    "id": "1:17288",
+    "name": "GS-02-GỬI NHẮC NHỞ VI PHẠM TIẾN ĐỘ-01"
+  },
+  {
+    "id": "1:17338",
+    "name": "Tong-quan-Giam-sat 1"
+  },
+  {
+    "id": "1:17447",
+    "name": "01_GOC_A 16"
+  },
+  {
+    "id": "1:17526",
+    "name": "02_GOC_B 16"
+  },
+  {
+    "id": "1:17582",
+    "name": "03_MOI_bo_loc_kiem_tra_review 1"
+  },
+  {
+    "id": "1:17632",
+    "name": "04_MOI_tat_ca_ca_hoc_da_hoan_thanh 1"
+  },
+  {
+    "id": "1:17687",
+    "name": "05_MOI_loi_truy_xuat_tien_do_review 1"
+  },
+  {
+    "id": "1:17726",
+    "name": "01_GOC_A 17"
+  },
+  {
+    "id": "1:17774",
+    "name": "02_GOC_B 17"
+  },
+  {
+    "id": "1:17830",
+    "name": "03_MOI_danh_sach_ca_hoc_vi_pham 1"
+  },
+  {
+    "id": "1:17887",
+    "name": "04_MOI_chi_tiet_vi_pham_va_gui_nhac_nho 1"
+  },
+  {
+    "id": "1:17941",
+    "name": "05_MOI_khong_co_ca_hoc_vi_pham 1"
+  },
+  {
+    "id": "1:17982",
+    "name": "06_MOI_gui_thong_bao_that_bai 1"
+  },
+  {
+    "id": "1:18029",
+    "name": "07_MOI_chon_nhieu_ca_va_gui_nhac_nho_tat_ca 1"
+  }
+]

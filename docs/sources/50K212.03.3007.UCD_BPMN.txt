@@ -1,0 +1,480 @@
+TRƯỜNG ĐẠI HỌC KINH TẾ - ĐẠI HỌC ĐÀ NẴNG
+KHOA THỐNG KÊ – TIN HỌC
+
+
+
+
+
+ĐẶC TẢ YÊU CẦU PHẦN MỀM
+Hệ thống Đăng ký khoá học và Quản lý lịch học Lớp vẽ Ngôi Nhà Nhỏ
+
+
+
+Lớp:
+MIS3007_50K21.2
+Nhóm:
+50K212.03.3007
+Thành viên nhóm:
+Trần Thị Mỹ Duyên
+Hà Thái Bảo
+Nguyễn Lê Bảo Châu
+Nguyễn Thị Quỳnh
+Phonevilay Phengchanh
+
+
+
+Đà Nẵng, 2026
+MỤC LỤC
+1TỔNG QUAN (OVERVIEW)6
+1.1Mục đích (Purpose)6
+1.2Mục tiêu kinh doanh (Business objectives)6
+1.3Phạm vi (Scope)8
+1.3.1Phạm vi tổ chức (Organization Scope)8
+1.3.2Phạm vi người dùng (User Scope)8
+1.3.3Phạm vi chức năng (Functional Scope)8
+1.3.4Phạm vi tích hợp (Integration Scope)9
+1.3.5Ngoài phạm vi (Out of scope)9
+2MÔ TẢ TỔNG QUAN (OVERALL DESCRIPTION)10
+2.1Yêu cầu người dùng (User requirements)10
+2.1.1Yêu cầu nghiệp vụ (Business requirements)10
+2.1.2Yêu cầu của các bên liên quan (Stakeholder requirements)10
+2.2Luồng quy trình nghiệp vụ (Business workflow)11
+2.2.1As-is system11
+2.2.2To-be system12
+2.3Use case diagram15
+2.3.1Use case hệ thống15
+2.3.2Use case “Học thử”16
+2.3.3Use case “Xin nghỉ học”16
+2.3.4Use case “Theo dõi quá trình học tập”17
+2.3.5Use case “Quản lý học thử”17
+2.3.6Use case “Quản lý hồ sơ học viên”18
+2.3.7Use case “Quản lý lớp học”18
+2.3.8Use case “Điều phối lịch học bù”19
+2.3.9Use case “Quản lý học phí”19
+2.3.10Use case “Quản lý tiến độ học tập”20
+2.3.11Use case “Quản lý ca dạy”20
+2.3.12Use case “Quản lý tiến độ học viên”21
+2.3.13Use case “Phê duyệt lịch trình”21
+2.3.14Use case “Xem báo cáo và thống kê”22
+2.3.15Use case “Giám sát chất lượng và tiến độ”22
+3YÊU CẦU CHỨC NĂNG (FUNCTIONAL REQUIREMENTS)23
+3.1Tên Use case 123
+3.1.1Business rules23
+3.1.2Tên use case con 123
+3.1.3Tên use case con 225
+3.2Tên Use case 225
+4YÊU CẦU PHI CHỨC NĂNG (NON-FUNCTIONAL REQUIREMENTS)26
+4.1Yêu cầu hiệu năng26
+4.2Yêu cầu vận hành và hỗ trợ26
+4.3Yêu cầu bảo mật và quyền riêng tư26
+4.4Yêu cầu về độ tin cậy và lưu trữ dữ liệu27
+4.5Yêu cầu về giao diện và quốc tế hóa27
+5ĐẶC TẢ GIAO DIỆN (SCREEN SPECIFICATION)28
+5.1Screen flow28
+5.2Wireframe28
+5.2.1Screen 128
+6REFERENCES29
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PHỤ LỤC HÌNH ẢNH
+Hình 1. Quy trình as-is “Tiếp nhận và ghi danh học viên mới”11
+Hình 2. Quy trình as-is “Xử lý báo nghỉ và xếp lịch học bù”12
+Hình 3. Quy trình as-is “Điểm danh và cập nhật buổi học”12
+Hình 4. Quy trình to-be “Tiếp nhận và ghi danh học viên mới”13
+Hình 5. Quy trình to-be “Xử lý báo nghỉ và xếp lịch học bù”13
+Hình 6. Quy trình to-be “Điểm danh và cập nhật buổi học”14
+Hình 7. Sơ đồ Use case hệ thống15
+Hình 8. UC “Học thử”16
+Hình 9. UC “Xin nghỉ học”16
+Hình 10. UC “Theo dõi quá trình học tập”17
+Hình 11. UC “Quản lý học thử”17
+Hình 12. UC “Quản lý hồ sơ học viên”18
+Hình 13. UC “Quản lý lớp học”18
+Hình 14. UC “Điều phối lịch học bù”19
+Hình 15. UC “Quản lý học phí”19
+Hình 16. UC “Quản lý tiến độ học tập”20
+Hình 17. UC “Quản lý ca dạy”20
+Hình 18. UC “Quản lý tiến độ học viên”21
+Hình 19. UC “Phê duyệt lịch trình”21
+Hình 20. UC “Xem báo cáo và thống kê”22
+Hình 21. UC “Giám sát chất lượng và tiến độ”22
+
+
+
+
+
+
+
+
+
+
+
+
+PHỤ LỤC BẢNG
+Bảng 1. Yêu cầu của các bên liên quan (Stakeholder requirements)11
+Bảng 2. Yêu cầu hiệu năng26
+Bảng 3. Yêu cầu vận hành và hỗ trợ26
+Bảng 4. Yêu cầu bảo mật và quyền riêng tư27
+Bảng 5. Yêu cầu về độ tin cậy và lưu trữ dữ liệu27
+Bảng 6. Yêu cầu về giao diện và quốc tế hoá27
+
+TỔNG QUAN (OVERVIEW)
+Mục đích (Purpose)
+Tài liệu này xác định và đặc tả toàn bộ các yêu cầu nghiệp vụ, yêu cầu người dùng, luồng quy trình vận hành và sơ đồ chức năng của Hệ thống Đăng ký khóa học và Quản lý lịch học Lớp vẽ Ngôi Nhà Nhỏ.
+Tài liệu được biên soạn phục vụ các đối tượng độc giả:
+Ban Giám đốc/Quản lý và Trợ lý Lớp vẽ Ngôi Nhà Nhỏ: Xem xét, đối soát và xác nhận các yêu cầu thực tế của cơ sở trước khi hệ thống được đưa vào phát triển.
+Nhóm học phần: Làm cơ sở kỹ thuật để chuyển tiếp sang giai đoạn mô hình hóa cấu trúc, thiết kế cơ sở dữ liệu và thiết kế giao diện người dùng.
+Giảng viên hướng dẫn: Nắm bắt tổng thể yêu cầu, phạm vi và tiến độ của dự án để đánh giá, định hướng và chấm điểm học phần.
+Mục tiêu kinh doanh (Business objectives)
+Bối cảnh hiện trạng: Hiện tại, Lớp vẽ Ngôi Nhà Nhỏ đang phải kết hợp thủ công giữa phần mềm Classbus và các công cụ bổ trợ rời rạc như Google Sheet/Excel, Zalo, Facebook Messenger. Các khó khăn và bất cập gặp phải như:
+Quản lý điều phối lịch học bù và đổi ca học còn thủ công, rời rạc:
+Phần mềm Classbus hiện tại chỉ ghi nhận buổi vắng mà chưa tích hợp tính năng quản lý và xếp lịch học bù.
+Trợ lý phải ghi nhận thông tin học bù ra file Excel (Google Sheet) ngoài, trao đổi thủ công qua lại với phụ huynh và giáo viên để chốt ca.
+Vào những tháng học viên nghỉ nhiều hoặc phụ huynh đưa bé đến học bù đột xuất mà không báo trước, nhân viên dễ bị nhầm lẫn dữ liệu và quá tải sĩ số bàn học.
+Dữ liệu chưa đồng bộ, phải nhập tay nhiều lần dẫn đến sai sót:
+Giữa hệ thống Classbus và các bảng tính Excel không có sự tích hợp, liên kết số liệu tự động.   
+Trợ lý/nhân viên phải nhập liệu thủ công lượng lớn thông tin qua lại giữa các bên, dễ phát sinh lỗi hoặc sai sót số liệu.
+Quá tải tin nhắn và nguy cơ bỏ sót thông tin phụ huynh:
+Kênh tiếp nhận và liên lạc bị phân tán (Fanpage, Zalo cá nhân, form website, cuộc gọi).
+Do lượng tin nhắn hàng ngày rất lớn và phải kiểm tra thủ công, đôi khi nhân viên bị trôi hoặc sót tin nhắn xin nghỉ/đăng ký mới của phụ huynh.
+Quy trình điểm danh 2 bước tốn thời gian:
+Việc điểm danh phải thực hiện qua 2 bước: giáo viên điểm danh trên giấy trước trong lớp, cuối buổi mới đối chiếu và nhập lại lên hệ thống.
+Đầu mỗi ca học, giáo viên mất khoảng 5-7 phút chỉ dành cho việc điểm danh và báo vắng.
+Thiếu kênh tương tác chuyên dụng cho Phụ huynh:
+Hệ thống hiện tại chưa có giao diện dành riêng cho phụ huynh.
+Phụ huynh ở thế bị động: muốn biết số buổi còn lại, lịch học bù khả dụng, hay tình hình học tập/nhận xét của con đều phải nhắn tin hỏi trợ lý hoặc giáo viên.
+Hình ảnh bài vẽ và tiến trình học sau mỗi buổi vẫn phải gửi thủ công qua Zalo, thiếu một nhật ký trực quan lưu trữ lâu dài quá trình tiến bộ của bé.  
+Mục tiêu của giải pháp mới:
+Tự động hóa và chuẩn hóa quy trình điều phối học bù:
+Giải quyết tình trạng ghi nhận thủ công rời rạc qua Google Sheet/Zalo.
+Cho phép hệ thống tự động kiểm tra chỗ trống (đảm bảo giới hạn sĩ số <= 8 học viên/ca ghép bù và trong hạn 30 ngày).
+Hỗ trợ Trợ lý lập đề xuất nhanh, Quản lý phê duyệt và gửi thông báo xác nhận tự động tới Phụ huynh.
+Xây dựng Cổng thông tin Phụ huynh: 
+Giúp phụ huynh chuyển từ thế bị động sang chủ động: dễ dàng tra cứu thời khóa biểu, số buổi học còn lại trong khoá học, lịch sử chuyên cần và gửi đơn xin nghỉ trực tiếp trên ứng dụng.
+Tạo không gian nhật ký học tập cá nhân hóa: lưu trữ quá trình trưởng thành của bé, xem nhận xét của giáo viên và hình ảnh bài vẽ một cách riêng tư, an toàn.
+Tối ưu hóa thời gian điểm danh và đánh giá học viên:
+Cung cấp giao diện ứng dụng di động cho giáo viên điểm danh nhanh đầu ca học, tự động trừ số buổi trong gói học của học viên.
+Rút ngắn thời gian điểm danh, loại bỏ quy trình điểm danh 2 bước (giấy sang máy) và hỗ trợ cơ chế lưu ngoại tuyến (offline) để đồng bộ tự động khi có mạng.
+Hỗ trợ tải hình ảnh tác phẩm kèm nhận xét kỹ năng (nét vẽ, màu sắc) ngay sau buổi học.
+Tập trung hóa dữ liệu và nâng cao năng lực giám sát, quản lý:
+Xóa bỏ sự phân mảnh dữ liệu giữa phần mềm cũ (Classbus) và các file Excel bên ngoài.
+Cung cấp màn hình quản lý thời khóa biểu dạng lưới trực quan (Calendar view).
+Trang tổng quan (Dashboard) cập nhật số liệu thời gian thực: số ca học trong ngày, danh sách học viên mới, học viên bảo lưu và cảnh báo học viên sắp hết hạn buổi học để kịp thời nhắc học phí.
+Thiết lập giao diện riêng cho Giám sát để kiểm soát tính đầy đủ, đúng hạn của các bài đánh giá/hình ảnh từ giáo viên.
+Phân định rạch ròi phân quyền và bảo mật dữ liệu:
+Phân tách giao diện và quyền thao tác độc lập cho 5 nhóm tác nhân: Quản lý, Trợ lý, Giáo viên, Giám sát và Phụ huynh.
+Bảo đảm tính riêng tư tuyệt đối cho học viên: phụ huynh chỉ xem được dữ liệu/hình ảnh của con mình.
+Phạm vi (Scope)
+Phạm vi tổ chức (Organization Scope)
+Áp dụng triển khai thí điểm tại Cơ sở Hòa Xuân (33-35 đường Nguyễn Phước Lan, TP. Đà Nẵng) của Lớp vẽ Ngôi Nhà Nhỏ.
+Phạm vi người dùng (User Scope)
+Hệ thống phục vụ 5 nhóm đối tượng người dùng:
+Quản lý: Phê duyệt danh sách lớp học, kiểm soát tổng thể lịch học, phê duyệt ca học thử và xem báo cáo điều hành. Quản lý có cấp quyền cao hơn và kế thừa toàn bộ quyền hạn thao tác của Trợ lý. Trong trường hợp Trợ lý vắng mặt hoặc ca học cao điểm, Quản lý có thể trực tiếp thực hiện thay các nghiệp vụ vận hành hàng ngày (nhập hồ sơ, xếp ca, ghi nhận học phí) trên hệ thống.
+Trợ lý: Tư vấn phụ huynh, tiếp nhận đơn đăng ký học thử/chính thức, xếp ca, điều phối lịch học bù và cập nhật tình trạng học phí.
+Giáo viên: Xem lịch dạy, điểm danh lớp học, tải ảnh bài vẽ và ghi nhận xét tiến độ học tập.
+Giám sát: Giám sát chất lượng giảng dạy, kiểm tra tính đúng hạn của ảnh/nhận xét bài vẽ và gửi cảnh báo nhắc nhở.
+Phụ huynh: Đăng ký học trải nghiệm, gửi yêu cầu xin nghỉ/học bù, tra cứu lịch học và xem nhật ký bài vẽ của con.
+Phạm vi chức năng (Functional Scope)
+Hệ thống gồm 15 nhóm Use Case:
+Đăng nhập
+Học thử
+Xin nghỉ học
+Theo dõi quá trình học tập
+Quản lý học thử
+Quản lý hồ sơ học viên
+Quản lý lớp học
+Điều phối lịch học bù
+Quản lý học phí
+Quản lý tiến độ học tập
+Quản lý ca dạy
+Quản lý tiến độ học viên
+Phê duyệt lịch trình
+Xem báo cáo và thống kê
+Giám sát chất lượng và tiến độ
+Phạm vi tích hợp (Integration Scope)
+Dịch vụ gửi thông báo tự động (Cloud Messaging)
+Máy chủ lưu trữ hình ảnh đám mây (Cloud Storage): Lưu trữ thư viện ảnh bài vẽ có độ phân giải cao của học viên.
+Ngoài phạm vi (Out of scope)
+Ngoài phạm vi nghiệp vụ chức năng (Business Scope)
+Quản lý kho và vật tư: Không bao gồm theo dõi tồn kho, nhập/xuất các dụng cụ học tập, họa cụ, màu vẽ, giấy vẽ hay khung tranh (nghiệp vụ này do bộ phận/phòng ban khác phụ trách). 
+Quản lý kế toán tổng thể và tính lương giáo viên: Hệ thống chỉ theo dõi trạng thái thu học phí và số buổi còn lại của học viên ở mức vận hành lớp học; không thực hiện hạch toán chi phí - doanh thu phức tạp, báo cáo tài chính hay tự động tính bảng lương, hoa hồng cho giáo viên/nhân viên. 
+Thanh toán trực tuyến và cổng thanh toán tự động (VietQR/Ngân hàng): Hệ thống không tích hợp cổng thanh toán trực tuyến hay quét mã VietQR tự động đối soát giao dịch ngân hàng. Phụ huynh thanh toán trực tiếp/chuyển khoản ngoài hệ thống; nhân viên trợ lý chỉ ghi nhận trạng thái đóng học phí thủ công trên phần mềm.
+Tự động hóa chăm sóc khách hàng bằng Chatbot AI: Không tích hợp chatbot trả lời tự động thay thế giao tiếp tư vấn 1-1 giữa trợ lý/nhân viên với phụ huynh.
+Ngoài phạm vi người dùng và phân quyền (User và Actor Scope)
+Giao diện/Ứng dụng dành cho Học viên (kể cả trẻ em lẫn người lớn): Học viên chủ yếu từ 5-15 tuổi (phần lớn 5-7 tuổi) chưa tự sử dụng điện thoại, do đó hệ thống không xây dựng tài khoản hay giao diện riêng cho học viên trẻ em. Mọi tương tác theo dõi đều thông qua Phụ huynh. Với học viên người lớn (chiếm tỷ trọng rất nhỏ, chỉ khoảng 1 suất tại cơ sở), hệ thống chỉ quản lý dưới dạng bản ghi dữ liệu nội bộ; việc trao đổi thông tin vẫn thực hiện trực tiếp hoặc qua Zalo.
+Quản trị người dùng và phân quyền trực tiếp tại cơ sở: Quản lý cơ sở không có thẩm quyền tự tạo mới, chỉnh sửa vai trò hay khóa tài khoản nhân sự. Công tác cấp phát/khóa tài khoản do Bộ phận Kỹ thuật và Nhân sự (Admin) quản lý.
+
+
+MÔ TẢ TỔNG QUAN (OVERALL DESCRIPTION)
+Yêu cầu người dùng (User requirements)
+Yêu cầu nghiệp vụ (Business requirements)
+BR01: Hệ thống phải hỗ trợ phân loại học viên chính xác theo nhóm tuổi quy định (Lớp cơ bản: 5-6 tuổi; Lớp nâng cao: 7-15 tuổi) ngay từ khâu đăng ký để bố trí chương trình dạy phù hợp.
+BR02: Mỗi ca học chỉ được tiếp nhận tối đa không quá 7 học viên (sĩ số <= 7 học viên/ca, hoặc nếu là ca bù được phép ghép tối đa thành 8 bé) nhằm đảm bảo tiêu chuẩn kèm cặp chất lượng dạy vẽ.
+BR03: Học viên chỉ được sắp xếp học bù trong vòng 30 ngày kể từ ngày báo vắng hợp lệ.
+BR04: Hệ thống phải bảo toàn kết quả học tập và tiến trình học của học viên khi thực hiện bảo lưu để thuận tiện xếp lớp khi học viên quay trở lại học.
+BR05: Dữ liệu nhận xét và hình ảnh tranh vẽ hoàn thành của học viên sau mỗi ca học phải được cập nhật trong ngày và lưu trữ thành dòng thời gian phát triển riêng tư của từng bé.
+BR06: Hệ thống phải hỗ trợ quy trình điểm danh liên tục, không bị gián đoạn ngay cả khi cơ sở gặp sự cố mất điện hoặc mất kết nối Internet đột ngột.
+Yêu cầu của các bên liên quan (Stakeholder requirements)
+Bên liên quan (Stakeholder)
+Yêu cầu mong muốn (Requirement)
+Quản lý
+STR-QL01: Xem Dashboard tổng quan hàng ngày (học viên mới, số ca học, cảnh báo học viên sắp hết buổi).
+STR-QL02: Phê duyệt danh sách ca học thử và điều phối nhân sự đứng lớp.
+Trợ lý
+STR-TL01: Tiếp nhận yêu cầu đăng ký học thử, kiểm tra sĩ số tự động và xếp ca học thử cho học viên.
+STR-TL02: Dễ dàng tra cứu ca học còn trống dạng lịch lưới để xử lý báo vắng và xếp lịch học bù hàng ngày.
+STR-TL03: Quản lý hồ sơ học viên, thông tin phụ huynh, theo dõi số buổi còn lại và cập nhật trạng thái học phí.   
+Giáo viên
+STR-GV01: Theo dõi lịch dạy cá nhân theo tuần/ngày.
+STR-GV02: Thực hiện điểm danh học viên trên app ngay cả khi mất kết nối mạng.
+STR-GV03: Tải tác phẩm bài vẽ của từng bé sau buổi học kèm nhận xét về kỹ năng (nét vẽ, màu sắc, tiếp thu).
+Giám sát
+STR-GS01: Kiểm tra danh sách các ca học đã kết thúc nhưng giáo viên chưa cập nhật ảnh tranh vẽ hoặc chưa ghi nhận xét.
+STR-GS02: Gửi thông báo nhắc nhở giáo viên hoàn thành báo cáo đúng thời hạn quy định.   
+Phụ huynh
+STR-PH01: Đăng ký học thử và đăng ký khóa học chính thức tiện lợi.
+STR-PH02: Chủ động gửi đơn xin nghỉ học có báo trước, chọn ca học bù phù hợp cho con và xác nhận lý do vắng khi nhận cảnh báo vắng đột xuất.
+STR-PH03: Xem ảnh tranh vẽ và nhận xét của giáo viên về con một cách an toàn và bảo mật.   
+Bảng 1. Yêu cầu của các bên liên quan (Stakeholder requirements)
+Luồng quy trình nghiệp vụ (Business workflow)
+As-is system
+Quy trình “Tiếp nhận và ghi danh học viên mới”:
+
+Hình 1. Quy trình as-is “Tiếp nhận và ghi danh học viên mới”
+Quy trình “Xử lý báo nghỉ và xếp lịch học bù”
+
+Hình 2. Quy trình as-is “Xử lý báo nghỉ và xếp lịch học bù”
+Quy trình “Điểm danh và cập nhật buổi học”:
+
+Hình 3. Quy trình as-is “Điểm danh và cập nhật buổi học”
+To-be system
+Quy trình “Tiếp nhận và ghi danh học viên mới”:
+
+Hình 4. Quy trình to-be “Tiếp nhận và ghi danh học viên mới”
+Quy trình “Xử lý báo nghỉ và xếp lịch học bù”:
+
+Hình 5. Quy trình to-be “Xử lý báo nghỉ và xếp lịch học bù”
+Quy trình “Điểm danh và cập nhật buổi học”:
+
+Hình 6. Quy trình to-be “Điểm danh và cập nhật buổi học”
+
+Use case diagram
+Use case hệ thống
+
+Hình 7. Sơ đồ Use case hệ thống
+Use case “Học thử”
+
+Hình 8. UC “Học thử”
+Use case “Xin nghỉ học”
+
+Hình 9. UC “Xin nghỉ học”
+Use case “Theo dõi quá trình học tập”
+
+Hình 10. UC “Theo dõi quá trình học tập”
+Use case “Quản lý học thử”
+
+Hình 11. UC “Quản lý học thử”
+Use case “Quản lý hồ sơ học viên”
+
+Hình 12. UC “Quản lý hồ sơ học viên”
+Use case “Quản lý lớp học”
+
+Hình 13. UC “Quản lý lớp học”
+Use case “Điều phối lịch học bù”
+
+Hình 14. UC “Điều phối lịch học bù”
+Use case “Quản lý học phí”
+
+Hình 15. UC “Quản lý học phí”
+Use case “Quản lý tiến độ học tập”
+
+Hình 16. UC “Quản lý tiến độ học tập”
+Use case “Quản lý ca dạy”
+
+Hình 17. UC “Quản lý ca dạy”
+Use case “Quản lý tiến độ học viên”
+
+Hình 18. UC “Quản lý tiến độ học viên”
+Use case “Phê duyệt lịch trình”
+
+Hình 19. UC “Phê duyệt lịch trình”
+Use case “Xem báo cáo và thống kê”
+
+Hình 20. UC “Xem báo cáo và thống kê”
+Use case “Giám sát chất lượng và tiến độ”
+
+Hình 21. UC “Giám sát chất lượng và tiến độ”
+
+YÊU CẦU CHỨC NĂNG (FUNCTIONAL REQUIREMENTS)
+Tên Use case 1
+(Mô tả khái quát UC)
+(Đưa ra hình phân rã UC (nếu có))
+Business rules
+Lưu ý khi viết business rules:
+Business rules là phần mô tả chi tiết business requirement ở trên.
+Cần viết rõ ràng, chi tiết.
+Ví dụ minh họa cho việc chi tiết hóa business requirement thành các business rules.
+Business Requirement
+Business Rules
+Hệ thống ghi nhận luôn số CMND mới và cũ của khách hàng
+Trường “Số CMND hiện tại” bao gồm 12 ký tự số
+Trường “Số CMND cũ” bao gồm 9 ký tự số
+Trường “Có số CMND cũ” là Option Set (Yes/ No):
+Nếu Yes => trường “Số CMND cũ” mark required
+Nếu No => trường “Số CMND cũ” bỏ required
+Business rules trình bày dưới dạng bảng như sau:
+ID
+Business rules
+BR-UC1-01
+....
+BR-UC1-02
+....
+
+
+
+(Phần tiếp theo đi mô tả chi tiết cho UC. Nếu có phân rã thì mô tả chi tiết cho UC con, chứ không mô tả UC lớn)
+Tên use case con 1
+Ví dụ về mô tả chi tiết UC như bảng dưới đây.
+Use case ID
+
+1.1
+Use case name
+
+Cho mượn sách
+Description
+
+Là thủ thư, tôi muốn cho sinh viên mượn sách
+Actors
+Thủ thư
+Priority
+High
+Triggers
+Thủ thư chọn mở chức năng cho mượn sách
+Pre-conditions
+Thẻ mượn hợp lệ
+Số lượng sách đang mượn của người mượn không bị quá quy định
+Post-conditions
+Người mượn được mượn sách
+Thông tin mượn sách được lưu vào trong hệ thống
+
+Main flow
+Kiểm tra thẻ đọc
+Kiểm tra quyền mượn sách
+Nhập mã sách
+Nhập tình trạng sách
+Tính số ngày được mượn
+Lưu thông tin mượn sách
+In phiếu mượn 
+Alternative flows
+3a. Quét mã sách
+3a1. Máy quét lấy mã và đưa vào mục “Mã sách” và quay lại bước 4.
+Exception flows
+1a. Nếu thẻ không hợp lệ, hệ thống hiển thị thông báo “Thẻ không hợp lệ” và kết thúc.
+2a. Nếu số lượng sách đã mượn = số lượng sách tối đa được mượn thì hiển thị thông báo “Không được mượn thêm sách” và kết thúc
+3b. Nếu mã sách không tồn tại trong hệ thống thì hiển thị thông báo “Không tồn tại sách, kiểm tra lại” và kết thúc
+6a. Nếu lưu không thành công thì hiển thị thông báo “Có lỗi xảy ra” và kết thúc
+Business rules
+N/A
+Non-functional requirement
+N/A
+
+Sau khi mô tả xong thì đưa activity diagram vào đây.
+
+Tên use case con 2
+....
+Tên Use case 2
+....
+
+YÊU CẦU PHI CHỨC NĂNG (NON-FUNCTIONAL REQUIREMENTS)
+Yêu cầu hiệu năng
+ID
+Yêu cầu phi chức năng (Non-functional requirements)
+NFR-01
+Thời gian hệ thống phản hồi đối với các tác vụ thông thường (điểm danh, tra cứu lịch học, lọc danh sách học viên, duyệt ca học) không được vượt quá 2 giây trong điều kiện mạng tiêu chuẩn.
+NFR-02
+Thời gian tải lên (upload) và hiển thị ảnh bài vẽ có dung lượng từ 2MB – 5MB lên máy chủ đám mây không được vượt quá 5 giây cho mỗi tệp. 
+NFR-03
+Hệ thống phải đảm bảo hoạt động ổn định, không bị nghẽn khi có ít nhất 50 người dùng đồng thời thao tác tại các khung giờ cao điểm (đầu ca học khi giáo viên điểm danh, hoặc cuối ca khi phụ huynh tra cứu tiến độ).
+NFR-04
+Hệ thống phải tự động nén kích thước ảnh bài vẽ hiển thị dạng thumbnail dưới 200KB để tối ưu hóa thời gian tải trên ứng dụng di động mà vẫn giữ nguyên ảnh gốc độ phân giải cao trên Cloud Storage.
+Bảng 2. Yêu cầu hiệu năng
+Yêu cầu vận hành và hỗ trợ
+ID
+Yêu cầu phi chức năng (Non-functional requirements)
+NFR-01
+Giao diện Quản lý, Trợ lý và Giám sát phải tương thích trên nền tảng Web (chạy mượt mà trên các trình duyệt Chrome, Edge, Safari phiên bản mới nhất); giao diện Giáo viên và Phụ huynh phải vận hành tối ưu trên ứng dụng di động.
+NFR-02
+Ứng dụng di động của Giáo viên phải cho phép thực hiện điểm danh và lưu tạm dữ liệu vào bộ nhớ cục bộ (Local Storage/SQLite) khi cơ sở gặp sự cố mất điện hoặc mất kết nối Internet đột ngột.
+NFR-03
+Toàn bộ dữ liệu điểm danh lưu tạm ngoại tuyến phải được tự động đồng bộ lên CSDL trung tâm trong vòng 30 giây ngay khi thiết bị có lại kết nối mạng Internet, bảo đảm không làm mất bản ghi điểm danh.
+NFR-04
+Cấu trúc kiến trúc CSDL phải cho phép mở rộng quy mô quản lý thêm từ 2 đến 3 cơ sở mới mà không cần phải tái cấu trúc toàn bộ mã nguồn hệ thống.
+Bảng 3. Yêu cầu vận hành và hỗ trợ
+Yêu cầu bảo mật và quyền riêng tư
+ID
+Yêu cầu phi chức năng (Non-functional requirements)
+NFR-01
+Mọi người dùng bắt buộc phải xác thực thông qua ID/Email công việc/SDT và Mật khẩu.
+NFR-02
+Hệ thống phân định rạch ròi 5 vai trò độc lập (Quản lý, Trợ lý, Giáo viên, Giám sát, Phụ huynh). Tuyệt đối không cho phép tài khoản thuộc vai trò này truy cập màn hình quản trị của vai trò khác.
+NFR-03
+Phụ huynh chỉ được xem thông tin cá nhân, lịch học, nhận xét và ảnh tranh vẽ của chính con mình; không được phép xem thông tin hoặc tác phẩm của học viên khác trong cùng lớp học.
+Bảng 4. Yêu cầu bảo mật và quyền riêng tư
+Yêu cầu về độ tin cậy và lưu trữ dữ liệu
+ID
+Yêu cầu phi chức năng (Non-functional requirements)
+NFR-01
+Hệ thống phải duy trì thời gian hoạt động tối thiểu 99.0% trong khung giờ vận hành của trung tâm (từ 07:30 đến 21:00 hàng ngày, kể cả Thứ Bảy và Chủ Nhật). 
+NFR-02
+Khi học viên tạm dừng hoặc bảo lưu khóa học, hệ thống không xóa dữ liệu mà phải lưu trữ vĩnh viễn sơ yếu lý lịch, cấp độ học và tiến trình bài học cũ để phục vụ xếp lớp khi bé quay lại.
+NFR-03
+Cơ sở dữ liệu trung tâm phải được thiết lập cơ chế tự động sao lưu (Automated Backup) ít nhất 01 lần/ngày vào lúc 23:30 để phòng ngừa rủi ro mất mát dữ liệu vận hành. 
+Bảng 5. Yêu cầu về độ tin cậy và lưu trữ dữ liệu
+Yêu cầu về giao diện và quốc tế hóa
+ID
+Yêu cầu phi chức năng (Non-functional requirements)
+NFR-01
+Giao diện hệ thống phải sử dụng màu sắc nhận diện thương hiệu của Lớp vẽ Ngôi Nhà Nhỏ (tông màu tươi sáng, thân thiện với môi trường thiếu nhi), phông chữ rõ ràng, cỡ chữ tối thiểu 14px để thuận tiện cho việc quan sát.
+NFR-02
+Giáo viên và Trợ lý có thể thực hiện xong các nghiệp vụ cốt lõi (như mở danh sách điểm danh, gửi yêu cầu báo nghỉ, tra cứu lịch trống ca bù) trong vòng không quá 3 thao tác chạm/nhấp chuột. 
+NFR-03
+Hệ thống không hiển thị các mã lỗi kỹ thuật khô khan (như Error 404, 500); các câu thông báo phải sử dụng ngôn từ gần gũi, lịch sự, đúng phong cách chăm sóc của trung tâm.
+NFR-04
+Giao diện của Quản lý và Trợ lý phải tích hợp biểu đồ trực quan, cho phép bấm xem ngay: số ca học trong ngày, số học viên mới, học viên bảo lưu và cảnh báo học viên sắp hết buổi.
+NFR-05
+Hệ thống phải hỗ trợ giao diện song ngữ Tiếng Việt và Tiếng Anh, cho phép người dùng chủ động chuyển đổi ngôn ngữ trên ứng dụng.
+NFR-06
+Toàn bộ các thông tin liên quan đến học phí và biểu phí khóa học hiển thị thống nhất theo định dạng tiền tệ Việt Nam Đồng (VNĐ).
+Bảng 6. Yêu cầu về giao diện và quốc tế hoá
+
+ĐẶC TẢ GIAO DIỆN (SCREEN SPECIFICATION)
+Screen flow
+Đưa hình screen flow vào đây.
+Wireframe
+Screen 1
+Đưa wireframe màn hình vào đây, nhớ đánh số các item. Sau đó, đưa ra bản mô tả cho các item trong màn hình theo bảng gợi ý sau đây.
+ID
+Item
+Type
+Validation
+Notes
+1
+
+
+
+
+
+Chú ý: trên màn hình đánh số item như thế nào thì để ID của item với số tương ứng.
+REFERENCES
