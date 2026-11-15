@@ -191,15 +191,15 @@ app.MapGet("/api/diag/seed-pending-artwork", async (AppDbContext db) =>
     var myduyen = await db.Users.FirstOrDefaultAsync(u => u.Username == "myduyen");
     if (myduyen == null) return Results.NotFound("Teacher myduyen not found");
 
-    var date = new DateOnly(2026, 11, 15);
-    var att = await db.Attendances.Include(a => a.Records).FirstOrDefaultAsync(a => a.ClassId == 10 && a.SessionDate == date);
+    var date = new DateOnly(2026, 11, 11); // Thứ 4 tuần trước (trong vòng 7 ngày)
+    var att = await db.Attendances.Include(a => a.Records).FirstOrDefaultAsync(a => a.ClassId == 13 && a.SessionDate == date);
     if (att == null)
     {
         att = new Attendance
         {
-            ClassId = 10,
+            ClassId = 13,
             SessionDate = date,
-            FinalizedAt = new DateTime(2026, 11, 15, 9, 30, 0, DateTimeKind.Utc),
+            FinalizedAt = new DateTime(2026, 11, 11, 19, 30, 0, DateTimeKind.Utc),
             FinalizedBy = myduyen.UserId,
         };
         db.Attendances.Add(att);
@@ -207,18 +207,8 @@ app.MapGet("/api/diag/seed-pending-artwork", async (AppDbContext db) =>
     }
 
     var scs = await db.StudentClasses.Include(sc => sc.Student)
-        .Where(sc => sc.ClassId == 10 && sc.IsActive && sc.Student!.Status == "Đang học")
+        .Where(sc => sc.ClassId == 13 && sc.IsActive && sc.Student!.Status == "Đang học")
         .ToListAsync();
-
-    if (scs.Count == 0)
-    {
-        db.StudentClasses.Add(new StudentClass { StudentId = 61, ClassId = 10, IsActive = true });
-        db.StudentClasses.Add(new StudentClass { StudentId = 62, ClassId = 10, IsActive = true });
-        await db.SaveChangesAsync();
-        scs = await db.StudentClasses.Include(sc => sc.Student)
-            .Where(sc => sc.ClassId == 10 && sc.IsActive && sc.Student!.Status == "Đang học")
-            .ToListAsync();
-    }
 
     foreach (var sc in scs)
     {
@@ -236,21 +226,23 @@ app.MapGet("/api/diag/seed-pending-artwork", async (AppDbContext db) =>
     }
     await db.SaveChangesAsync();
 
-    var firstStudentId = scs[0].StudentId;
-    var j1 = await db.Journal.FirstOrDefaultAsync(j => j.ClassId == 10 && j.SessionDate == date && j.StudentId == firstStudentId);
+    // Bé Phan Kim Ngân (StudentId = 61) hoặc học viên đầu tiên chưa có ảnh tác phẩm
+    var targetStudent = scs.FirstOrDefault(s => s.StudentId == 61) ?? scs[0];
+    var targetId = targetStudent.StudentId;
+    var j1 = await db.Journal.FirstOrDefaultAsync(j => j.ClassId == 13 && j.SessionDate == date && j.StudentId == targetId);
     if (j1 == null)
     {
         j1 = new JournalEntry
         {
-            StudentId = firstStudentId,
-            ClassId = 10,
+            StudentId = targetId,
+            ClassId = 13,
             SessionDate = date,
             TeacherId = myduyen.UserId,
             PhotoPath = null,
             StrokeComment = "Bé cầm cọ rất khéo, nét uốn lượn mềm mại.",
             ColorComment = "Biết cách pha trộn màu sắc tươi sáng, sinh động.",
             AbsorbComment = "Tiếp thu nhanh, chăm chú lắng nghe cô hướng dẫn.",
-            CommentAt = new DateTime(2026, 11, 15, 10, 0, 0, DateTimeKind.Utc)
+            CommentAt = new DateTime(2026, 11, 11, 20, 0, 0, DateTimeKind.Utc)
         };
         db.Journal.Add(j1);
     }
@@ -260,30 +252,31 @@ app.MapGet("/api/diag/seed-pending-artwork", async (AppDbContext db) =>
         j1.PhotoAt = null;
     }
 
-    for (int i = 1; i < scs.Count; i++)
+    // Các học viên khác có đầy đủ ảnh
+    foreach (var other in scs.Where(s => s.StudentId != targetId))
     {
-        var sid = scs[i].StudentId;
-        var jOther = await db.Journal.FirstOrDefaultAsync(j => j.ClassId == 10 && j.SessionDate == date && j.StudentId == sid);
+        var sid = other.StudentId;
+        var jOther = await db.Journal.FirstOrDefaultAsync(j => j.ClassId == 13 && j.SessionDate == date && j.StudentId == sid);
         if (jOther == null)
         {
             db.Journal.Add(new JournalEntry
             {
                 StudentId = sid,
-                ClassId = 10,
+                ClassId = 13,
                 SessionDate = date,
                 TeacherId = myduyen.UserId,
                 PhotoPath = "/uploads/seed/art10.svg",
-                PhotoAt = new DateTime(2026, 11, 15, 10, 0, 0, DateTimeKind.Utc),
+                PhotoAt = new DateTime(2026, 11, 11, 20, 0, 0, DateTimeKind.Utc),
                 StrokeComment = "Nét vẽ tự tin, dứt khoát và rõ ràng hơn.",
                 ColorComment = "Bé phối màu hài hòa, các mảng màu tương phản đẹp mắt.",
                 AbsorbComment = "Hào hứng sáng tạo thêm các chi tiết mới cho tranh.",
-                CommentAt = new DateTime(2026, 11, 15, 10, 0, 0, DateTimeKind.Utc)
+                CommentAt = new DateTime(2026, 11, 11, 20, 0, 0, DateTimeKind.Utc)
             });
         }
     }
 
     await db.SaveChangesAsync();
-    return Results.Ok(new { ok = true, targetStudent = scs[0].Student?.FullName ?? firstStudentId.ToString(), classId = 10, sessionDate = "2026-11-15" });
+    return Results.Ok(new { ok = true, targetStudent = targetStudent.Student?.FullName, studentId = targetId, classId = 13, sessionDate = "2026-11-11" });
 });
 
 app.MapGet("/api/diag/seed-progress", async (AppDbContext db) =>
