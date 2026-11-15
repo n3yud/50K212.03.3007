@@ -13,7 +13,9 @@ var builder = WebApplication.CreateBuilder(args);
 var cfg = builder.Configuration;
 
 // --- Cơ sở dữ liệu PostgreSQL ---
-builder.Services.AddDbContext<AppDbContext>(o => o.UseNpgsql(cfg.GetConnectionString("Default")));
+var rawCs = cfg.GetConnectionString("Default") ?? "";
+var connStr = ProgramHelpers.ParsePostgresConnection(rawCs);
+builder.Services.AddDbContext<AppDbContext>(o => o.UseNpgsql(connStr));
 
 // --- Dịch vụ nghiệp vụ ---
 builder.Services.AddHttpClient();
@@ -78,4 +80,28 @@ public class DateOnlyConverter : JsonConverter<DateOnly>
 {
     public override DateOnly Read(ref Utf8JsonReader r, Type t, JsonSerializerOptions o) => DateOnly.Parse(r.GetString()!);
     public override void Write(Utf8JsonWriter w, DateOnly v, JsonSerializerOptions o) => w.WriteStringValue(v.ToString("yyyy-MM-dd"));
+}
+
+public static partial class ProgramHelpers
+{
+    public static string ParsePostgresConnection(string cs)
+    {
+        if (string.IsNullOrWhiteSpace(cs)) return cs;
+        if (cs.StartsWith("postgres://", StringComparison.OrdinalIgnoreCase) || 
+            cs.StartsWith("postgresql://", StringComparison.OrdinalIgnoreCase))
+        {
+            try
+            {
+                var uri = new Uri(cs);
+                var userInfo = uri.UserInfo.Split(':');
+                var username = Uri.UnescapeDataString(userInfo[0]);
+                var password = userInfo.Length > 1 ? Uri.UnescapeDataString(userInfo[1]) : "";
+                var db = uri.AbsolutePath.TrimStart('/');
+                var port = uri.Port > 0 ? uri.Port : 5432;
+                return $"Host={uri.Host};Port={port};Database={db};Username={username};Password={password};SSL Mode=Require;Trust Server Certificate=true";
+            }
+            catch { }
+        }
+        return cs;
+    }
 }
