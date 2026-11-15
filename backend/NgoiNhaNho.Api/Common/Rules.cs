@@ -27,8 +27,8 @@ public static class Rules
         }
         return TimeZoneInfo.Local;
     }
-    public static DateTime Now => TimeZoneInfo.ConvertTime(DateTime.UtcNow, Vn);
-    public static DateOnly Today => DateOnly.FromDateTime(Now);
+    public static DateTime Now => DateTime.UtcNow;
+    public static DateOnly Today => DateOnly.FromDateTime(TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, Vn));
 
     /// <summary>0 = Chủ nhật, 1 = Thứ 2 ... 6 = Thứ 7 (trùng với cột Weekday trong CSDL)</summary>
     public static int Weekday(DateOnly d) => (int)d.DayOfWeek;

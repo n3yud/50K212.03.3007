@@ -9,6 +9,8 @@ using NgoiNhaNho.Api.Common;
 using NgoiNhaNho.Api.Data;
 using NgoiNhaNho.Api.Services;
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 var builder = WebApplication.CreateBuilder(args);
 var cfg = builder.Configuration;
 
