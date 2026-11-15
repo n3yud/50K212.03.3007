@@ -33,7 +33,7 @@ public class ErrorMiddleware(RequestDelegate next, ILogger<ErrorMiddleware> log)
         {
             log.LogError(e, "Lỗi không xử lý được");
             ctx.Response.StatusCode = 500; ctx.Response.ContentType = "application/json; charset=utf-8";
-            await ctx.Response.WriteAsync(JsonSerializer.Serialize(new { message = "Hiện tại đang có sự cố, vui lòng thử lại sau" }, Json));
+            await ctx.Response.WriteAsync(JsonSerializer.Serialize(new { message = "Hiện tại đang có sự cố, vui lòng thử lại sau", detail = e.Message, errorType = e.GetType().Name }, Json));
         }
     }
 }
