@@ -169,6 +169,23 @@ app.MapGet("/api/diag/seed-journal", async (AppDbContext db) =>
     return Results.Ok(new { updated });
 });
 
+app.MapGet("/api/diag/seed-roster", async (AppDbContext db) =>
+{
+    var studs = await db.Students.Where(s => new[] { 61, 62, 63, 67 }.Contains(s.StudentId)).ToListAsync();
+    foreach (var s in studs) s.Status = "Đang học";
+    
+    var existingSc = await db.StudentClasses.Where(sc => sc.ClassId == 13).Select(sc => sc.StudentId).ToListAsync();
+    foreach (var sid in new[] { 61, 62, 63, 67 })
+    {
+        if (!existingSc.Contains(sid))
+            db.StudentClasses.Add(new StudentClass { StudentId = sid, ClassId = 13, IsActive = true });
+    }
+    
+    await db.SaveChangesAsync();
+    var count = await db.StudentClasses.CountAsync(sc => sc.ClassId == 13 && sc.IsActive && sc.Student!.Status == "Đang học");
+    return Results.Ok(new { classId = 13, activeStudents = count });
+});
+
 app.MapGet("/api/diag/seed-progress", async (AppDbContext db) =>
 {
     var tl = await db.Users.FirstOrDefaultAsync(u => u.Username == "thanhnhi");

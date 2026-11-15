@@ -142,13 +142,13 @@ INSERT dbo.Students (Code, FullName, DateOfBirth, Gender, ParentName, ParentPhon
  ('HV0059', N'Đinh Hồng Hạnh', DATEFROMPARTS(YEAR(@today)-8, 5, 13), N'Nữ', N'Đinh Thị Hoa', '0939888999', N'Nâng cao', N'Đang học', DATEADD(DAY, -20, SYSDATETIME())),
  ('HV0060', N'Mai Hoàng Bách', DATEFROMPARTS(YEAR(@today)-6, 6, 15), N'Nam', N'Mai Văn Hải', '0940111222', N'Cơ bản', N'Đang học', DATEADD(DAY, -19, SYSDATETIME())),
  -- Thêm học viên Chờ xếp lớp (61..67)
- ('HV0061', N'Phan Kim Ngân', DATEFROMPARTS(YEAR(@today)-5, 7, 17), N'Nữ', N'Phan Văn Hải', '0940222333', N'Cơ bản', N'Chờ xếp lớp', DATEADD(DAY, -18, SYSDATETIME())),
- ('HV0062', N'Trịnh Gia Hưng', DATEFROMPARTS(YEAR(@today)-6, 8, 19), N'Nam', N'Trịnh Thị Lan', '0940333444', N'Cơ bản', N'Chờ xếp lớp', DATEADD(DAY, -17, SYSDATETIME())),
- ('HV0063', N'Lâm Bảo Ngọc', DATEFROMPARTS(YEAR(@today)-5, 9, 21), N'Nữ', N'Lâm Văn Nam', '0940444555', N'Cơ bản', N'Chờ xếp lớp', DATEADD(DAY, -16, SYSDATETIME())),
+ ('HV0061', N'Phan Kim Ngân', DATEFROMPARTS(YEAR(@today)-5, 7, 17), N'Nữ', N'Phan Văn Hải', '0940222333', N'Cơ bản', N'Đang học', DATEADD(DAY, -18, SYSDATETIME())),
+ ('HV0062', N'Trịnh Gia Hưng', DATEFROMPARTS(YEAR(@today)-6, 8, 19), N'Nam', N'Trịnh Thị Lan', '0940333444', N'Cơ bản', N'Đang học', DATEADD(DAY, -17, SYSDATETIME())),
+ ('HV0063', N'Lâm Bảo Ngọc', DATEFROMPARTS(YEAR(@today)-5, 9, 21), N'Nữ', N'Lâm Văn Nam', '0940444555', N'Cơ bản', N'Đang học', DATEADD(DAY, -16, SYSDATETIME())),
  ('HV0064', N'Dương Thành Đạt', DATEFROMPARTS(YEAR(@today)-9, 10, 23), N'Nam', N'Dương Thị Hoa', '0940555666', N'Nâng cao', N'Chờ xếp lớp', DATEADD(DAY, -15, SYSDATETIME())),
  ('HV0065', N'Kiều Thục Anh', DATEFROMPARTS(YEAR(@today)-10, 11, 25), N'Nữ', N'Kiều Văn Hải', '0940666777', N'Nâng cao', N'Chờ xếp lớp', DATEADD(DAY, -14, SYSDATETIME())),
  ('HV0066', N'Châu Minh Long', DATEFROMPARTS(YEAR(@today)-8, 12, 27), N'Nam', N'Châu Thị Lan', '0940777888', N'Nâng cao', N'Chờ xếp lớp', DATEADD(DAY, -13, SYSDATETIME())),
- ('HV0067', N'Vũ Mai Phương', DATEFROMPARTS(YEAR(@today)-5, 1, 29), N'Nữ', N'Vũ Văn Nam', '0940888999', N'Cơ bản', N'Chờ xếp lớp', DATEADD(DAY, -12, SYSDATETIME())),
+ ('HV0067', N'Vũ Mai Phương', DATEFROMPARTS(YEAR(@today)-5, 1, 29), N'Nữ', N'Vũ Văn Nam', '0940888999', N'Cơ bản', N'Đang học', DATEADD(DAY, -12, SYSDATETIME())),
  -- Thêm học viên Đã bảo lưu (68..75)
  ('HV0068', N'Tạ Minh Khang', DATEFROMPARTS(YEAR(@today)-6, 2, 2), N'Nam', N'Tạ Thị Hoa', '0941111222', N'Cơ bản', N'Đã bảo lưu', DATEADD(DAY, -30, SYSDATETIME())),
  ('HV0069', N'Lương Hoài An', DATEFROMPARTS(YEAR(@today)-5, 3, 4), N'Nữ', N'Lương Văn Hải', '0941222333', N'Cơ bản', N'Đã bảo lưu', DATEADD(DAY, -28, SYSDATETIME())),
@@ -177,6 +177,7 @@ INSERT dbo.StudentClasses (StudentId, ClassId, IsActive) VALUES
  -- Học viên mới 44..60 vào lớp
  (44, 13, 1),
  (45, 13, 1), (45, 8, 1),
+ (61, 13, 1), (62, 13, 1), (63, 13, 1), (67, 13, 1),
  (46, 14, 1),
  (47, 14, 1), (47, 3, 1),
  (48, 15, 1),

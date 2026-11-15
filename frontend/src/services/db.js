@@ -155,13 +155,13 @@ Hồ Phương Dung|Nữ|5|0939666777|c12
 Võ Đình Phong|Nam|10|0939777888|c11
 Đinh Hồng Hạnh|Nữ|8|0939888999|c9
 Mai Hoàng Bách|Nam|6|0940111222|c8
-Phan Kim Ngân|Nữ|5|0940222333|WAIT
-Trịnh Gia Hưng|Nam|6|0940333444|WAIT
-Lâm Bảo Ngọc|Nữ|5|0940444555|WAIT
+Phan Kim Ngân|Nữ|5|0940222333|c13
+Trịnh Gia Hưng|Nam|6|0940333444|c13
+Lâm Bảo Ngọc|Nữ|5|0940444555|c13
 Dương Thành Đạt|Nam|9|0940555666|WAIT
 Kiều Thục Anh|Nữ|10|0940666777|WAIT
 Châu Minh Long|Nam|8|0940777888|WAIT
-Vũ Mai Phương|Nữ|5|0940888999|WAIT
+Vũ Mai Phương|Nữ|5|0940888999|c13
 Tạ Minh Khang|Nam|6|0941111222|HOLD:c1
 Lương Hoài An|Nữ|5|0941222333|HOLD:c4
 Mạc Quốc Dũng|Nam|9|0941333444|HOLD:c2
