@@ -71,6 +71,9 @@ DECLARE
   rn_val     INT;
 BEGIN
 
+-- Xóa dữ liệu cũ và reset ID về 1 trước khi nạp lại
+TRUNCATE "AuditLog", "Journal", "Notifications", "Absences", "Trials", "AttendanceRecords", "Attendances", "Tuition", "StudentClasses", "Students", "Classes", "Users" RESTART IDENTITY CASCADE;
+
 /* ---- Nhân sự ---- */
 INSERT INTO "Users" ("Username","Email","PasswordHash","Role","FullName","Title","Phone") VALUES
  ('thanhnhi',  'thanhnhi@ngoinhanho.vn',  pw, 'assistant',  'Thanh Nhi',  '',     '0901234001'),
