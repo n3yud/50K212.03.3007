@@ -118,7 +118,7 @@ app.MapGet("/api/diag", async (AppDbContext db, IConfiguration cfg) =>
             .ToList();
         return Results.Ok(new {
             ok = true,
-            version = "v3",
+            version = "v4",
             canConnect,
             userCount,
             matchingEnvKeys = envNames,
