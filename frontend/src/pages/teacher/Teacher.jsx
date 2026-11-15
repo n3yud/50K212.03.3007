@@ -162,11 +162,11 @@ export function TeachSchedule() {
 export function AttendList() {
   const nav = useNavigate(); const q = useApi(() => teacher.today(), []);
   const rows = q.data || [];
-  useEffect(() => { if (rows.length === 1) nav(`/giao-vien/diem-danh/${encodeURIComponent(rows[0].key)}`, { replace: true }); }, [rows.length]); // eslint-disable-line
+  const goBack = () => (window.history.state?.idx > 0 ? nav(-1) : nav('/giao-vien/trang-chu'));
   return (
-    <Page title="Điểm danh ca học" sub={`Ca học hôm nay - ${fmtDate(todayISO())}`} onBack={() => nav('/giao-vien/lich-day')}>
+    <Page title="Điểm danh ca học" sub={`Ca học hôm nay - ${fmtDate(todayISO())}`} onBack={goBack}>
       {q.error ? <Note text={errText(q.error)} onBtn={q.reload} btn="Thử lại" />
-        : q.data && !rows.length ? <Note title="Hôm nay chưa có ca học nào được phân công" onBtn={() => nav('/giao-vien/lich-day')} />
+        : q.data && !rows.length ? <Note title="Hôm nay chưa có ca học nào được phân công" onBtn={goBack} />
           : rows.map((s) => <SessCard key={s.key} s={s} onClick={() => nav(`/giao-vien/diem-danh/${encodeURIComponent(s.key)}`)} right={<IconChevronRight size={18} className="chev" />} tag={<span className="row"><Pill tone={s.finalized ? 'ok' : 'orange'}>{s.finalized ? 'Đã chốt' : 'Chưa chốt'}</Pill><small>{s.count} học viên</small></span>} />)}
     </Page>
   );
@@ -183,7 +183,7 @@ export function Attend({ sessionKey }) {
     window.addEventListener('online', on); window.addEventListener('offline', off); window.addEventListener('nnn-synced', synced);
     return () => { window.removeEventListener('online', on); window.removeEventListener('offline', off); window.removeEventListener('nnn-synced', synced); };
   }, []); // eslint-disable-line
-  const back = () => nav('/giao-vien/diem-danh');
+  const back = () => (window.history.state?.idx > 0 ? nav(-1) : nav('/giao-vien/trang-chu'));
   const d = q.data; const s = d?.session;
   const mark = (id, v) => setRec((r) => { const n = { ...r, [id]: v }; setDraft(sessionKey, n); return n; }); // lưu nháp tức thì trên máy (BR-UC11-10)
   const finalize = async () => {
