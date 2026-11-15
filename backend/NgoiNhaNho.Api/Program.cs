@@ -186,6 +186,106 @@ app.MapGet("/api/diag/seed-roster", async (AppDbContext db) =>
     return Results.Ok(new { classId = 13, activeStudents = count });
 });
 
+app.MapGet("/api/diag/seed-pending-artwork", async (AppDbContext db) =>
+{
+    var myduyen = await db.Users.FirstOrDefaultAsync(u => u.Username == "myduyen");
+    if (myduyen == null) return Results.NotFound("Teacher myduyen not found");
+
+    var date = new DateOnly(2026, 11, 15);
+    var att = await db.Attendances.Include(a => a.Records).FirstOrDefaultAsync(a => a.ClassId == 10 && a.SessionDate == date);
+    if (att == null)
+    {
+        att = new Attendance
+        {
+            ClassId = 10,
+            SessionDate = date,
+            FinalizedAt = new DateTime(2026, 11, 15, 9, 30, 0, DateTimeKind.Utc),
+            FinalizedBy = myduyen.UserId,
+        };
+        db.Attendances.Add(att);
+        await db.SaveChangesAsync();
+    }
+
+    var scs = await db.StudentClasses.Include(sc => sc.Student)
+        .Where(sc => sc.ClassId == 10 && sc.IsActive && sc.Student!.Status == "Đang học")
+        .ToListAsync();
+
+    if (scs.Count == 0)
+    {
+        db.StudentClasses.Add(new StudentClass { StudentId = 61, ClassId = 10, IsActive = true });
+        db.StudentClasses.Add(new StudentClass { StudentId = 62, ClassId = 10, IsActive = true });
+        await db.SaveChangesAsync();
+        scs = await db.StudentClasses.Include(sc => sc.Student)
+            .Where(sc => sc.ClassId == 10 && sc.IsActive && sc.Student!.Status == "Đang học")
+            .ToListAsync();
+    }
+
+    foreach (var sc in scs)
+    {
+        var rec = att.Records.FirstOrDefault(r => r.PersonType == "Student" && r.PersonId == sc.StudentId);
+        if (rec == null)
+        {
+            att.Records.Add(new AttendanceRecord
+            {
+                AttendanceId = att.AttendanceId,
+                PersonType = "Student",
+                PersonId = sc.StudentId,
+                Status = "present"
+            });
+        }
+    }
+    await db.SaveChangesAsync();
+
+    var firstStudentId = scs[0].StudentId;
+    var j1 = await db.Journal.FirstOrDefaultAsync(j => j.ClassId == 10 && j.SessionDate == date && j.StudentId == firstStudentId);
+    if (j1 == null)
+    {
+        j1 = new JournalEntry
+        {
+            StudentId = firstStudentId,
+            ClassId = 10,
+            SessionDate = date,
+            TeacherId = myduyen.UserId,
+            PhotoPath = null,
+            StrokeComment = "Bé cầm cọ rất khéo, nét uốn lượn mềm mại.",
+            ColorComment = "Biết cách pha trộn màu sắc tươi sáng, sinh động.",
+            AbsorbComment = "Tiếp thu nhanh, chăm chú lắng nghe cô hướng dẫn.",
+            CommentAt = new DateTime(2026, 11, 15, 10, 0, 0, DateTimeKind.Utc)
+        };
+        db.Journal.Add(j1);
+    }
+    else
+    {
+        j1.PhotoPath = null;
+        j1.PhotoAt = null;
+    }
+
+    for (int i = 1; i < scs.Count; i++)
+    {
+        var sid = scs[i].StudentId;
+        var jOther = await db.Journal.FirstOrDefaultAsync(j => j.ClassId == 10 && j.SessionDate == date && j.StudentId == sid);
+        if (jOther == null)
+        {
+            db.Journal.Add(new JournalEntry
+            {
+                StudentId = sid,
+                ClassId = 10,
+                SessionDate = date,
+                TeacherId = myduyen.UserId,
+                PhotoPath = "/uploads/seed/art10.svg",
+                PhotoAt = new DateTime(2026, 11, 15, 10, 0, 0, DateTimeKind.Utc),
+                StrokeComment = "Nét vẽ tự tin, dứt khoát và rõ ràng hơn.",
+                ColorComment = "Bé phối màu hài hòa, các mảng màu tương phản đẹp mắt.",
+                AbsorbComment = "Hào hứng sáng tạo thêm các chi tiết mới cho tranh.",
+                CommentAt = new DateTime(2026, 11, 15, 10, 0, 0, DateTimeKind.Utc)
+            });
+        }
+    }
+
+    await db.SaveChangesAsync();
+    return Results.Ok(new { ok = true, targetStudent = scs[0].Student?.FullName ?? firstStudentId.ToString(), classId = 10, sessionDate = "2026-11-15" });
+});
+
 app.MapGet("/api/diag/seed-progress", async (AppDbContext db) =>
 {
     var tl = await db.Users.FirstOrDefaultAsync(u => u.Username == "thanhnhi");

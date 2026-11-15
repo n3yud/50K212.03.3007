@@ -215,8 +215,9 @@ Cao Ngọc Mai|Nữ|7|0941888999|HOLD:c11`.split('\n');
       D.attendance[sk] = { records: rec, finalized: true, finalizedAt: parse(d).getTime() + 20 * 3600000, by: c.teacherId };
       const violate = hash(sk) % 4 === 0; // một số ca bị thiếu ảnh/nhận xét để Giám sát có dữ liệu kiểm tra
       Object.entries(rec).filter(([, v]) => v === 'present').forEach(([sid], k) => {
-        const miss = violate && k % 3 === 0;
-        const missC = violate && k % 4 === 1;
+        const isTargetTest = d === addDays(t, -1) && c.teacherId === 'u_gv1' && k === 0;
+        const miss = isTargetTest || (violate && k % 3 === 0);
+        const missC = !isTargetTest && violate && k % 4 === 1;
         const art = ART[hash(sk + sid) % ART.length];
         const cm = comments[hash(sid) % 3];
         D.journal.push({ id: id('j'), studentId: sid, sessionKey: sk, teacherId: c.teacherId, photo: miss ? null : art, photoAt: miss ? null : parse(d).getTime() + 21 * 3600000, comment: missC ? null : { stroke: cm[0], color: cm[1], absorb: cm[2] }, commentAt: missC ? null : parse(d).getTime() + 21 * 3600000 });

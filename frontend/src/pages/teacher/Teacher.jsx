@@ -76,8 +76,7 @@ export function TeacherHome() {
   const nav = useNavigate();
   const q = useApi(async () => {
     const [today, done] = await Promise.all([teacher.today(), teacher.doneSessions()]);
-    const todayDone = done.filter((s) => s.date === todayISO());
-    const pres = await Promise.all(todayDone.map((s) => teacher.presentStudents(s.key)));
+    const pres = await Promise.all(done.map((s) => teacher.presentStudents(s.key)));
     const studs = pres.flatMap((p) => p.students);
     return { today, unfinal: today.filter((s) => !s.finalized && s.started).length, photos: studs.filter((x) => !x.hasPhoto).length, comments: studs.filter((x) => !x.hasComment).length };
   }, []);
@@ -257,7 +256,7 @@ function DonePicker({ title, emptyMsg, onPick }) {
     <Page title={title} onBack={() => nav('/giao-vien/tien-do')}>
       {q.error ? <Note text={errText(q.error)} onBtn={() => nav('/giao-vien/tien-do')} />
         : q.data && !q.data.length ? <Note text={emptyMsg} onBtn={() => nav('/giao-vien/tien-do')} />
-          : q.data && (<><div className="t-h4">Ca học đã diễn ra hôm nay</div>
+          : q.data && (<><div className="t-h4">Ca học đã diễn ra gần đây</div>
             {q.data.map((s) => <SessCard key={s.key} s={s} tag={doneTag(s)} onClick={() => onPick(s)} right={<IconChevronRight size={18} className="chev" />} />)}</>)}
     </Page>
   );
