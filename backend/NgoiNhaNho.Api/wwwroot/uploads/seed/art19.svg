@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+  <rect width="240" height="240" fill="#e0f2fe"/>
+  <!-- Mặt trời dịu dàng -->
+  <circle cx="180" cy="70" r="28" fill="#fde047" opacity="0.9"/>
+  <!-- Dãy núi xa quê hương -->
+  <path d="M0 130 Q60 80 130 120 T240 100 L240 240 L0 240 Z" fill="#86efac" opacity="0.6"/>
+  <!-- Đồi núi gần -->
+  <path d="M0 150 Q80 120 160 145 T240 135 L240 240 L0 240 Z" fill="#4ade80" opacity="0.7"/>
+  <!-- Cánh đồng lúa vàng chín rộ -->
+  <path d="M0 165 Q110 150 240 160 L240 240 L0 240 Z" fill="#facc15"/>
+  <path d="M0 185 Q130 170 240 185 L240 240 L0 240 Z" fill="#eab308"/>
+  <!-- Dòng sông quê uốn lượn -->
+  <path d="M60 165 Q100 190 80 240 L120 240 Q130 190 90 165 Z" fill="#38bdf8"/>
+  <!-- Ngôi nhà mái đỏ xa xa bên bờ sông -->
+  <polygon points="175,145 190,132 205,145" fill="#ef4444"/>
+  <rect x="178" y="145" width="24" height="15" fill="#fef08a"/>
+  <!-- Đàn chim bay -->
+  <path d="M50 60 Q55 54 60 60 Q65 54 70 60" stroke="#0369a1" stroke-width="2" fill="none"/>
+  <path d="M80 75 Q84 70 88 75 Q92 70 96 75" stroke="#0369a1" stroke-width="1.8" fill="none"/>
+</svg>

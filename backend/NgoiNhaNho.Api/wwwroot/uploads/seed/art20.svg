@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+  <defs>
+    <linearGradient id="sky20" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fdba74"/>
+      <stop offset="60%" stop-color="#f472b6"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="240" fill="url(#sky20)"/>
+  <!-- Mặt trời hoàng hôn -->
+  <circle cx="120" cy="120" r="32" fill="#fef08a"/>
+  <!-- Mặt biển -->
+  <rect x="0" y="140" width="240" height="100" fill="#0284c7" opacity="0.85"/>
+  <ellipse cx="120" cy="150" rx="40" ry="4" fill="#fef08a" opacity="0.6"/>
+  <ellipse cx="120" cy="165" rx="25" ry="3" fill="#fef08a" opacity="0.5"/>
+  <!-- Bờ cát -->
+  <path d="M0 200 Q100 180 240 220 L240 240 L0 240 Z" fill="#fde047"/>
+  <!-- Thân cây dừa -->
+  <path d="M30 240 Q45 170 80 130" stroke="#78350f" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <!-- Tán lá dừa -->
+  <path d="M80 130 Q110 115 125 135" stroke="#15803d" stroke-width="4" fill="none"/>
+  <path d="M80 130 Q90 100 80 90" stroke="#15803d" stroke-width="4" fill="none"/>
+  <path d="M80 130 Q60 105 45 115" stroke="#15803d" stroke-width="4" fill="none"/>
+  <path d="M80 130 Q60 135 50 150" stroke="#15803d" stroke-width="4" fill="none"/>
+</svg>

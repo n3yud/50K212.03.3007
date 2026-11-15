@@ -154,8 +154,46 @@ public class ParentController(AppDbContext db, ScheduleService sch, Notifier nt)
         var list = await db.Journal.Where(j => j.StudentId == studentId && (j.PhotoPath != null || j.StrokeComment != null)).OrderByDescending(j => j.SessionDate).ToListAsync();
         var res = new List<object>();
         foreach (var j in list)
-            res.Add(new { id = j.JournalId, session = await sch.InfoAsync(ScheduleService.Key(j.ClassId, j.SessionDate)), photo = j.PhotoPath,
-                comment = j.StrokeComment == null ? null : new { stroke = j.StrokeComment, color = j.ColorComment, absorb = j.AbsorbComment } });
+        {
+            var info = await sch.InfoAsync(ScheduleService.Key(j.ClassId, j.SessionDate));
+            res.Add(new {
+                id = j.JournalId,
+                session = info,
+                photo = j.PhotoPath,
+                title = GetArtTitle(j.PhotoPath, info.Name),
+                comment = j.StrokeComment == null ? null : new { stroke = j.StrokeComment, color = j.ColorComment, absorb = j.AbsorbComment }
+            });
+        }
         return res;
+    }
+
+    private static string GetArtTitle(string? photo, string className)
+    {
+        if (string.IsNullOrEmpty(photo)) return className.Replace("Cơ bản - ", "").Replace("Nâng cao - ", "");
+        var fn = Path.GetFileName(photo);
+        return fn switch
+        {
+            "art1.svg" => "Ngôi nhà bên sườn đồi",
+            "art2.svg" => "Chú mèo lười bên cửa sổ",
+            "art3.svg" => "Đại dương xanh và đàn cá nhỏ",
+            "art4.svg" => "Mặt trời rực rỡ và đồi cỏ xanh",
+            "art5.svg" => "Lọ hoa mùa xuân khoe sắc",
+            "art6.svg" => "Tàu vũ trụ khám phá ngân hà",
+            "art7.svg" => "Khinh khí cầu qua đồi núi",
+            "art8.svg" => "Chú gấu trúc tinh nghịch",
+            "art9.svg" => "Thuyền buồm lướt sóng ra khơi",
+            "art10.svg" => "Chú hươu cao cổ trên thảo nguyên",
+            "art11.svg" => "Cầu vồng rực rỡ sau mưa",
+            "art12.svg" => "Đêm trăng rằm quê hương thanh bình",
+            "art13.svg" => "Chú chim én đón mùa xuân",
+            "art14.svg" => "Cối xay gió trên cánh đồng quê",
+            "art15.svg" => "Tĩnh vật quả dâu tây ngọt ngào",
+            "art16.svg" => "Chú khủng long vui vẻ",
+            "art17.svg" => "Tĩnh vật bình hoa cúc rực rỡ",
+            "art18.svg" => "Tĩnh vật đĩa trái cây tươi",
+            "art19.svg" => "Cánh đồng lúa chín quê hương",
+            "art20.svg" => "Hoàng hôn trên biển quê hương",
+            _ => className.Replace("Cơ bản - ", "").Replace("Nâng cao - ", "")
+        };
     }
 }

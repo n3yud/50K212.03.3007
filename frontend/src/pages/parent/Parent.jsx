@@ -472,22 +472,26 @@ export function Timetable() {
 }
 
 export const ART_TITLES = {
-  'art1.svg': 'Ngôi nhà ước mơ của bé',
+  'art1.svg': 'Ngôi nhà bên sườn đồi',
   'art2.svg': 'Chú mèo lười bên cửa sổ',
   'art3.svg': 'Đại dương xanh và đàn cá nhỏ',
   'art4.svg': 'Mặt trời rực rỡ và đồi cỏ xanh',
-  'art5.svg': 'Vườn hoa sắc màu mùa xuân',
+  'art5.svg': 'Lọ hoa mùa xuân khoe sắc',
   'art6.svg': 'Tàu vũ trụ khám phá ngân hà',
   'art7.svg': 'Khinh khí cầu qua đồi núi',
   'art8.svg': 'Chú gấu trúc tinh nghịch',
   'art9.svg': 'Thuyền buồm lướt sóng ra khơi',
-  'art10.svg': 'Chú hươu cao cổ và cánh rừng',
+  'art10.svg': 'Chú hươu cao cổ trên thảo nguyên',
   'art11.svg': 'Cầu vồng rực rỡ sau mưa',
-  'art12.svg': 'Đêm trăng rằm và rước đèn',
+  'art12.svg': 'Đêm trăng rằm quê hương thanh bình',
   'art13.svg': 'Chú chim én đón mùa xuân',
-  'art14.svg': 'Cối xay gió trên thảo nguyên',
-  'art15.svg': 'Khu vườn dâu tây ngọt ngào',
+  'art14.svg': 'Cối xay gió trên cánh đồng quê',
+  'art15.svg': 'Tĩnh vật quả dâu tây ngọt ngào',
   'art16.svg': 'Chú khủng long vui vẻ',
+  'art17.svg': 'Tĩnh vật bình hoa cúc rực rỡ',
+  'art18.svg': 'Tĩnh vật đĩa trái cây tươi',
+  'art19.svg': 'Cánh đồng lúa chín quê hương',
+  'art20.svg': 'Hoàng hôn trên biển quê hương',
 };
 
 export function getLessonTitle(j) {
@@ -496,10 +500,7 @@ export function getLessonTitle(j) {
     const fn = j.photo.split('/').pop().split('?')[0];
     if (ART_TITLES[fn]) return ART_TITLES[fn];
   }
-  const titles = Object.values(ART_TITLES);
-  const hash = (s) => { let h = 0; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0; return h; };
-  const idx = hash((j?.session?.date || '') + (j?.id || '')) % titles.length;
-  return titles[idx];
+  return j?.session?.name?.replace(/^(Cơ bản|Nâng cao) - /, '') || 'Bài vẽ của bé';
 }
 
 // 4.2 Xem nhật ký học tập (+ chi tiết)
@@ -544,7 +545,7 @@ export function Diary() {
               <span className="th">{j.photo ? <img src={j.photo} alt={lessonTitle} /> : <Ico.palette s={34} c="#ed986f" />}</span>
               <span className="tx">
                 <small>{dmy(j.session.date)} • Lớp {j.session.name.replace(/^(Cơ bản|Nâng cao) - /, '')}</small>
-                <b style={{ color: '#0d7fa8', fontSize: '1.02rem', margin: '2px 0' }}>{lessonTitle}</b>
+                <b>{lessonTitle}</b>
                 <span>{j.comment ? j.comment.stroke : 'Chưa có nhận xét'}</span>
                 <em>Xem chi tiết</em>
               </span>

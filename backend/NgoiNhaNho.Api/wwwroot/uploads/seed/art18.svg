@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+  <rect width="240" height="240" fill="#f0fdf4"/>
+  <!-- Mặt bàn tĩnh vật -->
+  <rect x="0" y="150" width="240" height="90" fill="#cbd5e1"/>
+  <line x1="0" y1="150" x2="240" y2="150" stroke="#94a3b8" stroke-width="3"/>
+  <!-- Đĩa sứ -->
+  <ellipse cx="120" cy="180" rx="80" ry="22" fill="#e2e8f0"/>
+  <ellipse cx="120" cy="178" rx="74" ry="18" fill="#ffffff"/>
+  <!-- Quả cam bên phải -->
+  <circle cx="145" cy="155" r="28" fill="#f97316"/>
+  <ellipse cx="148" cy="130" rx="3" ry="5" fill="#15803d" transform="rotate(20 148 130)"/>
+  <circle cx="145" cy="132" r="2" fill="#7c2d12"/>
+  <!-- Quả táo đỏ bên trái -->
+  <path d="M75 145 C75 125 90 120 100 130 C110 120 125 125 125 145 C125 170 115 180 100 180 C85 180 75 170 75 145 Z" fill="#ef4444"/>
+  <line x1="100" y1="130" x2="102" y2="115" stroke="#78350f" stroke-width="3"/>
+  <ellipse cx="110" cy="120" rx="8" ry="4" fill="#22c55e" transform="rotate(-30 110 120)"/>
+  <!-- Quả lê vàng phía sau -->
+  <circle cx="100" cy="148" r="4" fill="#fca5a5" opacity="0.6"/>
+</svg>
