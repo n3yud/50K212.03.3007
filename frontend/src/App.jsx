@@ -22,9 +22,17 @@ import { TeacherHome, TeachMenu, TeachSchedule, AttendList, Attend, ProgressMenu
 function Guard({ roles }) {
   const { user } = useAuth(); const loc = useLocation();
   if (user === undefined) return <div className="empty">Đang tải…</div>;
-  if (!user) return <Navigate to={loc.pathname.startsWith('/phu-huynh') ? welcomeFor('parent') : loc.pathname.startsWith('/giao-vien') ? welcomeFor('teacher') : '/login'} replace />;
+  const portalWelcome = loc.pathname.startsWith('/phu-huynh')
+    ? welcomeFor('parent')
+    : loc.pathname.startsWith('/giao-vien')
+      ? welcomeFor('teacher')
+      : '/login';
+  if (!user) return <Navigate to={portalWelcome} replace />;
   if (user.mustChangePassword) return <Navigate to="/doi-mat-khau" replace />;
-  if (!roles.includes(user.role)) return <Navigate to={homeFor(user.role)} replace />;
+  if (!roles.includes(user.role)) {
+    // Không tự ý nhảy sang portal của role khác khi người dùng đang chủ động truy cập portal hiện tại
+    return <Navigate to={portalWelcome} replace />;
+  }
   return <Outlet />;
 }
 function Root() {

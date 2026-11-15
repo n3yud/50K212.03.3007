@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { auth } from '../services/api';
 import { IconAlert, IconCheck, IconX, IconInfo } from '../components/icons';
 import DemoFault from '../components/DemoFault';
@@ -10,9 +11,23 @@ export const useAuth = () => useContext(AuthCtx);
 export const useToast = () => useContext(ToastCtx);
 
 export function AppProvider({ children }) {
+  const loc = useLocation();
+  const portal = loc.pathname.startsWith('/phu-huynh')
+    ? 'parent'
+    : loc.pathname.startsWith('/giao-vien')
+      ? 'teacher'
+      : 'staff';
+
   const [user, setUser] = useState(undefined); // undefined = đang tải
   const [toasts, setToasts] = useState([]);
-  useEffect(() => { auth.me().then(setUser); startI18n(); }, []);
+
+  useEffect(() => {
+    let active = true;
+    auth.me().then((u) => { if (active) setUser(u); });
+    return () => { active = false; };
+  }, [portal]);
+
+  useEffect(() => { startI18n(); }, []);
   const push = useCallback((type, msg) => {
     const id = Math.random().toString(36).slice(2);
     setToasts((t) => [...t, { id, type, msg }]);

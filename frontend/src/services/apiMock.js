@@ -30,8 +30,26 @@ const wait = async (ms = 90) => { await delay(ms); faultCheck(); };
 
 // ---------- phiên đăng nhập (mô phỏng JWT) ----------
 const SKEY = 'nnn_session';
-const setSession = (uid) => { try { uid ? localStorage.setItem(SKEY, uid) : localStorage.removeItem(SKEY); } catch { /* ignore */ } };
-const sessionId = () => { try { return localStorage.getItem(SKEY); } catch { return null; } };
+const getMockPortal = () => {
+  try {
+    const p = window.location.pathname;
+    if (p.startsWith('/phu-huynh')) return 'parent';
+    if (p.startsWith('/giao-vien')) return 'teacher';
+    return 'staff';
+  } catch { return 'staff'; }
+};
+const setSession = (uid, portal) => {
+  try {
+    const p = portal || getMockPortal();
+    uid ? localStorage.setItem(`nnn_session_${p}`, uid) : localStorage.removeItem(`nnn_session_${p}`);
+    uid ? localStorage.setItem(SKEY, uid) : localStorage.removeItem(SKEY);
+  } catch { /* ignore */ }
+};
+const sessionId = (portal = getMockPortal()) => {
+  try {
+    return localStorage.getItem(`nnn_session_${portal}`) || localStorage.getItem(SKEY);
+  } catch { return null; }
+};
 export const publicUser = (u) => u && ({ id: u.id, role: u.role, fullName: u.fullName, title: u.title, username: u.username, phone: u.phone, mustChangePassword: u.mustChangePassword });
 
 // Kiểm tra quyền ở "Backend": gọi đầu mỗi hàm cần đăng nhập
@@ -177,11 +195,19 @@ export const auth = {
     u.lockoutEnd = null;
     const allowed = app === 'parent' ? ['parent'] : app === 'teacher' ? ['teacher'] : ['assistant', 'manager', 'supervisor'];
     if (!allowed.Contains ? !allowed.includes(u.role) : !allowed.includes(u.role)) fail('Tài khoản không có quyền truy cập ứng dụng này');
-    setSession(u.id);
+    setSession(u.id, app);
     return publicUser(u);
   },
   logout: async () => { setSession(null); },
-  me: async () => { const D = getDb(); const u = D.users.find((x) => x.id === sessionId()); return u && !u.locked ? publicUser(u) : null; },
+  me: async () => {
+    const D = getDb();
+    const portal = getMockPortal();
+    const u = D.users.find((x) => x.id === sessionId(portal));
+    if (!u || u.locked) return null;
+    const allowed = portal === 'parent' ? ['parent'] : portal === 'teacher' ? ['teacher'] : ['assistant', 'manager', 'supervisor'];
+    if (!allowed.includes(u.role)) return null;
+    return publicUser(u);
+  },
   changePassword: write((D, oldPw, newPw) => {
     const u = need(D);
     if (!newPw || newPw.length < 6) fail('Mật khẩu mới cần có ít nhất 6 ký tự', 'newPw');

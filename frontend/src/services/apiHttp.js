@@ -5,8 +5,38 @@
 const BASE = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');   // ví dụ https://localhost:7001/api
 const ORIGIN = BASE.replace(/\/api$/, '');
 const TOKEN = 'nnn_token';
-const getToken = () => { try { return localStorage.getItem(TOKEN); } catch { return null; } };
-const setToken = (t) => { try { t ? localStorage.setItem(TOKEN, t) : localStorage.removeItem(TOKEN); } catch { /* ignore */ } };
+
+const getPortal = () => {
+  try {
+    const p = window.location.pathname;
+    if (p.startsWith('/phu-huynh')) return 'parent';
+    if (p.startsWith('/giao-vien')) return 'teacher';
+    return 'staff';
+  } catch {
+    return 'staff';
+  }
+};
+
+const getToken = (portal = getPortal()) => {
+  try {
+    const t = localStorage.getItem(`nnn_token_${portal}`);
+    if (t) return t;
+    return localStorage.getItem(TOKEN);
+  } catch { return null; }
+};
+
+const setToken = (t, portal) => {
+  try {
+    const p = portal || getPortal();
+    if (t) {
+      localStorage.setItem(`nnn_token_${p}`, t);
+      localStorage.setItem(TOKEN, t);
+    } else {
+      localStorage.removeItem(`nnn_token_${p}`);
+      localStorage.removeItem(TOKEN);
+    }
+  } catch { /* ignore */ }
+};
 
 export class ApiError extends Error {
   constructor(message, status = 400, body = {}) { super(message); this.status = status; this.fields = body.fields || undefined; this.children = body.children || undefined; this.existing = body.extra?.existing; }
@@ -44,9 +74,20 @@ const put = (p, b) => call('PUT', p, b ?? {});
 
 // ---------- 1. đăng nhập ----------
 export const auth = {
-  login: async (username, password, app = 'staff') => { const r = await post('/auth/login', { username, password, app }); setToken(r.token); return r.user; },
+  login: async (username, password, app = 'staff') => { const r = await post('/auth/login', { username, password, app }); setToken(r.token, app); return r.user; },
   logout: async () => { setToken(null); },
-  me: async () => { if (!getToken()) return null; try { return await get('/auth/me'); } catch { return null; } },
+  me: async () => {
+    const portal = getPortal();
+    const token = getToken(portal);
+    if (!token) return null;
+    try {
+      const u = await get('/auth/me');
+      if (!u) return null;
+      const allowed = portal === 'parent' ? ['parent'] : portal === 'teacher' ? ['teacher'] : ['assistant', 'manager', 'supervisor'];
+      if (!allowed.includes(u.role)) return null;
+      return u;
+    } catch { return null; }
+  },
   changePassword: (oldPw, newPw) => post('/auth/change-password', { oldPw, newPw }),
   forgotMessage: (role) => (role === 'parent' ? 'Vui lòng liên hệ Trợ lý (qua Zalo) để được hỗ trợ cấp lại mật khẩu' : 'Vui lòng liên hệ bộ phận Admin để được hỗ trợ cấp lại mật khẩu'),
 };
