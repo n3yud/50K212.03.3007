@@ -1,7 +1,7 @@
 // Web mobile Phụ huynh – dựng lại theo đúng Figma "Giao diện Phụ huynh mobile web"
 // (Trang chủ, menu 3 chức năng mỗi tab, màn kết quả dạng thẻ có biểu tượng tròn + nút "Đóng").
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../../context/AppContext';
 import { parent, trialsApi, validateChild, MSG_SYS_PARENT, notifications } from '../../services/api';
 import { Button, Field, Input, Select } from '../../components/ui';
@@ -137,11 +137,20 @@ const WISHES = SCHED_CHOICES.map((o) => ({ days: o.days, slot: `${o.start} - ${o
 
 // UC 2.1 – dùng cho cả trang công khai (/dang-ky-hoc-thu) và trong app
 export function TrialRegister() {
-  const { user } = useAuth(); const nav = useNavigate(); const inApp = !!user;
-  const [kids, setKids] = useState([{ name: '', dob: '' }]); const [phone, setPhone] = useState(user?.phone || ''); const [wish, setWish] = useState('');
-  const [errs, setErrs] = useState({ f: {}, k: [] }); const [bad, setBad] = useState(false); const [res, setRes] = useState(null); const [busy, setBusy] = useState(false);
+  const { user } = useAuth();
+  const nav = useNavigate();
+  const loc = useLocation();
+  const isParent = user?.role === 'parent';
+  const inParentLayout = loc.pathname.startsWith('/phu-huynh');
+  const [kids, setKids] = useState([{ name: '', dob: '' }]);
+  const [phone, setPhone] = useState(isParent ? (user?.phone || '') : '');
+  const [wish, setWish] = useState('');
+  const [errs, setErrs] = useState({ f: {}, k: [] });
+  const [bad, setBad] = useState(false);
+  const [res, setRes] = useState(null);
+  const [busy, setBusy] = useState(false);
   const upd = (i, k, v) => setKids(kids.map((c, j) => (j === i ? { ...c, [k]: v } : c)));
-  const back = () => nav(inApp ? `${P}/hoc-thu` : `${P}/welcome`);
+  const back = () => nav(inParentLayout ? `${P}/hoc-thu` : isParent ? `${P}/trang-chu` : -1);
   const submit = async () => {
     const ce = kids.map((c) => validateChild(c.name, c.dob)); const fe = {};
     if (!/^0\d{9}$/.test(phone)) fe.phone = 'Số điện thoại gồm đúng 10 chữ số và bắt đầu bằng số 0';
@@ -154,8 +163,8 @@ export function TrialRegister() {
     catch (e) { if (e.fields || e.children) { setErrs({ f: e.fields || {}, k: e.children || [] }); setBad(true); } else setRes('fail'); }
     finally { setBusy(false); }
   };
-  const wrap = (c) => (inApp ? c : <div className="m-root"><div className="m-app">{c}</div></div>);
-  if (res === 'ok') return wrap(<div className="m-body"><MTitle title="Đăng ký học thử" onBack={back} /><Result type="ok" title="Đăng ký học thử thành công!" text={inApp ? 'Trợ lý sẽ liên hệ và đề xuất ca học thử phù hợp cho bé.' : 'Trợ lý sẽ liên hệ ba mẹ qua Zalo để hỗ trợ tài khoản và đề xuất ca học thử phù hợp.'} onBtn={back} /></div>);
+  const wrap = (c) => (inParentLayout ? c : <div className="m-root"><div className="m-app">{c}</div></div>);
+  if (res === 'ok') return wrap(<div className="m-body"><MTitle title="Đăng ký học thử" onBack={back} /><Result type="ok" title="Đăng ký học thử thành công!" text={inParentLayout ? 'Trợ lý sẽ liên hệ và đề xuất ca học thử phù hợp cho bé.' : 'Trợ lý sẽ liên hệ ba mẹ qua Zalo để hỗ trợ tài khoản và đề xuất ca học thử phù hợp.'} onBtn={back} /></div>);
   if (res === 'fail') return wrap(<div className="m-body"><MTitle title="Đăng ký học thử" onBack={back} /><Result type="warn" title="Không thể đăng ký học thử" text={sysText} onBtn={() => setRes(null)} /></div>);
   return wrap(
     <div className="m-body">
@@ -171,7 +180,7 @@ export function TrialRegister() {
         ))}
         <div className="p-sec">
           <div className="h">Thông tin phụ huynh</div>
-          <Field label="Số điện thoại phụ huynh" required error={errs.f.phone || errs.f.parentPhone}><Input value={phone} readOnly={inApp} onChange={(e) => setPhone(e.target.value.replace(/\D/g, ''))} inputMode="numeric" maxLength={10} placeholder="Nhập số điện thoại" /></Field>
+          <Field label="Số điện thoại phụ huynh" required error={errs.f.phone || errs.f.parentPhone}><Input value={phone} readOnly={isParent && inParentLayout} onChange={(e) => setPhone(e.target.value.replace(/\D/g, ''))} inputMode="numeric" maxLength={10} placeholder="Nhập số điện thoại" /></Field>
           <Field label="Khung giờ mong muốn" required error={errs.f.wish} hint="Đây là nguyện vọng, lịch chính thức do Lớp vẽ sắp xếp"><Select value={wish} onChange={(e) => setWish(e.target.value)} placeholder="Chọn khung giờ" options={WISHES.map((w, i) => ({ value: String(i), label: w.label }))} /></Field>
         </div>
         {kids.length < 2 && <Button variant="outline" block onClick={() => setKids([...kids, { name: '', dob: '' }])}>+ Thêm bé thứ hai</Button>}
