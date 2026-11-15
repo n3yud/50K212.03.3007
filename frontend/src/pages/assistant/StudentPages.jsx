@@ -237,6 +237,7 @@ function ReserveRestore({ mode }) {
   const R = mode === 'reserve';
   const title = R ? 'Bảo lưu hồ sơ học viên' : 'Khôi phục hồ sơ học viên';
   const [q, setQ] = useState('');
+  const [appliedQ, setAppliedQ] = useState('');
   const [all, setAll] = useState(null);
   const [step, setStep] = useState('list'); // list | confirm | done | fail
   const [cur, setCur] = useState(null);
@@ -247,7 +248,7 @@ function ReserveRestore({ mode }) {
   const load = async () => { try { setAll(await students.search({ q: '' })); } catch (e) { setErr({ sys: errMsg(e) }); } };
   useEffect(() => { load(); }, []);
   const rows = (all || []).filter((s) => (R ? s.status !== 'Đã bảo lưu' : s.status === 'Đã bảo lưu'))
-    .filter((s) => { const k = q.trim().toLowerCase(); return !k || s.fullName.toLowerCase().includes(k) || s.code.toLowerCase().includes(k) || s.parentPhone.includes(k); });
+    .filter((s) => { const k = (appliedQ || q).trim().toLowerCase(); return !k || s.fullName.toLowerCase().includes(k) || s.code.toLowerCase().includes(k) || (s.parentPhone && s.parentPhone.includes(k)); });
   const doIt = async () => {
     setBusy(true);
     try { const r = await (R ? students.reserve(cur.id) : students.restore(cur.id)); setRes({ ...r, at: todayISO() }); setStep('done'); load(); }
@@ -311,17 +312,33 @@ function ReserveRestore({ mode }) {
     <>
       <PageHead crumbs={crumbs} title={title} />
       <FCard className="soft" title={R ? 'Tìm kiếm hồ sơ học viên' : 'Tìm kiếm hồ sơ đã bảo lưu'}>
-        <div style={{ maxWidth: 850 }}><Field label={<span style={{ color: '#6B93A2' }}>Tìm kiếm</span>} className="f-reserve-search"><Input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Nhập SĐT phụ huynh, mã học viên hoặc họ tên" /></Field></div>
+        <div className="f-searchrow">
+          <Field label={<span style={{ color: '#6B93A2' }}>Tìm kiếm</span>} className="f-reserve-search">
+            <Input
+              value={q}
+              onChange={(e) => {
+                setQ(e.target.value);
+                setAppliedQ(e.target.value);
+              }}
+              onKeyDown={(e) => e.key === 'Enter' && setAppliedQ(q)}
+              placeholder="Nhập SĐT phụ huynh, mã học viên hoặc họ tên"
+            />
+          </Field>
+          <Button onClick={() => setAppliedQ(q)} style={{ width: 206, height: 44 }}>Tìm kiếm</Button>
+        </div>
       </FCard>
-      {all && q.trim() && rows.length === 0 ? (
+      {all && (appliedQ || q).trim() && rows.length === 0 ? (
         <FCard>
           <Alert type="error" style={{ marginBottom: 0 }} msg={R ? 'Không tìm thấy hồ sơ học viên phù hợp' : 'Không tìm thấy hồ sơ đã bảo lưu phù hợp'} />
         </FCard>
       ) : (
         <FCard className="soft" title={R ? 'Danh sách hồ sơ chưa bảo lưu' : 'Danh sách hồ sơ đã bảo lưu'}>
           <FTable rows={rows} empty={R ? 'Không có hồ sơ nào' : 'Chưa có hồ sơ nào được bảo lưu'} cols={[
-            { h: 'Mã học viên', k: 'code', b: 1 }, { h: 'Họ tên', k: 'fullName', b: 1 }, { h: 'Chương trình học', k: 'program', b: 1 },
-            { h: 'Trạng thái', r: (s) => <Pill>{s.status}</Pill> }, { h: 'Hành động', w: 120, r: (s) => <PickLink onClick={() => { setCur(s); setConfirmBox(true); setStep('confirm'); }} /> },
+            { h: 'Mã học viên', k: 'code', b: 1 },
+            { h: R ? 'Họ tên' : 'Học viên', k: 'fullName', b: 1 },
+            { h: R ? 'Chương trình học' : 'Chương trình', k: 'program', b: 1 },
+            { h: 'Trạng thái', r: (s) => <Pill>{s.status}</Pill> },
+            { h: 'Hành động', w: 120, r: (s) => <PickLink onClick={() => { setCur(s); setConfirmBox(true); setStep('confirm'); }}>Chọn</PickLink> },
           ]} />
         </FCard>
       )}
