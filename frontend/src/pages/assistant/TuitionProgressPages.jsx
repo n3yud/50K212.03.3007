@@ -90,9 +90,11 @@ export function TuitionLookup() {
   const cur = monthKey(todayISO());
   const [f, setF] = useState({ q: '', month: cur, status: '' });
   const [rows, setRows] = useState(null); const [sys, setSys] = useState(null); const [none, setNone] = useState(false);
+  const [loading, setLoading] = useState(false);
   const search = async () => {
-    setNone(false);
+    setLoading(true); setNone(false);
     try { const r = await tuition.search(f); setRows(r); setNone(!r.length); } catch (e) { setSys(errMsg(e)); }
+    finally { setLoading(false); }
   };
   const head = <PageHead crumbs={['Quản lý học phí', 'Tra cứu tình trạng học phí']} title="Tra cứu tình trạng học phí" />;
   if (sys) return <>{head}<Alert type="error" msg={sys} onClose={() => setSys(null)} /></>;
@@ -104,11 +106,12 @@ export function TuitionLookup() {
           <Field label="Học viên"><Input value={f.q} onChange={(e) => setF({ ...f, q: e.target.value })} placeholder="Nhập họ tên học viên" /></Field>
           <Field label="Tháng"><Select value={f.month} onChange={(e) => setF({ ...f, month: e.target.value })} options={months.map((m) => ({ value: m, label: mLabel(m) }))} /></Field>
           <Field label="Trạng thái học phí"><Select value={f.status} onChange={(e) => setF({ ...f, status: e.target.value })} options={[{ value: '', label: 'Tất cả' }, 'Đã thanh toán', 'Chưa thanh toán']} /></Field>
-          <Button onClick={search}>Tìm kiếm</Button>
+          <Button onClick={search} disabled={loading}>{loading ? 'Đang tìm...' : 'Tìm kiếm'}</Button>
         </div>
       </FCard>
       <FCard title="Danh sách kết quả tra cứu học phí">
-        {none ? (<><Alert type="error" big msg="Không tìm thấy học viên phù hợp" onClose={() => setNone(false)} /><div className="f-actions"><Button variant="outline" onClick={() => setNone(false)}>Thử lại</Button></div></>)
+        {loading ? <Note>Đang tải dữ liệu, vui lòng đợi trong giây lát...</Note>
+          : none ? (<><Alert type="error" big msg="Không tìm thấy học viên phù hợp" onClose={() => setNone(false)} /><div className="f-actions"><Button variant="outline" onClick={() => setNone(false)}>Thử lại</Button></div></>)
           : rows && (
             <FTable rows={rows} rowKey="studentId" cols={[
               { h: 'Học viên', k: 'fullName', b: 1 }, { h: 'Chương trình học', k: 'program' }, { h: 'Tháng', r: (r) => mLabel(r.month) },
@@ -116,7 +119,7 @@ export function TuitionLookup() {
               { h: 'Số buổi còn lại', r: (r) => `${r.remaining} buổi` },
             ]} />
           )}
-        {!rows && !none && <div style={{ minHeight: 120 }} />}
+        {!rows && !none && !loading && <div style={{ minHeight: 120 }} />}
       </FCard>
     </>
   );
@@ -251,9 +254,15 @@ export function ProgressNeedReview() {
   const [opt, setOpt] = useState({ classes: [], teachers: [] });
   const [f, setF] = useState({ program: '', classId: '', teacherId: '' });
   const [rows, setRows] = useState(null); const [sys, setSys] = useState(null);
+  const [loading, setLoading] = useState(false);
   useEffect(() => { Promise.all([classes.list(), classes.teachers()]).then(([c, t]) => setOpt({ classes: c, teachers: t })).catch(() => {}); }, []);
   const head = <PageHead crumbs={['Quản lý tiến độ học tập', 'Lập danh sách học viên cần đánh giá']} title="Lập danh sách học viên cần đánh giá" />;
-  const run = async () => { try { setRows(await progress.needReview(f)); } catch (e) { setSys(errMsg(e)); } };
+  const run = async () => {
+    setLoading(true); setSys(null);
+    try { setRows(await progress.needReview(f)); }
+    catch (e) { setSys(errMsg(e)); }
+    finally { setLoading(false); }
+  };
   const exportX = () => downloadXlsx(`hoc-vien-can-danh-gia-${todayISO()}.xlsx`, ['Học viên', 'Chương trình học', 'Ca học', 'Giáo viên phụ trách', 'Tình trạng tiến độ', 'Đánh giá gần nhất'], rows.map((r) => [r.fullName, r.program, r.className, r.teacher, r.status, fmtDate(r.lastEval)]), 'CanDanhGia');
   if (sys) return <>{head}<Alert type="error" msg={sys} onClose={() => setSys(null)} /></>;
   const cl = opt.classes.filter((c) => !f.program || c.program === f.program);
@@ -265,15 +274,16 @@ export function ProgressNeedReview() {
           <Field label="Ca học"><Select value={f.classId} onChange={(e) => setF({ ...f, classId: e.target.value })} options={[{ value: '', label: 'Tất cả' }, ...cl.map((c) => ({ value: c.id, label: `${c.name} (${patternShort(c)} ${c.start})` }))]} /></Field>
           <Field label="Giáo viên phụ trách"><Select value={f.teacherId} onChange={(e) => setF({ ...f, teacherId: e.target.value })} options={[{ value: '', label: 'Tất cả' }, ...opt.teachers.map((t) => ({ value: t.id, label: t.name }))]} /></Field>
         </div>
-        <div className="f-actions" style={{ marginTop: 16 }}><Button onClick={run}>Lập danh sách</Button></div>
+        <div className="f-actions" style={{ marginTop: 16 }}><Button onClick={run} disabled={loading}>{loading ? 'Đang tải...' : 'Lập danh sách'}</Button></div>
       </FCard>
       <FCard className="soft" title={rows && !rows.length ? 'Danh sách học viên cần đánh giá' : 'Danh sách kết quả'}>
-        {!rows ? <Note>Chọn bộ lọc (nếu cần) và nhấn “Lập danh sách”.</Note>
+        {loading ? <Note>Đang tải dữ liệu, vui lòng đợi trong giây lát...</Note>
+          : !rows ? <Note>Chọn bộ lọc (nếu cần) và nhấn “Lập danh sách”.</Note>
           : !rows.length ? <Alert type="error" big msg="Hiện tại không có học viên nào cần đánh giá" onClose={() => setRows(null)} />
-            : <FTable rows={rows} rowKey={(r) => r.studentId + r.className} cols={[
-              { h: 'Học viên', k: 'fullName', b: 1 }, { h: 'Chương trình học', k: 'program' }, { h: 'Ca học', k: 'className' },
-              { h: 'Giáo viên phụ trách', k: 'teacher' }, { h: 'Tình trạng tiến độ', r: (r) => <Pill tone="warn">{r.status}</Pill> }, { h: 'Đánh giá gần nhất', r: (r) => fmtDate(r.lastEval) },
-            ]} />}
+          : <FTable rows={rows} rowKey={(r) => r.studentId + r.className} cols={[
+            { h: 'Học viên', k: 'fullName', b: 1 }, { h: 'Chương trình học', k: 'program' }, { h: 'Ca học', k: 'className' },
+            { h: 'Giáo viên phụ trách', k: 'teacher' }, { h: 'Tình trạng tiến độ', r: (r) => <Pill tone="warn">{r.status}</Pill> }, { h: 'Đánh giá gần nhất', r: (r) => fmtDate(r.lastEval) },
+          ]} />}
       </FCard>
       {rows?.length > 0 && <div className="f-actions" style={{ marginTop: 0 }}><Button variant="outline" onClick={exportX}>Xuất Excel</Button></div>}
     </>

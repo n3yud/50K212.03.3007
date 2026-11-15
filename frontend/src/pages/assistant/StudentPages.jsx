@@ -175,10 +175,12 @@ export function StudentLookup() {
   const [list, setList] = useState(null);
   const [detail, setDetail] = useState(null);
   const [err, setErr] = useState(null);
+  const [loading, setLoading] = useState(false);
   const search = async () => {
-    setErr(null); setDetail(null);
+    setErr(null); setDetail(null); setLoading(true);
     try { const r = await students.search({ q }); setList(r); if (!r.length) setErr({ type: 'empty' }); }
     catch (e) { setList(null); setErr({ type: 'sys', msg: errMsg(e) }); }
+    finally { setLoading(false); }
   };
   const open = async (s) => { try { setDetail(await students.get(s.id)); } catch (e) { setErr({ type: 'sys', msg: errMsg(e) }); } };
   if (err?.type === 'sys') return (<><PageHead crumbs={[CR, 'Tra cứu hồ sơ học viên']} title="Tra cứu hồ sơ học viên" /><Alert type="error" msg={err.msg} onClose={() => setErr(null)} /></>);
@@ -207,9 +209,11 @@ export function StudentLookup() {
     <>
       <PageHead crumbs={[CR, 'Tra cứu hồ sơ học viên']} title="Tra cứu hồ sơ học viên" />
       <FCard title="Tìm kiếm hồ sơ học viên">
-        <div className="f-searchrow"><Field label="Tìm kiếm"><Input value={q} onChange={(e) => setQ(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && search()} placeholder="Nhập tìm kiếm" /></Field><Button onClick={search} style={{ width: 206, height: 44 }}>Tìm kiếm</Button></div>
+        <div className="f-searchrow"><Field label="Tìm kiếm"><Input value={q} onChange={(e) => setQ(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && search()} placeholder="Nhập tìm kiếm" /></Field><Button onClick={search} disabled={loading} style={{ width: 206, height: 44 }}>{loading ? 'Đang tìm...' : 'Tìm kiếm'}</Button></div>
       </FCard>
-      {err?.type === 'empty' ? (
+      {loading ? (
+        <FCard><Note>Đang tìm kiếm hồ sơ học viên, vui lòng đợi...</Note></FCard>
+      ) : err?.type === 'empty' ? (
         <FCard className="f-empty-search">
           <svg className="f-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="11" cy="11" r="7" />
