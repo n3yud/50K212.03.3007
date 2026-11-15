@@ -28,7 +28,9 @@ public static class Rules
         return TimeZoneInfo.Local;
     }
     public static DateTime Now => DateTime.UtcNow;
-    public static DateOnly Today => DateOnly.FromDateTime(TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, Vn));
+    public static DateTime NowVn => TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, Vn);
+    public static DateOnly Today => DateOnly.FromDateTime(NowVn);
+    public static TimeOnly CurrentTime => TimeOnly.FromDateTime(NowVn);
 
     /// <summary>0 = Chủ nhật, 1 = Thứ 2 ... 6 = Thứ 7 (trùng với cột Weekday trong CSDL)</summary>
     public static int Weekday(DateOnly d) => (int)d.DayOfWeek;
@@ -57,12 +59,12 @@ public static class Rules
     public static bool Started(DateOnly date, TimeOnly start)
     {
         var t = Today;
-        return date < t || (date == t && TimeOnly.FromDateTime(Now) >= start);
+        return date < t || (date == t && CurrentTime >= start);
     }
     public static bool Ended(DateOnly date, TimeOnly end)
     {
         var t = Today;
-        return date < t || (date == t && TimeOnly.FromDateTime(Now) >= end);
+        return date < t || (date == t && CurrentTime >= end);
     }
     public static bool Overlap(TimeOnly s1, TimeOnly e1, TimeOnly s2, TimeOnly e2) => s1 < e2 && s2 < e1;
     public static int CountWeekdayInMonth(int wd, string month) // month = "YYYY-MM"
