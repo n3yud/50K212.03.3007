@@ -21,13 +21,44 @@ public class TuitionController(AppDbContext db, ScheduleService sch, Notifier nt
         var k = (q ?? "").Trim().ToLower();
         var students = await db.Students.Where(s => s.Status == "Đang học" && (k == "" || s.FullName.ToLower().Contains(k) || s.Code.ToLower().Contains(k))).OrderBy(s => s.Code).ToListAsync();
         var tuition = await db.Tuition.Where(t => t.Month == m).ToDictionaryAsync(t => t.StudentId);
+        
+        var studentIds = students.Select(s => s.StudentId).ToList();
+        var first = DateOnly.Parse(m + "-01");
+        var next = first.AddMonths(1);
+        
+        var studentClasses = await db.StudentClasses.Where(x => x.IsActive && studentIds.Contains(x.StudentId)).ToListAsync();
+        var studentClassMap = studentClasses.GroupBy(x => x.StudentId).ToDictionary(g => g.Key, g => g.Select(x => x.ClassId).ToHashSet());
+
+        var attendedMonth = await (from r in db.AttendanceRecords
+                                   join a in db.Attendances on r.AttendanceId equals a.AttendanceId
+                                   where r.PersonType == "Student" && r.Status == "present"
+                                         && a.SessionDate >= first && a.SessionDate < next
+                                         && studentIds.Contains(r.PersonId)
+                                   select new { r.PersonId, a.ClassId }).ToListAsync();
+
+        var absentMonth = await db.Absences
+            .Where(a => a.SessionDate >= first && a.SessionDate < next && studentIds.Contains(a.StudentId))
+            .GroupBy(a => a.StudentId)
+            .Select(g => new { g.Key, N = g.Count() })
+            .ToDictionaryAsync(x => x.Key, x => x.N);
+
         var res = new List<object>();
         foreach (var s in students)
         {
             tuition.TryGetValue(s.StudentId, out var tu);
             var st = tu?.Status ?? "Chưa thanh toán";
             if (!string.IsNullOrEmpty(status) && st != status) continue;
-            res.Add(new { studentId = s.StudentId, code = s.Code, fullName = s.FullName, program = s.Program, parentPhone = s.ParentPhone, month = m, amount = Rules.Price[s.Program], status = st, total = tu?.TotalSessions ?? 0, remaining = await sch.RemainingAsync(s.StudentId, m) });
+            
+            var rem = 0;
+            if (tu != null && tu.Status == "Đã thanh toán")
+            {
+                var cids = studentClassMap.GetValueOrDefault(s.StudentId) ?? new HashSet<int>();
+                var presCount = attendedMonth.Count(x => x.PersonId == s.StudentId && cids.Contains(x.ClassId));
+                var absCount = absentMonth.GetValueOrDefault(s.StudentId);
+                rem = Math.Max(0, tu.TotalSessions - presCount - absCount);
+            }
+            
+            res.Add(new { studentId = s.StudentId, code = s.Code, fullName = s.FullName, program = s.Program, parentPhone = s.ParentPhone, month = m, amount = Rules.Price[s.Program], status = st, total = tu?.TotalSessions ?? 0, remaining = rem });
         }
         return res;
     }

@@ -72,7 +72,7 @@ DECLARE
 BEGIN
 
 -- Xóa dữ liệu cũ và reset ID về 1 trước khi nạp lại
-TRUNCATE "AuditLog", "Journal", "Notifications", "Absences", "Trials", "AttendanceRecords", "Attendances", "Tuition", "StudentClasses", "Students", "Classes", "Users" RESTART IDENTITY CASCADE;
+TRUNCATE "AuditLog", "ProgressRecords", "Journal", "Notifications", "Absences", "Trials", "AttendanceRecords", "Attendances", "Tuition", "StudentClasses", "Students", "Classes", "Users" RESTART IDENTITY CASCADE;
 
 /* ---- Nhân sự ---- */
 INSERT INTO "Users" ("Username","Email","PasswordHash","Role","FullName","Title","Phone") VALUES
@@ -334,6 +334,18 @@ WHILE d < today LOOP
 
   d := d + 1;
 END LOOP;
+
+/* ---- Tiến độ học tập (học viên Đang học) ---- */
+INSERT INTO "ProgressRecords" ("StudentId", "ClassId", "SessionDate", "EvalDate", "Status", "TeacherId", "RecordedBy")
+SELECT x."StudentId", x."ClassId", x."SessionDate", x."SessionDate",
+       CASE WHEN x."StudentId" % 5 = 0 THEN 'Chậm tiến độ' ELSE 'Đúng tiến độ' END, c."TeacherId", tl_id
+FROM (SELECT r."PersonId" AS "StudentId", a."ClassId", a."SessionDate", ROW_NUMBER() OVER (PARTITION BY r."PersonId" ORDER BY a."SessionDate" DESC) AS rk
+      FROM "AttendanceRecords" r
+      JOIN "Attendances" a ON a."AttendanceId" = r."AttendanceId"
+      JOIN "StudentClasses" sc ON sc."StudentId" = r."PersonId" AND sc."ClassId" = a."ClassId"
+      WHERE r."PersonType" = 'Student' AND r."Status" = 'present') x
+JOIN "Classes" c ON c."ClassId" = x."ClassId"
+WHERE x.rk = 1 AND x."StudentId" % 2 = 0;
 
 /* ---- Thông báo mẫu ---- */
 ph_id := (SELECT "UserId" FROM "Users" WHERE "Username" = '0901234567');

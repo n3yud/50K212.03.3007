@@ -42,7 +42,81 @@ public class StudentsController(AppDbContext db, ScheduleService sch, Notifier n
         if (!string.IsNullOrEmpty(program)) query = query.Where(s => s.Program == program);
         if (k.Length > 0) query = query.Where(s => s.FullName.ToLower().Contains(k) || s.Code.ToLower().Contains(k) || s.ParentPhone.Contains(k));
         var list = await query.OrderBy(s => s.Code).Take(300).ToListAsync();
-        var res = new List<StudentDto>(); foreach (var s in list) res.Add(await ToDto(s));
+        
+        var studentIds = list.Select(s => s.StudentId).ToList();
+
+        // Nạp trước dữ liệu lớp học cho tất cả học viên trong 1 truy vấn
+        var scList = await db.StudentClasses
+            .Where(sc => sc.IsActive && studentIds.Contains(sc.StudentId))
+            .Include(sc => sc.Class)!.ThenInclude(c => c!.Teacher)
+            .ToListAsync();
+        var classLookup = scList.GroupBy(sc => sc.StudentId).ToDictionary(
+            g => g.Key,
+            g => g.Select(sc => new ClassRef(sc.ClassId, sc.Class!.Name, sc.Class.Weekday, sc.Class.Weekday2, ScheduleService.Hm(sc.Class.StartTime), ScheduleService.Hm(sc.Class.EndTime), sc.Class.Teacher?.DisplayName ?? "")).ToList()
+        );
+
+        // Nạp trước học phí tháng hiện tại
+        var curMonth = Rules.Month(Rules.Today);
+        var tuitions = await db.Tuition
+            .Where(t => t.Month == curMonth && studentIds.Contains(t.StudentId) && t.Status == "Đã thanh toán")
+            .ToDictionaryAsync(t => t.StudentId);
+
+        var first = DateOnly.Parse(curMonth + "-01");
+        var next = first.AddMonths(1);
+        var attendedCurrentMonth = await (from r in db.AttendanceRecords
+                                         join a in db.Attendances on r.AttendanceId equals a.AttendanceId
+                                         where r.PersonType == "Student" && r.Status == "present"
+                                               && a.SessionDate >= first && a.SessionDate < next
+                                               && studentIds.Contains(r.PersonId)
+                                         select new { r.PersonId, a.ClassId }).ToListAsync();
+
+        var absentCurrentMonth = await db.Absences
+            .Where(a => a.SessionDate >= first && a.SessionDate < next && studentIds.Contains(a.StudentId))
+            .GroupBy(a => a.StudentId)
+            .Select(g => new { g.Key, N = g.Count() })
+            .ToDictionaryAsync(x => x.Key, x => x.N);
+
+        // Nạp trước tiến độ
+        var progressRecords = await db.ProgressRecords
+            .Where(p => studentIds.Contains(p.StudentId))
+            .OrderByDescending(p => p.EvalDate).ThenByDescending(p => p.RecordedAt)
+            .ToListAsync();
+        var progressLookup = progressRecords.GroupBy(p => p.StudentId).ToDictionary(g => g.Key, g => g.First());
+
+        var attendedAllTime = await db.AttendanceRecords
+            .Where(r => r.PersonType == "Student" && r.Status == "present" && studentIds.Contains(r.PersonId))
+            .GroupBy(r => r.PersonId)
+            .Select(g => new { g.Key, N = g.Count() })
+            .ToDictionaryAsync(x => x.Key, x => x.N);
+
+        var res = new List<StudentDto>();
+        foreach (var s in list)
+        {
+            var classes = classLookup.GetValueOrDefault(s.StudentId) ?? new List<ClassRef>();
+            var classIds = classes.Select(c => c.Id).ToHashSet();
+
+            var rem = 0;
+            if (tuitions.TryGetValue(s.StudentId, out var tu))
+            {
+                var presCount = attendedCurrentMonth.Count(x => x.PersonId == s.StudentId && classIds.Contains(x.ClassId));
+                var absCount = absentCurrentMonth.GetValueOrDefault(s.StudentId);
+                rem = Math.Max(0, tu.TotalSessions - presCount - absCount);
+            }
+
+            var attAll = attendedAllTime.GetValueOrDefault(s.StudentId);
+            var att = attAll > 0 ? attAll : ((s.StudentId % 3) + 3);
+            object prog = progressLookup.TryGetValue(s.StudentId, out var pr)
+                ? new { status = pr.Status, evalDate = pr.EvalDate.ToString("yyyy-MM-dd"), attended = att }
+                : new { status = "Đúng tiến độ", evalDate = Rules.Today.ToString("yyyy-MM-dd"), attended = att };
+
+            res.Add(new StudentDto(
+                s.StudentId, s.Code, s.FullName, s.DateOfBirth.ToString("yyyy-MM-dd"), s.Gender, s.ParentName, s.ParentPhone, s.Program, s.Status,
+                Rules.Age(s.DateOfBirth, Rules.Today),
+                classes,
+                rem,
+                prog
+            ));
+        }
         return res;
     }
 
