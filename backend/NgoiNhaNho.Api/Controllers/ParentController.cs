@@ -62,8 +62,18 @@ public class ParentController(AppDbContext db, ScheduleService sch, Notifier nt)
         await OwnKid(studentId);
         var existing = await db.Absences.Where(a => a.StudentId == studentId).Select(a => new { a.ClassId, a.SessionDate }).ToListAsync();
         var res = new List<Dictionary<string, object?>>();
+        var remainingCache = new Dictionary<string, int>();
         foreach (var i in await sch.NextSessionsAsync(studentId))
-            if (!existing.Any(e => e.ClassId == i.ClassId && e.SessionDate.ToString("yyyy-MM-dd") == i.Date)) res.Add(Flat.Of(i, ("remaining", await sch.RemainingAsync(studentId, i.Date[..7]))));
+        {
+            var m = i.Date[..7];
+            if (!remainingCache.TryGetValue(m, out var rem))
+            {
+                rem = await sch.RemainingAsync(studentId, m);
+                remainingCache[m] = rem;
+            }
+            if (!existing.Any(e => e.ClassId == i.ClassId && e.SessionDate.ToString("yyyy-MM-dd") == i.Date))
+                res.Add(Flat.Of(i, ("remaining", rem)));
+        }
         return res;
     }
 

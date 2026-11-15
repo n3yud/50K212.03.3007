@@ -287,9 +287,20 @@ export function LeaveSend() {
       {picker}
       {rows && !rows.length ? <Result type={<Ico.cal s={34} c="#33b5e5" />} title="Bé không có buổi học sắp tới" text="Học viên hiện không có buổi học nào sắp tới để gửi đơn xin nghỉ" btn={null} footer={false} /> : (<>
         <div className="p-h3">Chọn buổi học chưa diễn ra</div>
-        <div className="p-choices">{(rows || []).map((r) => (
-          <button key={r.key} className={`p-choice ${key === r.key ? 'on' : ''}`} onClick={() => setKey(r.key)}><Radio on={key === r.key} /><span><b>{wdLong(r.weekday)} - {dmy(r.date)}</b><small>{r.start}-{r.end} - {r.name.replace(/^.* - /, '')}</small></span></button>
-        ))}</div>
+        <div className="p-choices">
+          {rows === null ? (
+            <div style={{ padding: '16px', textAlign: 'center', color: '#6b7c88', fontSize: '13px' }}>
+              Đang tải danh sách buổi học sắp tới...
+            </div>
+          ) : (
+            rows.map((r) => (
+              <button key={r.key} className={`p-choice ${key === r.key ? 'on' : ''}`} onClick={() => setKey(r.key)}>
+                <Radio on={key === r.key} />
+                <span><b>{wdLong(r.weekday)} - {dmy(r.date)}</b><small>{r.start}-{r.end} - {r.name.replace(/^.* - /, '')}</small></span>
+              </button>
+            ))
+          )}
+        </div>
         <div className="p-h3">Lý do nghỉ</div>
         <textarea className="textarea p-ta" value={reason} onChange={(e) => setReason(e.target.value)} placeholder="Ba mẹ có thể để trống phần này..." />
         <div className="p-bottom"><Button block disabled={!key || busy} onClick={send}>Gửi yêu cầu xin nghỉ</Button><button className="p-link" onClick={back}>Hủy</button></div>
@@ -338,9 +349,20 @@ export function MakeupRegister() {
           <Button block onClick={back}>Quay lại</Button>
         </>) : (<>
           <div className="p-h3">Chọn ca học bù khả dụng</div>
-          <div className="p-choices">{(opts || []).slice(0, 6).map((o) => (
-            <button key={o.key} className={`p-choice ${key === o.key ? 'on' : ''} ${full === o.key ? 'full' : ''}`} onClick={() => setKey(o.key)}><Radio on={key === o.key} /><span><b>{wdLong(o.weekday)} - {dmy(o.date)}</b><small>{o.start}-{o.end} - {o.name.replace(/^.* - /, '')}</small><em>Còn chỗ - Cùng trình độ</em></span></button>
-          ))}</div>
+          <div className="p-choices">
+            {opts === null ? (
+              <div style={{ padding: '16px', textAlign: 'center', color: '#6b7c88', fontSize: '13px' }}>
+                Đang tìm kiếm ca học bù khả dụng...
+              </div>
+            ) : (
+              opts.slice(0, 6).map((o) => (
+                <button key={o.key} className={`p-choice ${key === o.key ? 'on' : ''} ${full === o.key ? 'full' : ''}`} onClick={() => setKey(o.key)}>
+                  <Radio on={key === o.key} />
+                  <span><b>{wdLong(o.weekday)} - {dmy(o.date)}</b><small>{o.start}-{o.end} - {o.name.replace(/^.* - /, '')}</small><em>Còn chỗ - Cùng trình độ</em></span>
+                </button>
+              ))
+            )}
+          </div>
           {full ? <div className="p-redbox"><b>Ca học này vừa hết chỗ.</b><span>Ba mẹ vui lòng chọn ca khác</span></div>
             : <div className="p-infobox"><b>Hạn học bù: {dmy(cur.deadline)}</b><span>Đăng ký được giữ chỗ, chưa chốt lịch<br />Lịch chỉ chính thức sau khi Quản lý duyệt</span></div>}
           <div className="p-bottom"><Button block disabled={!key || busy} onClick={send}>Gửi đăng ký</Button><button className="p-link" onClick={back}>Hủy</button></div>
