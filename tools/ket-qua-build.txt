@@ -1,0 +1,12 @@
+==== BUILD 11/15/2026 11:13:32.36 ==== 
+9.0.304 [C:\Program Files\dotnet\sdk]
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  NgoiNhaNho.Api -> D:\ngoi-nha-nho (3)\ngoi-nha-nho (2)\ngoi-nha-nho\backend\NgoiNhaNho.Api\bin\Debug\net8.0\NgoiNhaNho.Api.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:00.87
+BUILD_EXIT=0 

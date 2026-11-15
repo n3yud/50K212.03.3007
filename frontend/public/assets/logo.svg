@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 27" width="40" height="27" fill="none">
+  <!-- Outer Arch -->
+  <path d="M0 27 C0 11 7 0 20 0 C33 0 40 11 40 27 L33 27 C33 15 29 7 20 7 C11 7 7 15 7 27 Z" fill="#a9deef"/>
+  <!-- Middle Arch -->
+  <path d="M8 27 C8 15 13 9 20 9 C27 9 32 15 32 27 L26 27 C26 19 24 15 20 15 C16 15 14 19 14 27 Z" fill="#ed986f"/>
+  <!-- Inner Arch -->
+  <path d="M15.5 27 C15.5 21 17.5 18 20 18 C22.5 18 24.5 21 24.5 27 Z" fill="#33b5e5"/>
+</svg>

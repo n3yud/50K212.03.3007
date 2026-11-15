@@ -1,0 +1,60 @@
+/* ============ DESIGN TOKENS ============
+   Mã màu được lấy trực tiếp từ các ảnh Figma (đo pixel).
+   Muốn đổi màu toàn hệ thống: chỉ sửa file này. */
+:root {
+  /* Màu thương hiệu (đo trực tiếp từ Figma) */
+  --c-primary: #33b5e5;
+  --c-primary-600: #1c9fd0;
+  --c-primary-700: #0d7fa8;
+  --c-primary-300: #a9deef;
+  --c-primary-200: #cdebf8;
+  --c-primary-100: #dff3fb;
+  --c-primary-50: #f4fafd;
+  --c-accent: #ed986f;
+  --c-accent-100: #fff1eb;
+  --c-gold: #f6c85f;
+
+  /* Trạng thái */
+  --c-success: #6db33f;
+  --c-success-600: #5a9a31;
+  --c-success-100: #eaf6e4;
+  --c-success-700: #2e7d32;
+  --c-warning-100: #fff2d9;
+  --c-warning-700: #9a6200;
+  --c-danger: #dc3545;
+  --c-danger-100: #fde7e9;
+  --c-danger-700: #dc3545;
+
+  /* Chữ & viền */
+  --c-text: #333333;
+  --c-text-soft: #555555;
+  --c-text-muted: #8899a6;
+  --c-border: #33b5e5;
+  --c-border-soft: #cbd5da;
+  --c-surface: #ffffff;
+  --c-surface-alt: #eef6fa;
+  --c-page: #f4fafd;
+
+  /* Font */
+  --font-admin: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mobile: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fs-xs: 0.75rem;    /* 12px */
+  --fs-sm: 0.875rem;   /* 14px */
+  --fs-md: 1rem;       /* 16px */
+  --fs-lg: 1.125rem;   /* 18px */
+  --fs-xl: 1.25rem;    /* 20px */
+  --fs-2xl: 1.75rem;   /* 28px - Tiêu đề chính Figma */
+
+  /* Khoảng cách (bội số của 4px) */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 20px; --sp-6: 24px; --sp-8: 32px;
+
+  /* Bo góc */
+  --r-sm: 6px; --r-md: 8px; --r-lg: 12px; --r-xl: 16px; --r-pill: 999px;
+
+  /* Bóng */
+  --shadow-sm: 0 1px 2px rgba(13, 127, 168, 0.08);
+  --shadow-md: 0 8px 24px rgba(13, 127, 168, 0.12);
+
+  --sidebar-w: 240px;
+  --header-h: 64px;
+}

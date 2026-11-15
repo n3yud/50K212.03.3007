@@ -1,0 +1,23 @@
+# Render Build & Deploy Configuration
+# Dùng cho backend .NET 8 Web API
+
+services:
+  - type: web
+    name: ngoinhanho-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ConnectionStrings__Default
+        sync: false          # nhập tay trên Render Dashboard (Neon connection string)
+      - key: Jwt__Key
+        sync: false          # nhập tay - 64 ký tự ngẫu nhiên
+      - key: Jwt__Issuer
+        value: NgoiNhaNho
+      - key: Jwt__Audience
+        value: NgoiNhaNhoClients
+      - key: Jwt__ExpireHours
+        value: 12
+      - key: Cors__Origins__0
+        sync: false          # nhập URL Vercel frontend sau khi deploy

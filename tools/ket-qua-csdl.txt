@@ -1,0 +1,26 @@
+==== TAO CSDL 11/15/2026 11:12:45.00 ==== 
+MSSQLSERVER : RUNNING  
+SQLEXPRESS : RUNNING  
+SERVER_CHON=localhost 
+[01_schema.sql] 
+Changed database context to 'master'.
+Changed database context to 'NgoiNhaNho'.
+Đã tạo xong database NgoiNhaNho. Chạy tiếp 02_seed.sql để nạp dữ liệu mẫu.
+SCHEMA_EXIT=0 
+[02_seed.sql] 
+Changed database context to 'NgoiNhaNho'.
+Đã nạp dữ liệu mẫu.
+SEED_EXIT=0 
+[kiem tra du lieu] 
+SoHocVien   MaDau      MaCuoi    
+----------- ---------- ----------
+         43 HV0001     HV0043    
+Role                 SoTaiKhoan 
+-------------------- -----------
+assistant                      1
+manager                        1
+parent                        45
+supervisor                     1
+teacher                        7
+    "Default": "Server=localhost;Database=NgoiNhaNho;Trusted_Connection=True;TrustServerCertificate=True;"
+==== XONG ==== 
