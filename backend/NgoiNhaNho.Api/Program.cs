@@ -111,6 +111,62 @@ app.MapGet("/api/diag", async (AppDbContext db, IConfiguration cfg) =>
     }
 });
 
+app.MapGet("/api/diag/seed", async (AppDbContext db) =>
+{
+    var pw = "$2b$11$/.liJknXJ64GHmqOOyYVuuRvZX.DZuA1JL7HzT42/NNKQLbEA1g.q"; // Nhanho@123
+    
+    if (!await db.Users.AnyAsync())
+    {
+        var users = new List<User>
+        {
+            new() { Username = "thanhnhi", Email = "thanhnhi@ngoinhanho.vn", PasswordHash = pw, Role = "assistant", FullName = "Thanh Nhi", Title = "", Phone = "0901234001", CreatedAt = DateTime.UtcNow },
+            new() { Username = "minhchau", Email = "minhchau@ngoinhanho.vn", PasswordHash = pw, Role = "manager", FullName = "Minh Châu", Title = "", Phone = "0901234002", CreatedAt = DateTime.UtcNow },
+            new() { Username = "thaibao", Email = "thaibao@ngoinhanho.vn", PasswordHash = pw, Role = "supervisor", FullName = "Thái Bảo", Title = "", Phone = "0901234003", CreatedAt = DateTime.UtcNow },
+            new() { Username = "myduyen", Email = "myduyen@ngoinhanho.vn", PasswordHash = pw, Role = "teacher", FullName = "Mỹ Duyên", Title = "Cô", Phone = "0901234004", CreatedAt = DateTime.UtcNow },
+            new() { Username = "baochau", Email = "baochau@ngoinhanho.vn", PasswordHash = pw, Role = "teacher", FullName = "Bảo Châu", Title = "Cô", Phone = "0901234005", CreatedAt = DateTime.UtcNow },
+            new() { Username = "quynh", Email = "quynh@ngoinhanho.vn", PasswordHash = pw, Role = "teacher", FullName = "Quỳnh", Title = "Cô", Phone = "0901234006", CreatedAt = DateTime.UtcNow },
+            new() { Username = "thuha", Email = "thuha@ngoinhanho.vn", PasswordHash = pw, Role = "teacher", FullName = "Thu Hà", Title = "Cô", Phone = "0901234007", CreatedAt = DateTime.UtcNow },
+            new() { Username = "minhkhoa", Email = "minhkhoa@ngoinhanho.vn", PasswordHash = pw, Role = "teacher", FullName = "Minh Khoa", Title = "Thầy", Phone = "0901234008", CreatedAt = DateTime.UtcNow },
+            new() { Username = "lananh", Email = "lananh@ngoinhanho.vn", PasswordHash = pw, Role = "teacher", FullName = "Lan Anh", Title = "Cô", Phone = "0901234009", CreatedAt = DateTime.UtcNow },
+            new() { Username = "0901234567", Email = null, PasswordHash = pw, Role = "parent", FullName = "Nguyễn Văn Hải", Title = null, Phone = "0901234567", CreatedAt = DateTime.UtcNow }
+        };
+        db.Users.AddRange(users);
+        await db.SaveChangesAsync();
+    }
+
+    if (!await db.Classes.AnyAsync())
+    {
+        var myduyen = await db.Users.FirstOrDefaultAsync(u => u.Username == "myduyen");
+        var baochau = await db.Users.FirstOrDefaultAsync(u => u.Username == "baochau");
+        var quynh = await db.Users.FirstOrDefaultAsync(u => u.Username == "quynh");
+        var thuha = await db.Users.FirstOrDefaultAsync(u => u.Username == "thuha");
+        var minhkhoa = await db.Users.FirstOrDefaultAsync(u => u.Username == "minhkhoa");
+        var lananh = await db.Users.FirstOrDefaultAsync(u => u.Username == "lananh");
+
+        var classes = new List<ClassRoom>
+        {
+            new() { Name = "Cơ bản - Thế giới màu sắc", Program = "Cơ bản", Weekday = 2, Weekday2 = 4, StartTime = new TimeOnly(17,30), EndTime = new TimeOnly(19,30), TeacherId = myduyen?.UserId, Letter = "A" },
+            new() { Name = "Nâng cao - Vẽ tĩnh vật", Program = "Nâng cao", Weekday = 2, Weekday2 = 4, StartTime = new TimeOnly(17,30), EndTime = new TimeOnly(19,30), TeacherId = baochau?.UserId, Letter = "A" },
+            new() { Name = "Nâng cao - Góc phố nhỏ", Program = "Nâng cao", Weekday = 2, Weekday2 = 4, StartTime = new TimeOnly(17,30), EndTime = new TimeOnly(19,30), TeacherId = quynh?.UserId, Letter = "B" },
+            new() { Name = "Cơ bản - Sắc màu diệu kỳ", Program = "Cơ bản", Weekday = 1, Weekday2 = 3, StartTime = new TimeOnly(17,30), EndTime = new TimeOnly(19,30), TeacherId = thuha?.UserId, Letter = "A" },
+            new() { Name = "Nâng cao - Phong cảnh quê hương", Program = "Nâng cao", Weekday = 1, Weekday2 = 3, StartTime = new TimeOnly(17,30), EndTime = new TimeOnly(19,30), TeacherId = baochau?.UserId, Letter = "A" },
+            new() { Name = "Cơ bản - Bé vẽ động vật", Program = "Cơ bản", Weekday = 6, Weekday2 = 0, StartTime = new TimeOnly(14,30), EndTime = new TimeOnly(16,30), TeacherId = thuha?.UserId, Letter = "A" },
+            new() { Name = "Nâng cao - Ký họa nhanh", Program = "Nâng cao", Weekday = 6, Weekday2 = 0, StartTime = new TimeOnly(14,30), EndTime = new TimeOnly(16,30), TeacherId = minhkhoa?.UserId, Letter = "A" },
+            new() { Name = "Cơ bản - Nét vẽ vui", Program = "Cơ bản", Weekday = 6, Weekday2 = 0, StartTime = new TimeOnly(9,40), EndTime = new TimeOnly(11,40), TeacherId = lananh?.UserId, Letter = "A" },
+            new() { Name = "Nâng cao - Màu nước cơ bản", Program = "Nâng cao", Weekday = 6, Weekday2 = 0, StartTime = new TimeOnly(9,40), EndTime = new TimeOnly(11,40), TeacherId = quynh?.UserId, Letter = "A" },
+            new() { Name = "Cơ bản - Bé tập tô màu", Program = "Cơ bản", Weekday = 1, Weekday2 = 3, StartTime = new TimeOnly(17,30), EndTime = new TimeOnly(19,30), TeacherId = lananh?.UserId, Letter = "B" },
+            new() { Name = "Nâng cao - Hình khối", Program = "Nâng cao", Weekday = 1, Weekday2 = 3, StartTime = new TimeOnly(17,30), EndTime = new TimeOnly(19,30), TeacherId = minhkhoa?.UserId, Letter = "B" },
+            new() { Name = "Cơ bản - Vẽ cùng bé", Program = "Cơ bản", Weekday = 6, Weekday2 = 0, StartTime = new TimeOnly(7,30), EndTime = new TimeOnly(9,30), TeacherId = myduyen?.UserId, Letter = "A" }
+        };
+        db.Classes.AddRange(classes);
+        await db.SaveChangesAsync();
+    }
+
+    var uCount = await db.Users.CountAsync();
+    var cCount = await db.Classes.CountAsync();
+    return Results.Ok(new { ok = true, userCount = uCount, classCount = cCount });
+});
+
 app.Run();
 
 public class DateOnlyConverter : JsonConverter<DateOnly>
