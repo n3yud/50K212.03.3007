@@ -73,10 +73,17 @@ const sysText = 'Hiện tại đang có sự cố, ba mẹ đợi Ngôi Nhà Nh�
 // Chọn học viên (Figma: ô "Học viên" + mũi tên). Trả về {kids, kid, picker, err}
 function useKids() {
   const [kids, setKids] = useState(null); const [err, setErr] = useState(null);
-  const [id, setId] = useState(() => sessionStorage.getItem('nnn_kid') || '');
+  const [id, setId] = useState(() => {
+    const s = sessionStorage.getItem('nnn_kid');
+    return s ? Number(s) : null;
+  });
   useEffect(() => { parent.kids().then(setKids).catch((e) => setErr(e.message || MSG_SYS_PARENT)); }, []);
-  const kid = (kids || []).find((k) => k.id === id) || (kids || [])[0];
-  const pick = (v) => { setId(v); sessionStorage.setItem('nnn_kid', v); };
+  const kid = (kids || []).find((k) => Number(k.id) === Number(id)) || (kids || [])[0];
+  const pick = (v) => {
+    const num = Number(v);
+    setId(num);
+    sessionStorage.setItem('nnn_kid', String(num));
+  };
   const picker = kid && (
     <label className="p-kid">
       <span className="lb">Học viên</span>
