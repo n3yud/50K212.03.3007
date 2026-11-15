@@ -74,6 +74,28 @@ app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+
+app.MapGet("/api/diag", async (AppDbContext db, IConfiguration cfg) =>
+{
+    try
+    {
+        var rawCs = cfg.GetConnectionString("Default") ?? "";
+        var canConnect = await db.Database.CanConnectAsync();
+        var userCount = canConnect ? await db.Users.CountAsync() : -1;
+        return Results.Ok(new {
+            ok = true,
+            canConnect,
+            userCount,
+            hasCs = !string.IsNullOrWhiteSpace(rawCs),
+            csType = rawCs.StartsWith("postgres", StringComparison.OrdinalIgnoreCase) ? "URI" : "Standard"
+        });
+    }
+    catch (Exception ex)
+    {
+        return Results.Json(new { ok = false, error = ex.GetType().Name, message = ex.Message, inner = ex.InnerException?.Message }, statusCode: 500);
+    }
+});
+
 app.Run();
 
 public class DateOnlyConverter : JsonConverter<DateOnly>
