@@ -1,0 +1,35 @@
+Hệ thống được thiết kế thành 3 phân hệ giao diện tách biệt theo đúng vai trò và thiết bị sử dụng (2 bản Mobile Web dành cho Phụ huynh & Giáo viên, và 1 bản Desktop dành cho Nhân sự trung tâm). Khi mở trên điện thoại, hệ thống tự động chuyển hướng vào màn hình Phụ huynh ngay khi vừa vào trang chủ.
+1. Web Quản trị – Dành cho Nhân sự Văn phòng (Desktop)
+Đường dẫn đăng nhập: 
+[https://ngoi-nha-nho-henna.vercel.app/login]
+(https://ngoi-nha-nho-henna.vercel.app/login)
+Mật khẩu chung: Nhanho@123 (nhân viên có thể đăng nhập bằng Tên đăng nhập hoặc Email công việc).
+Danh sách tài khoản:
+Trợ lý – Thanh Nhi: Tên đăng nhập thanhnhi | Email thanhnhi@ngoinhanho.vn — Tiếp nhận đơn học thử, xếp lớp, xếp lịch bù, thu học phí.
+Quản lý – Minh Châu: Tên đăng nhập minhchau | Email minhchau@ngoinhanho.vn — Phê duyệt ca học thử, duyệt ca học bù, xem báo cáo.
+Giám sát – Thái Bảo: Tên đăng nhập thaibao | Email thaibao@ngoinhanho.vn — Giám sát tiến độ review nhận xét, kiểm tra vi phạm, gửi nhắc nhở.
+2. Web Mobile Giáo viên – Dành cho Giáo viên đứng lớp (Mobile Web)
+Đường dẫn chào mừng & đăng nhập: [https://ngoi-nha-nho-henna.vercel.app/giao-vien/welcome]
+(https://ngoi-nha-nho-henna.vercel.app/giao-vien/welcome)
+Mật khẩu chung: Nhanho@123
+Danh sách tài khoản:
+Cô Mỹ Duyên: Tên đăng nhập myduyen | Email myduyen@ngoinhanho.vn — Lịch dạy: Lớp Cơ bản (T3 - T5, 17:30 - 19:30).
+Cô Bảo Châu: Tên đăng nhập baochau | Email baochau@ngoinhanho.vn — Lịch dạy: Lớp Nâng cao (T3 - T5 & T2 - T4).
+Cô Quỳnh: Tên đăng nhập quynh | Email quynh@ngoinhanho.vn — Lịch dạy: Lớp Nâng cao (T3 - T5).
+Cô Thu Hà: Tên đăng nhập thuha | Email thuha@ngoinhanho.vn — Lịch dạy: Lớp Cơ bản (T2 - T4 & T7 - CN).
+Thầy Minh Khoa: Tên đăng nhập minhkhoa | Email minhkhoa@ngoinhanho.vn — Lịch dạy: Ca cuối tuần (T7 - CN).
+Cô Lan Anh: Tên đăng nhập lananh | Email lananh@ngoinhanho.vn — Lịch dạy: Ca cuối tuần (T7 - CN).
+3. Web Mobile Phụ huynh – Dành cho Ba Mẹ theo dõi bé (Mobile Web)
+Đường dẫn chào mừng & đăng nhập: [https://ngoi-nha-nho-henna.vercel.app/phu-huynh/welcome]
+(https://ngoi-nha-nho-henna.vercel.app/phu-huynh/welcome) (hoặc /phu-huynh/login) - tích hợp nút "Đăng ký học thử ngay" và "Đăng nhập tại đây".
+Danh sách tài khoản:
+Phụ huynh chính thức: Số điện thoại 0901234567 | Mật khẩu Nhanho@123 — Có 2 con đang theo học (Bé Lê Gia Hân & Bé Lê Minh Khôi), dùng để test: tra cứu thời khóa biểu, xin nghỉ học, đăng ký học bù, xem nhật ký tiến độ.
+Phụ huynh mới: Số điện thoại 0912345678 | Mật khẩu 345678 — Tài khoản mới được cấp tạm, dùng để test tính năng: bắt buộc đổi mật khẩu ở lần đăng nhập đầu tiên (BR-UC1-04).
+4. Tài khoản kiểm thử Ngoại lệ & An toàn bảo mật
+Tài khoản bị khóa từ trước:
+Thông tin: Tên đăng nhập khoa.tk | Mật khẩu Nhanho@123 (đăng nhập tại /login hoặc /giao-vien/welcome).
+Mục đích: Kiểm tra thông báo "Tài khoản đã bị khóa. Vui lòng liên hệ bộ phận hỗ trợ".
+Kiểm tra khóa tạm chống Brute-force:
+Thao tác: Đăng nhập sai liên tiếp 5 lần ở bất kỳ tài khoản nào.
+Mục đích: Kiểm tra cơ chế tự động khóa tài khoản trong 15 phút và trả về thông báo thời gian mở lại.
+
