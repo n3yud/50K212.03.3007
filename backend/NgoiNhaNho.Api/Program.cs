@@ -13,7 +13,12 @@ var builder = WebApplication.CreateBuilder(args);
 var cfg = builder.Configuration;
 
 // --- Cơ sở dữ liệu PostgreSQL ---
-var rawCs = cfg.GetConnectionString("Default") ?? "";
+var rawCs = Environment.GetEnvironmentVariable("ConnectionStrings__Default")
+         ?? Environment.GetEnvironmentVariable("ConnectionStrings:Default")
+         ?? Environment.GetEnvironmentVariable("DATABASE_URL")
+         ?? Environment.GetEnvironmentVariable("POSTGRES_URL")
+         ?? cfg.GetConnectionString("Default") 
+         ?? "";
 var connStr = ProgramHelpers.ParsePostgresConnection(rawCs);
 builder.Services.AddDbContext<AppDbContext>(o => o.UseNpgsql(connStr));
 
@@ -77,17 +82,27 @@ app.MapControllers();
 
 app.MapGet("/api/diag", async (AppDbContext db, IConfiguration cfg) =>
 {
+    var rawCs = Environment.GetEnvironmentVariable("ConnectionStrings__Default")
+             ?? Environment.GetEnvironmentVariable("ConnectionStrings:Default")
+             ?? Environment.GetEnvironmentVariable("DATABASE_URL")
+             ?? Environment.GetEnvironmentVariable("POSTGRES_URL")
+             ?? cfg.GetConnectionString("Default") 
+             ?? "";
     try
     {
-        var rawCs = cfg.GetConnectionString("Default") ?? "";
         var canConnect = await db.Database.CanConnectAsync();
         var userCount = canConnect ? await db.Users.CountAsync() : -1;
+        var envNames = Environment.GetEnvironmentVariables().Keys.Cast<string>()
+            .Where(k => k.Contains("CONN", StringComparison.OrdinalIgnoreCase) || k.Contains("POSTGRES", StringComparison.OrdinalIgnoreCase) || k.Contains("DATABASE", StringComparison.OrdinalIgnoreCase))
+            .ToList();
         return Results.Ok(new {
             ok = true,
             canConnect,
             userCount,
+            matchingEnvKeys = envNames,
             hasCs = !string.IsNullOrWhiteSpace(rawCs),
-            csType = rawCs.StartsWith("postgres", StringComparison.OrdinalIgnoreCase) ? "URI" : "Standard"
+            csType = rawCs.StartsWith("postgres", StringComparison.OrdinalIgnoreCase) ? "URI" : "Standard",
+            parsedHost = ProgramHelpers.ParsePostgresConnection(rawCs).Split(';').FirstOrDefault()
         });
     }
     catch (Exception ex)
