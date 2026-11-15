@@ -68,8 +68,8 @@ using (var scope = app.Services.CreateScope())
         var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
         db.Database.Migrate();
 
-        // Tự động bù đắp dữ liệu Tiến độ học tập nếu chưa có
-        if (!db.ProgressRecords.Any() && db.Attendances.Any())
+        // Tự động bù đắp dữ liệu Tiến độ học tập nếu chưa có hoặc quá ít
+        if (db.ProgressRecords.Count() < 5 && db.Attendances.Any())
         {
             var tl = db.Users.FirstOrDefault(u => u.Username == "thanhnhi");
             var tlId = tl?.UserId ?? 1;
@@ -83,8 +83,9 @@ FROM (SELECT r.""PersonId"" AS ""StudentId"", a.""ClassId"", a.""SessionDate"", 
       JOIN ""StudentClasses"" sc ON sc.""StudentId"" = r.""PersonId"" AND sc.""ClassId"" = a.""ClassId""
       WHERE r.""PersonType"" = 'Student' AND r.""Status"" = 'present') x
 JOIN ""Classes"" c ON c.""ClassId"" = x.""ClassId""
-WHERE x.rk = 1 AND x.""StudentId"" % 2 = 0;";
-            db.Database.ExecuteSqlRaw(sql);
+WHERE x.rk = 1 AND x.""StudentId"" % 2 = 0
+ON CONFLICT DO NOTHING;";
+            try { db.Database.ExecuteSqlRaw(sql); } catch { /* ignore */ }
         }
     }
     catch (Exception ex)
@@ -100,6 +101,28 @@ app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+
+app.MapGet("/api/diag/seed-progress", async (AppDbContext db) =>
+{
+    var tl = await db.Users.FirstOrDefaultAsync(u => u.Username == "thanhnhi");
+    var tlId = tl?.UserId ?? 1;
+    var sql = $@"
+INSERT INTO ""ProgressRecords"" (""StudentId"", ""ClassId"", ""SessionDate"", ""EvalDate"", ""Status"", ""TeacherId"", ""RecordedBy"")
+SELECT x.""StudentId"", x.""ClassId"", x.""SessionDate"", x.""SessionDate"",
+       CASE WHEN x.""StudentId"" % 5 = 0 THEN 'Chậm tiến độ' ELSE 'Đúng tiến độ' END, c.""TeacherId"", {tlId}
+FROM (SELECT r.""PersonId"" AS ""StudentId"", a.""ClassId"", a.""SessionDate"", ROW_NUMBER() OVER (PARTITION BY r.""PersonId"" ORDER BY a.""SessionDate"" DESC) AS rk
+      FROM ""AttendanceRecords"" r
+      JOIN ""Attendances"" a ON a.""AttendanceId"" = r.""AttendanceId""
+      JOIN ""StudentClasses"" sc ON sc.""StudentId"" = r.""PersonId"" AND sc.""ClassId"" = a.""ClassId""
+      WHERE r.""PersonType"" = 'Student' AND r.""Status"" = 'present') x
+JOIN ""Classes"" c ON c.""ClassId"" = x.""ClassId""
+WHERE x.rk = 1 AND x.""StudentId"" % 2 = 0
+ON CONFLICT DO NOTHING;";
+    var inserted = await db.Database.ExecuteSqlRawAsync(sql);
+    var count = await db.ProgressRecords.CountAsync();
+    var slowCount = await db.ProgressRecords.CountAsync(p => p.Status == "Chậm tiến độ");
+    return Results.Ok(new { inserted, total = count, slow = slowCount });
+});
 
 app.MapGet("/api/diag", async (AppDbContext db, IConfiguration cfg) =>
 {
@@ -118,7 +141,7 @@ app.MapGet("/api/diag", async (AppDbContext db, IConfiguration cfg) =>
             .ToList();
         return Results.Ok(new {
             ok = true,
-            version = "v4",
+            version = "v5",
             canConnect,
             userCount,
             matchingEnvKeys = envNames,
