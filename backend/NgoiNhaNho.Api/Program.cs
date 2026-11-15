@@ -102,6 +102,38 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
+app.MapGet("/api/diag/seed-journal", async (AppDbContext db) =>
+{
+    var sql = @"
+UPDATE ""Journal"" j
+SET ""PhotoPath"" = CONCAT('/uploads/seed/art', 1 + ABS(('x'||md5(j.""ClassId""::TEXT||j.""StudentId""::TEXT||EXTRACT(DAY FROM j.""SessionDate"")::TEXT))::BIT(32)::INT)%16, '.svg'),
+    ""StrokeComment"" = CASE ABS(('x'||md5(j.""ClassId""::TEXT||j.""StudentId""::TEXT||EXTRACT(DAY FROM j.""SessionDate"")::TEXT))::BIT(32)::INT) % 5
+           WHEN 0 THEN 'Nét vẽ tự tin, dứt khoát và rõ ràng hơn.'
+           WHEN 1 THEN 'Bé cầm cọ rất khéo, nét uốn lượn mềm mại.'
+           WHEN 2 THEN 'Biết quan sát chi tiết, phác thảo hình dáng chuẩn xác.'
+           WHEN 3 THEN 'Nét vẽ phóng khoáng, thể hiện trí tưởng tượng phong phú.'
+           ELSE 'Có nhiều tiến bộ trong cách đi nét và hoàn thiện hình khối.'
+         END,
+    ""ColorComment"" = CASE ABS(('x'||md5(j.""StudentId""::TEXT||EXTRACT(DAY FROM j.""SessionDate"")::TEXT))::BIT(32)::INT) % 5
+           WHEN 0 THEN 'Bé phối màu hài hòa, các mảng màu tương phản đẹp mắt.'
+           WHEN 1 THEN 'Biết cách pha trộn màu sắc tươi sáng, sinh động.'
+           WHEN 2 THEN 'Màu sắc ấm áp, biết dùng sắc độ đậm nhạt tạo chiều sâu.'
+           WHEN 3 THEN 'Tô màu đều tay, không bị lem ra ngoài nét vẽ.'
+           ELSE 'Chọn màu rất sáng tạo, thể hiện cá tính riêng của bé.'
+         END,
+    ""AbsorbComment"" = CASE ABS(('x'||md5(j.""JournalId""::TEXT||j.""StudentId""::TEXT))::BIT(32)::INT) % 5
+           WHEN 0 THEN 'Tiếp thu nhanh, chăm chú lắng nghe cô hướng dẫn.'
+           WHEN 1 THEN 'Hoàn thành bài đúng giờ, rất tích cực tương tác trong lớp.'
+           WHEN 2 THEN 'Hào hứng sáng tạo thêm các chi tiết mới cho tranh.'
+           WHEN 3 THEN 'Tập trung cao độ và kiên nhẫn tô từng chi tiết nhỏ.'
+           ELSE 'Tự tin chia sẻ ý nghĩa bức tranh của mình với cô và các bạn.'
+         END
+WHERE j.""PhotoPath"" IS NOT NULL;
+";
+    var updated = await db.Database.ExecuteSqlRawAsync(sql);
+    return Results.Ok(new { updated });
+});
+
 app.MapGet("/api/diag/seed-progress", async (AppDbContext db) =>
 {
     var tl = await db.Users.FirstOrDefaultAsync(u => u.Username == "thanhnhi");
@@ -141,7 +173,7 @@ app.MapGet("/api/diag", async (AppDbContext db, IConfiguration cfg) =>
             .ToList();
         return Results.Ok(new {
             ok = true,
-            version = "v5",
+            version = "v6",
             canConnect,
             userCount,
             matchingEnvKeys = envNames,

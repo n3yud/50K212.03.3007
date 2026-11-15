@@ -471,6 +471,37 @@ export function Timetable() {
   );
 }
 
+export const ART_TITLES = {
+  'art1.svg': 'Ngôi nhà ước mơ của bé',
+  'art2.svg': 'Chú mèo lười bên cửa sổ',
+  'art3.svg': 'Đại dương xanh và đàn cá nhỏ',
+  'art4.svg': 'Mặt trời rực rỡ và đồi cỏ xanh',
+  'art5.svg': 'Vườn hoa sắc màu mùa xuân',
+  'art6.svg': 'Tàu vũ trụ khám phá ngân hà',
+  'art7.svg': 'Khinh khí cầu qua đồi núi',
+  'art8.svg': 'Chú gấu trúc tinh nghịch',
+  'art9.svg': 'Thuyền buồm lướt sóng ra khơi',
+  'art10.svg': 'Chú hươu cao cổ và cánh rừng',
+  'art11.svg': 'Cầu vồng rực rỡ sau mưa',
+  'art12.svg': 'Đêm trăng rằm và rước đèn',
+  'art13.svg': 'Chú chim én đón mùa xuân',
+  'art14.svg': 'Cối xay gió trên thảo nguyên',
+  'art15.svg': 'Khu vườn dâu tây ngọt ngào',
+  'art16.svg': 'Chú khủng long vui vẻ',
+};
+
+export function getLessonTitle(j) {
+  if (j?.title) return j.title;
+  if (j?.photo) {
+    const fn = j.photo.split('/').pop().split('?')[0];
+    if (ART_TITLES[fn]) return ART_TITLES[fn];
+  }
+  const titles = Object.values(ART_TITLES);
+  const hash = (s) => { let h = 0; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0; return h; };
+  const idx = hash((j?.session?.date || '') + (j?.id || '')) % titles.length;
+  return titles[idx];
+}
+
 // 4.2 Xem nhật ký học tập (+ chi tiết)
 export function Diary() {
   const nav = useNavigate(); const back = () => nav(`${P}/lich-hoc`); const T = 'Xem nhật ký học tập';
@@ -481,13 +512,17 @@ export function Diary() {
   if (kids && !kids.length) return <div className="m-body"><MTitle title={T} onBack={back} /><Result title="Tài khoản chưa liên kết" text={NOT_LINKED} onBtn={back} /></div>;
   if (open) {
     const c = open.comment;
+    const lessonTitle = getLessonTitle(open);
     return (
       <div className="m-body">
         <MTitle title="Chi tiết nhật ký học tập" onBack={() => setOpen(null)} sub={`${kid.fullName} - Buổi học ${dmy(open.session.date)}`} />
         <div className="p-card hl">
-          <b className="p-h3" style={{ margin: 0 }}>{open.session.name.replace(/^(Cơ bản|Nâng cao) - /, '')}</b>
-          <small className="p-muted">Lớp {open.session.name} - {open.session.start}-{open.session.end}</small>
-          {open.photo ? <img className="p-photo" src={open.photo} alt={`Tác phẩm ngày ${dmy(open.session.date)}`} /> : <div className="p-photo empty">Giáo viên chưa đăng ảnh tác phẩm</div>}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
+            <span className="p-pill ok" style={{ fontSize: '0.78rem' }}>Chủ đề</span>
+            <b className="p-h3" style={{ margin: 0, color: '#0d7fa8' }}>{lessonTitle}</b>
+          </div>
+          <small className="p-muted">Lớp {open.session.name} • {open.session.start} - {open.session.end}</small>
+          {open.photo ? <img className="p-photo" src={open.photo} alt={lessonTitle} /> : <div className="p-photo empty">Giáo viên chưa đăng ảnh tác phẩm</div>}
         </div>
         <div className="p-card">
           <div className="p-h3" style={{ marginTop: 0 }}>Nhận xét của giáo viên</div>
@@ -502,12 +537,20 @@ export function Diary() {
       {picker}
       {rows && !rows.length ? <Result type={<Ico.bell s={34} c="#a9deef" />} title="Chưa có nội dung" text="Nhật ký học tập của bé chưa có nội dung" btn={null} footer={false} /> : (<>
         {rows && <div className="p-h3">Mới nhất</div>}
-        {(rows || []).map((j) => (
-          <button key={j.id} className="p-diary" onClick={() => setOpen(j)}>
-            <span className="th">{j.photo ? <img src={j.photo} alt="" /> : <Ico.palette s={34} c="#ed986f" />}</span>
-            <span className="tx"><small>{dmy(j.session.date)}</small><b>{j.session.name.replace(/^(Cơ bản|Nâng cao) - /, '')}</b><span>{j.comment ? j.comment.stroke : 'Chưa có nhận xét'}</span><em>Xem chi tiết</em></span>
-          </button>
-        ))}
+        {(rows || []).map((j) => {
+          const lessonTitle = getLessonTitle(j);
+          return (
+            <button key={j.id} className="p-diary" onClick={() => setOpen(j)}>
+              <span className="th">{j.photo ? <img src={j.photo} alt={lessonTitle} /> : <Ico.palette s={34} c="#ed986f" />}</span>
+              <span className="tx">
+                <small>{dmy(j.session.date)} • Lớp {j.session.name.replace(/^(Cơ bản|Nâng cao) - /, '')}</small>
+                <b style={{ color: '#0d7fa8', fontSize: '1.02rem', margin: '2px 0' }}>{lessonTitle}</b>
+                <span>{j.comment ? j.comment.stroke : 'Chưa có nhận xét'}</span>
+                <em>Xem chi tiết</em>
+              </span>
+            </button>
+          );
+        })}
       </>)}
     </div>
   );
