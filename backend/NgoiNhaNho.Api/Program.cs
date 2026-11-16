@@ -87,6 +87,9 @@ WHERE x.rk = 1 AND x.""StudentId"" % 2 = 0
 ON CONFLICT DO NOTHING;";
             try { db.Database.ExecuteSqlRaw(sql); } catch { /* ignore */ }
         }
+
+        // Tự động bổ sung dữ liệu Tác phẩm cần đăng & Nhận xét cần cập nhật cho giáo viên
+        try { await SeedPendingTeacherTasksAsync(db); } catch { /* ignore */ }
     }
     catch (Exception ex)
     {
@@ -188,8 +191,14 @@ app.MapGet("/api/diag/seed-roster", async (AppDbContext db) =>
 
 app.MapGet("/api/diag/seed-pending-artwork", async (AppDbContext db) =>
 {
+    var res = await SeedPendingTeacherTasksAsync(db);
+    return Results.Ok(res);
+});
+
+async Task<object> SeedPendingTeacherTasksAsync(AppDbContext db)
+{
     var myduyen = await db.Users.FirstOrDefaultAsync(u => u.Username == "myduyen");
-    if (myduyen == null) return Results.NotFound("Teacher myduyen not found");
+    if (myduyen == null) return new { ok = false, message = "Teacher myduyen not found" };
 
     var date = new DateOnly(2026, 11, 11); // Thứ 4 tuần trước (trong vòng 7 ngày)
     var att = await db.Attendances.Include(a => a.Records).FirstOrDefaultAsync(a => a.ClassId == 13 && a.SessionDate == date);
@@ -226,58 +235,68 @@ app.MapGet("/api/diag/seed-pending-artwork", async (AppDbContext db) =>
     }
     await db.SaveChangesAsync();
 
-    // Bé Phan Kim Ngân (StudentId = 61) hoặc học viên đầu tiên chưa có ảnh tác phẩm
-    var targetStudent = scs.FirstOrDefault(s => s.StudentId == 61) ?? scs[0];
-    var targetId = targetStudent.StudentId;
-    var j1 = await db.Journal.FirstOrDefaultAsync(j => j.ClassId == 13 && j.SessionDate == date && j.StudentId == targetId);
-    if (j1 == null)
-    {
-        j1 = new JournalEntry
-        {
-            StudentId = targetId,
-            ClassId = 13,
-            SessionDate = date,
-            TeacherId = myduyen.UserId,
-            PhotoPath = null,
-            StrokeComment = "Bé cầm cọ rất khéo, nét uốn lượn mềm mại.",
-            ColorComment = "Biết cách pha trộn màu sắc tươi sáng, sinh động.",
-            AbsorbComment = "Tiếp thu nhanh, chăm chú lắng nghe cô hướng dẫn.",
-            CommentAt = new DateTime(2026, 11, 11, 20, 0, 0, DateTimeKind.Utc)
-        };
-        db.Journal.Add(j1);
-    }
-    else
-    {
-        j1.PhotoPath = null;
-        j1.PhotoAt = null;
-    }
+    // 1. Phan Kim Ngân (61): Cần ảnh + Cần nhận xét
+    // 2. Trịnh Gia Hưng (62): Cần ảnh (nhận xét đã có)
+    // 3. Lâm Bảo Ngọc (63): Cần ảnh + Cần nhận xét
+    // 4. Vũ Thùy Linh (45): Cần nhận xét (ảnh đã có)
+    // Tổng cộng: 3 ảnh cần đăng, 3 bé cần nhận xét
+    var needPhotoIds = new HashSet<int> { 61, 62, 63 };
+    var needCommentIds = new HashSet<int> { 61, 63, 45 };
 
-    // Các học viên khác có đầy đủ ảnh
-    foreach (var other in scs.Where(s => s.StudentId != targetId))
+    foreach (var sc in scs)
     {
-        var sid = other.StudentId;
-        var jOther = await db.Journal.FirstOrDefaultAsync(j => j.ClassId == 13 && j.SessionDate == date && j.StudentId == sid);
-        if (jOther == null)
+        var sid = sc.StudentId;
+        var j = await db.Journal.FirstOrDefaultAsync(x => x.ClassId == 13 && x.SessionDate == date && x.StudentId == sid);
+        if (j == null)
         {
-            db.Journal.Add(new JournalEntry
+            j = new JournalEntry
             {
                 StudentId = sid,
                 ClassId = 13,
                 SessionDate = date,
                 TeacherId = myduyen.UserId,
-                PhotoPath = "/uploads/seed/art10.svg",
-                PhotoAt = new DateTime(2026, 11, 11, 20, 0, 0, DateTimeKind.Utc),
-                StrokeComment = "Nét vẽ tự tin, dứt khoát và rõ ràng hơn.",
-                ColorComment = "Bé phối màu hài hòa, các mảng màu tương phản đẹp mắt.",
-                AbsorbComment = "Hào hứng sáng tạo thêm các chi tiết mới cho tranh.",
-                CommentAt = new DateTime(2026, 11, 11, 20, 0, 0, DateTimeKind.Utc)
-            });
+            };
+            db.Journal.Add(j);
+        }
+
+        if (needPhotoIds.Contains(sid))
+        {
+            j.PhotoPath = null;
+            j.PhotoAt = null;
+        }
+        else
+        {
+            j.PhotoPath = $"/uploads/seed/art{(sid % 15) + 1}.svg";
+            j.PhotoAt = new DateTime(2026, 11, 11, 20, 0, 0, DateTimeKind.Utc);
+        }
+
+        if (needCommentIds.Contains(sid))
+        {
+            j.StrokeComment = null;
+            j.ColorComment = null;
+            j.AbsorbComment = null;
+            j.CommentAt = null;
+        }
+        else
+        {
+            j.StrokeComment = "Nét vẽ tự tin, dứt khoát và rõ ràng hơn.";
+            j.ColorComment = "Bé phối màu hài hòa, các mảng màu tương phản đẹp mắt.";
+            j.AbsorbComment = "Hào hứng sáng tạo thêm các chi tiết mới cho tranh.";
+            j.CommentAt = new DateTime(2026, 11, 11, 20, 0, 0, DateTimeKind.Utc);
         }
     }
 
     await db.SaveChangesAsync();
-    return Results.Ok(new { ok = true, targetStudent = targetStudent.Student?.FullName, studentId = targetId, classId = 13, sessionDate = "2026-11-11" });
-});
+    return new
+    {
+        ok = true,
+        classId = 13,
+        sessionDate = "2026-11-11",
+        needPhotos = needPhotoIds.Count,
+        needComments = needCommentIds.Count,
+        studentsCount = scs.Count
+    };
+}
 
 app.MapGet("/api/diag/seed-progress", async (AppDbContext db) =>
 {

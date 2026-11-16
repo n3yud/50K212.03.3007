@@ -335,6 +335,13 @@ WHILE d < today LOOP
   d := d + 1;
 END LOOP;
 
+/* ---- Dữ liệu tác phẩm cần đăng và nhận xét cần cập nhật cho giáo viên ---- */
+UPDATE "Journal" SET "PhotoPath" = NULL, "PhotoAt" = NULL
+WHERE "ClassId" = 13 AND "SessionDate" = fn_prev_meet(13, today) AND "StudentId" IN (61, 62, 63);
+
+UPDATE "Journal" SET "StrokeComment" = NULL, "ColorComment" = NULL, "AbsorbComment" = NULL, "CommentAt" = NULL
+WHERE "ClassId" = 13 AND "SessionDate" = fn_prev_meet(13, today) AND "StudentId" IN (61, 63, 45);
+
 /* ---- Tiến độ học tập (học viên Đang học) ---- */
 INSERT INTO "ProgressRecords" ("StudentId", "ClassId", "SessionDate", "EvalDate", "Status", "TeacherId", "RecordedBy")
 SELECT x."StudentId", x."ClassId", x."SessionDate", x."SessionDate",
