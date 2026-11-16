@@ -571,9 +571,10 @@ export function Notices() {
   const [rows, setRows] = useState(null); const [fail, setFail] = useState(false);
   const load = () => notifications.mine().then(setRows).catch(() => setFail(true));
   useEffect(() => { load(); }, []);
-  const back = () => nav(`${P}/lich-hoc`);
+  const back = () => nav(`${P}/trang-chu`);
   if (fail) return <div className="m-body"><MTitle title="Xem thông báo" onBack={back} /><Result title="Không thể tải thông báo" text={sysText} onBtn={back} /></div>;
-  const cur = id && (rows || []).find((n) => n.id === id);
+  if (!rows) return <div className="m-body"><MTitle title={id ? "Chi tiết thông báo" : "Xem thông báo"} onBack={id ? () => nav(`${P}/thong-bao`) : back} /><div style={{ textAlign: 'center', padding: '32px', color: '#6b7c88' }}>Đang tải...</div></div>;
+  const cur = id && rows.find((n) => String(n.id) === String(id));
   if (cur) return (
     <div className="m-body">
       <MTitle title="Chi tiết thông báo" onBack={() => nav(`${P}/thong-bao`)} />
@@ -584,6 +585,12 @@ export function Notices() {
         <hr />
         <p className="p-text">{cur.body}</p>
       </div>
+    </div>
+  );
+  if (id && rows) return (
+    <div className="m-body">
+      <MTitle title="Chi tiết thông báo" onBack={() => nav(`${P}/thong-bao`)} />
+      <Result title="Không tìm thấy thông báo" text="Thông báo này không tồn tại hoặc đã bị xóa" onBtn={() => nav(`${P}/thong-bao`)} />
     </div>
   );
   return (

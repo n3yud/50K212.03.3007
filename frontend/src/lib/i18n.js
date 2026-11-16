@@ -635,6 +635,8 @@ const D = {
   'Nhật ký học tập của bé chưa có bài vẽ nào.': 'Your child\'s diary has no artwork yet.',
   'Không thể tải thông báo': 'Could not load notifications',
   'Chi tiết thông báo': 'Notification details',
+  'Không tìm thấy thông báo': 'Notification not found',
+  'Thông báo này không tồn tại hoặc đã bị xóa': 'This notification does not exist or has been deleted',
   'Bạn chưa có thông báo nào': 'You have no notifications',
   'Xem thông báo': 'View notifications',
   'Nhập số điện thoại': 'Enter phone number',
