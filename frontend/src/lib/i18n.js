@@ -704,6 +704,30 @@ const D = {
   'bé': 'children',
   'Lịch học bù đã được phê duyệt': 'Make-up session approved',
   'Học viên vắng mặt': 'Student absent',
+  'Đã ghi nhận yêu cầu xin nghỉ': 'Leave request recorded',
+  'Ghi nhận học viên nghỉ': 'Student absence recorded',
+  'Lịch học thử đã được xác nhận': 'Trial session confirmed',
+  'Ca học thử không được duyệt': 'Trial session rejected',
+  'Đề xuất học bù không được duyệt': 'Make-up proposal rejected',
+  'Có yêu cầu xin nghỉ mới': 'New leave request',
+  'Có đề xuất xếp lịch bù chờ phê duyệt': 'New make-up proposal awaiting approval',
+  'Có đăng ký học bù chờ lập đề xuất': 'New make-up booking awaiting proposal',
+  'Phụ huynh đã hủy học bù': 'Parent cancelled make-up session',
+  'Học viên hủy học bù': 'Student cancelled make-up session',
+  'Học viên vắng đột xuất cần ghi nhận': 'Unannounced student absence needs recording',
+  'Có đơn đăng ký học thử mới': 'New trial registration',
+  'Phụ huynh đã xác nhận lịch học thử': 'Parent confirmed trial schedule',
+  'Có ca học thử chờ phê duyệt': 'Trial session awaiting approval',
+  'Đã tiếp nhận đơn học thử': 'Trial application received',
+  'Đề xuất lịch học thử': 'Trial schedule proposed',
+  'Kết quả học thử đã sẵn sàng': 'Trial results ready',
+  'Nhắc đóng học phí': 'Tuition fee reminder',
+  'Đề xuất xếp bù mới': 'New make-up proposals',
+  'Ca học thử mới': 'New trial sessions',
+  'Học phí tháng này của bé đã được tạo. Ba mẹ vui lòng kiểm tra.': 'This month\'s tuition for your child has been issued. Parents please check.',
+  'Học phí tháng này của bé đã được tạo. Ba mẹ vui lòng kiểm tra': 'This month\'s tuition for your child has been issued. Parents please check.',
+  'Vui lòng chọn ca đề xuất khác cho các học viên học thử.': 'Please choose another proposed session for trial students.',
+  'Vui lòng chọn ca đề xuất khác cho các học viên học thử': 'Please choose another proposed session for trial students.',
   'Ba mẹ có thể đăng ký ca học bù khác trong hạn học bù': 'Parents can book another make-up session within the deadline',
   'Ba mẹ vui lòng liên hệ Trợ lý để liên kết hồ sơ': 'Please contact Assistant to link records',
   'Bé không có buổi học sắp tới': 'No upcoming sessions for this child',
@@ -935,17 +959,6 @@ const D = {
   'Ca': 'Session',
 };
 
-// Mẫu có phần biến (giờ, ngày, số lượng)
-const P = [
-  [/^Ca (\d\d:\d\d) - (\d\d:\d\d)$/, 'Session $1 - $2'],
-  [/^Ca (\d\d:\d\d) - (\d\d:\d\d) - (.+)$/, (m, s, e, n) => `Session ${s} - ${e} - ${D[n.trim()] || n.trim()}`],
-  [/^Ca học hôm nay - (.+)$/, (m, p) => `Today's sessions - ${p}`],
-  [/^(\d+) học viên$/, '$1 students'], [/^(\d+) ca$/, '$1 sessions'], [/^(\d+) ảnh$/, '$1 photos'], [/^(\d+) bé$/, '$1 children'],
-  [/^còn (\d+) buổi$/, '$1 left'], [/^Lớp (.+)$/, (m, p) => `Class ${D[p] || p}`], [/^Học viên: (.+)$/, (m, p) => `Student: ${p}`], [/^Ca học: (.+)$/, (m, p) => `Session: ${p}`],
-  [/^Buổi học (.+)$/, (m, p) => `Session ${p}`],
-  [/^Thứ hai/i, 'Monday'], [/^Thứ ba/i, 'Tuesday'], [/^Thứ tư/i, 'Wednesday'], [/^Thứ năm/i, 'Thursday'], [/^Thứ sáu/i, 'Friday'], [/^Thứ bảy/i, 'Saturday'], [/^Chủ nhật/i, 'Sunday'],
-];
-
 const WD = {
   'Thứ hai': 'Monday', 'Thứ ba': 'Tuesday', 'Thứ tư': 'Wednesday', 'Thứ năm': 'Thursday', 'Thứ sáu': 'Friday', 'Thứ bảy': 'Saturday', 'Chủ nhật': 'Sunday',
   'Thứ Hai': 'Monday', 'Thứ Ba': 'Tuesday', 'Thứ Tư': 'Wednesday', 'Thứ Năm': 'Thursday', 'Thứ Sáu': 'Friday', 'Thứ Bảy': 'Saturday', 'Chủ Nhật': 'Sunday',
@@ -954,6 +967,38 @@ const WD = {
 };
 
 const WDT = (x) => String(x).replace(/^(Thứ (?:hai|ba|tư|năm|sáu|bảy|[2-7])|Chủ nhật|Chủ Nhật|CN)(?=[ ,•-]|$)/i, (m) => WD[m] || m);
+const transSess = (s) => String(s).replace(/(Thứ (?:hai|ba|tư|năm|sáu|bảy|[2-7])|Chủ nhật|Chủ Nhật|CN)/gi, (m) => WD[m] || m);
+
+// Mẫu có phần biến (giờ, ngày, số lượng, thông báo)
+const P = [
+  // Thông báo (Notifications - Nội dung động)
+  [/^Bé (.+?) nghỉ ca (.+?)(?:\.\s*Ba mẹ có thể đăng ký học bù trong (\d+) ngày\.?)?$/, (m, n, s, d) => d ? `Student ${n} is absent for session ${transSess(s)}. Parents can book a make-up session within ${d} days.` : `Student ${n} is absent for session ${transSess(s)}`],
+  [/^Ca học bù của bé (.+?) đã được duyệt\.?$/, (m, n) => `Make-up session for student ${n} has been approved.`],
+  [/^Bé (.+?) học bù:\s*(.+)$/, (m, n, s) => `Student ${n} make-up: ${transSess(s)}`],
+  [/^Bé (.+?) vắng mặt ở ca học gần nhất\.?$/, (m, n) => `Student ${n} was absent from the most recent session.`],
+  [/^Bé (.+?) vắng mặt ở ca (.+?) ngày (.+?)\.?$/, (m, n, c, d) => `Student ${n} was absent from session ${c} on ${d}.`],
+  [/^Ngôi Nhà Nhỏ đã tiếp nhận đơn học thử của bé (.+?)\.?$/, (m, n) => `Little House has received the trial registration for ${n}.`],
+  [/^Ngôi Nhà Nhỏ đề xuất ca học thử cho bé (.+?):\s*(.+?)\.\s*Ba mẹ vui lòng xác nhận lịch\.?$/, (m, n, s) => `Little House proposed a trial session for ${n}: ${transSess(s)}. Parents please confirm the schedule.`],
+  [/^Ba mẹ có thể xem kết quả học thử của bé (.+?)\.?$/, (m, n) => `Parents can view the trial evaluation results for ${n}.`],
+  [/^Bé (.+?):\s*((?:Thứ|Chủ nhật|Chủ Nhật).+)$/, (m, n, s) => `Student ${n}: ${transSess(s)}`],
+  [/^Có (\d+) đề xuất ca học bù mới đang chờ phê duyệt\.?$/, (m, n) => `There are ${n} new make-up session proposals awaiting approval.`],
+  [/^Có (\d+) ca học thử mới đang chờ phê duyệt\.?$/, (m, n) => `There are ${n} new trial sessions awaiting approval.`],
+  [/^(.+?) cần được chọn lại ca học bù\.?$/, (m, n) => `${n} needs another make-up session selected.`],
+  [/^(.+?) đã xác nhận ca học thử\.?$/, (m, n) => `${n} confirmed the trial session.`],
+  [/^(.+?) hủy bù (.+?)\.?$/, (m, n, s) => `${n} cancelled make-up session ${transSess(s)}.`],
+  [/^Đã hủy lịch học bù của bé (.+?)\.?$/, (m, n) => `Cancelled make-up schedule for student ${n}.`],
+  [/^(.+?) – ca (.+?)\.\s*Vui lòng ghi nhận lịch nghỉ\.?$/, (m, n, c) => `${n} – session ${c}. Please record the absence.`],
+  [/^(.+?) – bù (.+)$/, (m, n, s) => `${n} – make-up ${transSess(s)}`],
+  [/^(.+?) – SĐT (.+)$/, (m, n, p) => `${n} – Phone ${p}`],
+
+  [/^Ca (\d\d:\d\d) - (\d\d:\d\d)$/, 'Session $1 - $2'],
+  [/^Ca (\d\d:\d\d) - (\d\d:\d\d) - (.+)$/, (m, s, e, n) => `Session ${s} - ${e} - ${D[n.trim()] || n.trim()}`],
+  [/^Ca học hôm nay - (.+)$/, (m, p) => `Today's sessions - ${p}`],
+  [/^(\d+) học viên$/, '$1 students'], [/^(\d+) ca$/, '$1 sessions'], [/^(\d+) ảnh$/, '$1 photos'], [/^(\d+) bé$/, '$1 children'],
+  [/^còn (\d+) buổi$/, '$1 left'], [/^Lớp (.+)$/, (m, p) => `Class ${D[p] || p}`], [/^Học viên: (.+)$/, (m, p) => `Student: ${p}`], [/^Ca học: (.+)$/, (m, p) => `Session: ${p}`],
+  [/^Buổi học (.+)$/, (m, p) => `Session ${p}`],
+  [/^Thứ hai/i, 'Monday'], [/^Thứ ba/i, 'Tuesday'], [/^Thứ tư/i, 'Wednesday'], [/^Thứ năm/i, 'Thursday'], [/^Thứ sáu/i, 'Friday'], [/^Thứ bảy/i, 'Saturday'], [/^Chủ nhật/i, 'Sunday'],
+];
 
 const PREFIX = {
   'SĐT': 'Phone', 'Giáo viên': 'Teacher', 'Chương trình': 'Programme', 'Ca bù': 'Make-up',
